@@ -1,3 +1,4 @@
+### Terraform template
 # Local .terraform directories
 **/.terraform/*
 
@@ -33,6 +34,9 @@ override.tf.json
 .terraformrc
 terraform.rc
 
+# Ignore the lock file
+.terraform.lock.hcl
+
 # User-specific stuff
 .idea
 
@@ -65,3 +69,6 @@ fabric.properties
 
 # macos
 .DS_Store
+
+# Git
+.git/*
