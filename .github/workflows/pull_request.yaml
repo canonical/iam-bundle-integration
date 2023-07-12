@@ -13,7 +13,7 @@
         - name: HashiCorp - Setup Terraform
           uses: hashicorp/setup-terraform@v2.0.3
 
-        - name: Terraform fmt
+        - name: Terraform Format
           id: fmt
           run: terraform fmt -check
           continue-on-error: true
@@ -25,6 +25,13 @@
         - name: Terraform Validate
           id: validate
           run: terraform validate -no-color
+
+        - name: Setup Operator Environment
+          uses: charmed-kubernetes/actions-operator@main
+          with:
+            juju-channel: 3.1/stable
+            provider: microk8s
+            channel: 1.25-strict/stable
 
         - name: Terraform Plan
           id: plan
