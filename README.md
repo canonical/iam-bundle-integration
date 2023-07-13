@@ -55,6 +55,10 @@ $ juju status --relations
 
 TBD.
 
+## Terraform Module Specifications
+
+Please refer to the [doc](./MODULE_SPECS.md) to learn the module specifications.
+
 ## Contributing
 
 Please refer to the [doc](./CONTRIBUTING.md) to learn how to make code changes.
