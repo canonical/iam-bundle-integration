@@ -19,3 +19,4 @@ jobs:
           release-type: terraform-module
           default-branch: main
           pull-request-title-pattern: "ci: release ${version}"
+          token: ${{ secrets.PAT_TOKEN }}
