@@ -5,6 +5,7 @@
 
   jobs:
     build:
+      name: Terraform Checks and Plans
       runs-on: ubuntu-latest
       steps:
         - name: Checkout
@@ -15,7 +16,7 @@
 
         - name: Terraform Format
           id: fmt
-          run: terraform fmt -check
+          run: terraform fmt -recursive -check
           continue-on-error: true
 
         - name: Terraform Init
@@ -95,3 +96,8 @@
                   body: output
                 })
               }
+
+    documentation:
+      name: Render Terraform Docs
+      needs: build
+      uses: ./.github/workflows/documentation.yaml

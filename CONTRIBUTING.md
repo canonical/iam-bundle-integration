@@ -57,6 +57,10 @@ $ pre-commit install
 $ pre-commit run <hook>
 ```
 
-## Documentation
+## Commits Convention
 
-TBD.
+Please follow
+the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) to
+create commit messages. This facilitates the usage of the
+[Release Please Action](https://github.com/google-github-actions/release-please-action)
+for automated releases of the Terraform module.
