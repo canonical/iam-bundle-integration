@@ -1,5 +1,12 @@
 # IAM Bundle Terraform Module
 
+[![Build](https://img.shields.io/github/actions/workflow/status/wood-push-melon/iam-bundle-test/pull_request.yaml?label=Build)](https://github.com/canonical/iam-bundle-integration/actions/workflows/pull_request.yaml)
+[![Latest Release](https://img.shields.io/github/release/canonical/iam-bundle-integration.svg?label=Release)](https://github.com/canonical/iam-bundle-integration/releases/latest)
+[![Juju Provider](https://img.shields.io/badge/Juju%20Provider-0.8.0-%23E95420)](https://registry.terraform.io/providers/juju/juju/0.8.0)
+[![Terraform](https://img.shields.io/badge/Terraform-v1.5.0+-%23713DAD?logo=terraform&logoColor=white)](https://www.terraform.io/)
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-%23FE5196.svg)](https://conventionalcommits.org)
+[![License](https://img.shields.io/github/license/canonical/iam-bundle-integration?label=License)](https://github.com/canonical/iam-bundle-integration/blob/main/LICENSE)
+
 This IAM bundle Terraform module aims to deploy
 the [IAM Bundle](https://github.com/canonical/iam-bundle) via Terraform.
 
@@ -57,8 +64,10 @@ TBD.
 
 ## Terraform Module Specifications
 
-Please refer to the [doc](./MODULE_SPECS.md) to learn the module specifications.
+Please refer to the [module specifications](./MODULE_SPECS.md) to learn the
+module specifications.
 
 ## Contributing
 
-Please refer to the [doc](./CONTRIBUTING.md) to learn how to make code changes.
+Please refer to the [contribution documentation](./CONTRIBUTING.md) to learn how
+to contribute to the project.
