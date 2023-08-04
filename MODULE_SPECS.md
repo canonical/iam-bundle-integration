@@ -1,7 +1,7 @@
 # Terraform Module Specifications
 
-This documentation shows the detailed specifications of the IAM bundle
-Terraform module.
+This documentation shows the detailed specifications of the Identity Platform
+Juju bundle Terraform module.
 
 <!-- BEGIN_TF_DOCS -->
 ## Providers
