@@ -23,6 +23,12 @@ in the local environment.
 
 ### Deploy locally with Terraform
 
+Create a target Juju model:
+
+```shell
+$ juju add-model <juju model>
+```
+
 Because the bundle uses an external Idp provider (e.g. Microsoft Azure),
 it needs to provide additional variables for the module to run. More
 information about the Idp provider configuration can be
@@ -31,7 +37,9 @@ Please create a Terraform variable definition (`.tfvars`) file in the root
 directory as follows.
 
 ```shell
-# idp_provider.tfvars
+# vars.tfvars
+model = <juju model>
+
 idp_provider_config = {
   client_id           = <client id>
   provider            = <provider name>
@@ -48,10 +56,10 @@ Run the following commands to deploy the bundle.
 
 ```shell
 $ terraform init
-$ terraform apply -var-file="./idp_provider.tfvars"
+$ terraform apply -var-file="./vars.tfvars"
 ```
 
-Run `juju switch iam-bundle` to use the created Juju model.
+Run `juju switch <juju model>` to switch to the target Juju model.
 
 ```shell
 # Observe the status of the applications and integrations

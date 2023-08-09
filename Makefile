@@ -18,7 +18,7 @@ validate:
 
 ## plan:     Plan the changes.
 plan: verify-var-file-set
-	@terraform plan -var-files=${VAR_FILE}
+	@terraform plan -var-file=${VAR_FILE}
 
 verify-var-file-set:
 ifndef VAR_FILE

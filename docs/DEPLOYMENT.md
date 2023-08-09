@@ -80,11 +80,6 @@ Prepare a Terraform variable definition (`.tfvars`) file if not exists:
 # vars.tfvars
 model = <juju model, e.g. 'stg-iam-bundle'>
 
-cloud = {
-  name   = <cloud name, e.g. 'k8s-stg-general'>
-  region = <region name, e.g. 'default'>
-}
-
 idp_provider_config = {
   client_id           = <client id>
   provider            = <provider name>
