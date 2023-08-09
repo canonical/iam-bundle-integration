@@ -19,8 +19,7 @@ Juju bundle Terraform module.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_model"></a> [model](#input\_model) | The name of the Juju model to deploy to. | `string` | `"iam-bundle"` | no |
-| <a name="input_cloud"></a> [cloud](#input\_cloud) | The Juju cloud information. | <pre>object({<br>    name   = string<br>    region = string<br>  })</pre> | <pre>{<br>  "name": "microk8s",<br>  "region": "localhost"<br>}</pre> | no |
+| <a name="input_model"></a> [model](#input\_model) | The name of the Juju model to deploy to. | `string` | `"identity-platform"` | no |
 | <a name="input_hydra"></a> [hydra](#input\_hydra) | The configurations of the Hydra application. | <pre>object({<br>    units   = optional(number, 1)<br>    channel = optional(string, "edge")<br>    series  = optional(string, "jammy")<br>    trust   = optional(string, true)<br>    config  = optional(map(string), {})<br>  })</pre> | `{}` | no |
 | <a name="input_kratos"></a> [kratos](#input\_kratos) | The configurations of the Kratos application. | <pre>object({<br>    units   = optional(number, 1)<br>    channel = optional(string, "edge")<br>    series  = optional(string, "jammy")<br>    trust   = optional(string, true)<br>    config  = optional(map(string), {})<br>  })</pre> | `{}` | no |
 | <a name="input_login_ui"></a> [login\_ui](#input\_login\_ui) | The configurations of the Identity Platform Login UI application. | <pre>object({<br>    units   = optional(number, 1)<br>    trust   = optional(bool, true)<br>    config  = optional(map(string), {})<br>    channel = optional(string, "edge")<br>    series  = optional(string, "jammy")<br>  })</pre> | `{}` | no |
