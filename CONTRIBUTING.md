@@ -1,4 +1,4 @@
-# Contributing to IAM bundle Terraform module
+# Contributing to Identity Platform Juju bundle Terraform module
 
 ## Development environment
 
@@ -64,3 +64,14 @@ the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) to
 create commit messages. This facilitates the usage of the
 [Release Please Action](https://github.com/google-github-actions/release-please-action)
 for automated releases of the Terraform module.
+
+## Releasing
+
+This repository leverages
+the [release-please GitHub action](https://github.com/google-github-actions/release-please-action)
+to help release. After releasing a new version of the module, create a merge
+request to update
+the [module version](https://git.launchpad.net/canonical-terraform-plans/tree/identity/environments/staging/main.tf#n2)
+in
+the [canonical-terraform-plans](https://launchpad.net/canonical-terraform-plans)
+launchpad repository. Invite the IS team to review and merge the changes.

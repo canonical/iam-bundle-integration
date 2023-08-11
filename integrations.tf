@@ -76,7 +76,7 @@ resource "juju_integration" "integration" {
     for idx, integration in local.integrations : idx => integration
   }
 
-  model = juju_model.iam_bundle.name
+  model = var.model
 
   application {
     name     = each.value.provider

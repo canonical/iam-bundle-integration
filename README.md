@@ -1,4 +1,4 @@
-# IAM Bundle Terraform Module
+# Identity Platform Juju Bundle Terraform Module
 
 [![Build](https://img.shields.io/github/actions/workflow/status/wood-push-melon/iam-bundle-test/pull_request.yaml?label=Build)](https://github.com/canonical/iam-bundle-integration/actions/workflows/pull_request.yaml)
 [![Latest Release](https://img.shields.io/github/release/canonical/iam-bundle-integration.svg?label=Release)](https://github.com/canonical/iam-bundle-integration/releases/latest)
@@ -7,8 +7,8 @@
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-%23FE5196.svg)](https://conventionalcommits.org)
 [![License](https://img.shields.io/github/license/canonical/iam-bundle-integration?label=License)](https://github.com/canonical/iam-bundle-integration/blob/main/LICENSE)
 
-This IAM bundle Terraform module aims to deploy
-the [IAM Bundle](https://github.com/canonical/iam-bundle) via Terraform.
+This Identity Platform Juju bundle Terraform module aims to deploy
+the [Identity Platform Juju Bundle](https://github.com/canonical/iam-bundle) via Terraform.
 
 ## Getting started
 
@@ -23,7 +23,13 @@ in the local environment.
 
 ### Deploy locally with Terraform
 
-Because the IAM bundle uses an external Idp provider (e.g. Microsoft Azure),
+Create a target Juju model:
+
+```shell
+$ juju add-model <juju model>
+```
+
+Because the bundle uses an external Idp provider (e.g. Microsoft Azure),
 it needs to provide additional variables for the module to run. More
 information about the Idp provider configuration can be
 found [here](https://github.com/canonical/kratos-external-idp-integrator/blob/main/config.yaml).
@@ -31,7 +37,9 @@ Please create a Terraform variable definition (`.tfvars`) file in the root
 directory as follows.
 
 ```shell
-# idp_provider.tfvars
+# vars.tfvars
+model = <juju model>
+
 idp_provider_config = {
   client_id           = <client id>
   provider            = <provider name>
@@ -44,23 +52,24 @@ idp_provider_credentials = {
 }
 ```
 
-Run the following commands to deploy the IAM bundle.
+Run the following commands to deploy the bundle.
 
 ```shell
 $ terraform init
-$ terraform apply -var-files="./idp_provider.tfvars"
+$ terraform apply -var-file="./vars.tfvars"
 ```
 
-Run `juju switch iam-bundle` to use the created Juju model.
+Run `juju switch <juju model>` to switch to the target Juju model.
 
 ```shell
 # Observe the status of the applications and integrations
 $ juju status --relations
 ```
 
-### Deploy to the Canonical Cloud
+### Deploy to the ProdStack 6 Cloud
 
-TBD.
+Please refer to the [deployment documentation](docs/DEPLOYMENT.md) to learn
+how to deploy the module to the ProdStack Cloud.
 
 ## Terraform Module Specifications
 

@@ -1,19 +1,7 @@
 variable "model" {
   description = "The name of the Juju model to deploy to."
   type        = string
-  default     = "iam-bundle"
-}
-
-variable "cloud" {
-  description = "The Juju cloud information."
-  type = object({
-    name   = string
-    region = string
-  })
-  default = {
-    name   = "microk8s"
-    region = "localhost"
-  }
+  default     = "identity-platform"
 }
 
 variable "hydra" {

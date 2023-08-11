@@ -1,34 +1,34 @@
 module "postgresql" {
   source = "./modules/postgresql"
 
-  model = juju_model.iam_bundle.name
+  model = var.model
   name  = "postgresql"
 }
 
 module "public_ingress" {
   source = "./modules/ingress"
 
-  model = juju_model.iam_bundle.name
+  model = var.model
   name  = "public-ingress"
 }
 
 module "admin_ingress" {
   source = "./modules/ingress"
 
-  model = juju_model.iam_bundle.name
+  model = var.model
   name  = "admin-ingress"
 }
 
 module "kratos_external_idp_integrator" {
   source = "./modules/external_idp_integrator"
 
-  model  = juju_model.iam_bundle.name
+  model  = var.model
   name   = "kratos-external-idp-integrator"
   config = merge(var.idp_provider_config, var.idp_provider_credentials)
 }
 
 resource "juju_application" "kratos" {
-  model = juju_model.iam_bundle.name
+  model = var.model
   name  = "kratos"
   trust = var.kratos.trust
   units = var.kratos.units
@@ -41,7 +41,7 @@ resource "juju_application" "kratos" {
 }
 
 resource "juju_application" "hydra" {
-  model = juju_model.iam_bundle.name
+  model = var.model
   name  = "hydra"
   trust = var.hydra.trust
   units = var.hydra.units
@@ -54,7 +54,7 @@ resource "juju_application" "hydra" {
 }
 
 resource "juju_application" "login_ui" {
-  model = juju_model.iam_bundle.name
+  model = var.model
   name  = "login-ui"
   trust = var.login_ui.trust
   units = var.login_ui.units
