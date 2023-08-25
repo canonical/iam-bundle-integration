@@ -38,11 +38,11 @@ locals {
     },
     {
       provider          = juju_application.hydra.name
-      provider_endpoint = "endpoint-info"
+      provider_endpoint = "hydra-endpoint-info"
       requirers = [
         juju_application.kratos.name, juju_application.login_ui.name
       ]
-      requirer_endpoint = "endpoint-info"
+      requirer_endpoint = "hydra-endpoint-info"
     },
     {
       provider          = juju_application.kratos.name
