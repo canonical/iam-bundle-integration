@@ -1,3 +1,11 @@
+data "juju_offer" "external_ingress" {
+  url = var.juju_offers.external_ingress_url
+}
+
+data "juju_offer" "internal_ingress" {
+  url = var.juju_offers.internal_ingress_url
+}
+
 locals {
   integration_mappings = [
     {
@@ -7,28 +15,6 @@ locals {
         juju_application.kratos.name, juju_application.hydra.name
       ]
       requirer_endpoint = "pg-database"
-    },
-    {
-      provider          = module.public_ingress.name
-      provider_endpoint = "ingress"
-      requirers = [
-        juju_application.kratos.name, juju_application.hydra.name
-      ]
-      requirer_endpoint = "public-ingress"
-    },
-    {
-      provider          = module.public_ingress.name
-      provider_endpoint = "ingress"
-      requirers         = [juju_application.login_ui.name]
-      requirer_endpoint = "ingress"
-    },
-    {
-      provider          = module.admin_ingress.name
-      provider_endpoint = "ingress"
-      requirers = [
-        juju_application.kratos.name, juju_application.hydra.name
-      ]
-      requirer_endpoint = "admin-ingress"
     },
     {
       provider          = module.kratos_external_idp_integrator.name
@@ -69,6 +55,36 @@ locals {
       }
     ]
   ])
+  cmi_integration_mapping = [
+    {
+      offer_url = data.juju_offer.external_ingress.url
+      requirers = [
+        juju_application.kratos.name, juju_application.hydra.name
+      ]
+      requirer_endpoint = "public-ingress"
+    },
+    {
+      offer_url         = data.juju_offer.external_ingress.url
+      requirers         = [juju_application.login_ui.name]
+      requirer_endpoint = "ingress"
+    },
+    {
+      offer_url = data.juju_offer.internal_ingress.url
+      requirers = [
+        juju_application.kratos.name, juju_application.hydra.name
+      ]
+      requirer_endpoint = "admin-ingress"
+    },
+  ]
+  cmi_integrations = flatten([
+    for mapping in local.cmi_integration_mapping : [
+      for requirer in toset(mapping.requirers) : {
+        offer_url         = mapping.offer_url
+        requirer          = requirer
+        requirer_endpoint = mapping.requirer_endpoint
+      }
+    ]
+  ])
 }
 
 resource "juju_integration" "integration" {
@@ -81,6 +97,23 @@ resource "juju_integration" "integration" {
   application {
     name     = each.value.provider
     endpoint = each.value.provider_endpoint
+  }
+
+  application {
+    name     = each.value.requirer
+    endpoint = each.value.requirer_endpoint
+  }
+}
+
+resource "juju_integration" "cmi_integration" {
+  for_each = {
+    for idx, integration in local.cmi_integrations : idx => integration
+  }
+
+  model = var.model
+
+  application {
+    offer_url = each.value.offer_url
   }
 
   application {

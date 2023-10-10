@@ -70,3 +70,12 @@ variable "idp_provider_credentials" {
   }
   sensitive = true
 }
+
+variable "juju_offers" {
+  description = "The Juju offers provided by other charmed operators."
+  type = object({
+    external_ingress_url : optional(string)
+    internal_ingress_url : optional(string)
+  })
+  default = {}
+}
