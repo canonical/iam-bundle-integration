@@ -71,11 +71,21 @@ variable "idp_provider_credentials" {
   sensitive = true
 }
 
+variable "internal_ingress" {
+  description = "The internal ingress."
+  type = object({
+    name : string
+    endpoint : optional(string)
+  })
+  default = {
+    name = "internal-ingress"
+  }
+}
+
 variable "juju_offers" {
   description = "The Juju offers provided by other charmed operators."
   type = object({
-    external_ingress_url : optional(string)
-    internal_ingress_url : optional(string)
+    external_ingress_offer : optional(string)
   })
   default = {}
 }

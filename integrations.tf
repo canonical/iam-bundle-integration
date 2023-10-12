@@ -1,9 +1,5 @@
 data "juju_offer" "external_ingress" {
-  url = var.juju_offers.external_ingress_url
-}
-
-data "juju_offer" "internal_ingress" {
-  url = var.juju_offers.internal_ingress_url
+  url = var.juju_offers.external_ingress_offer
 }
 
 locals {
@@ -44,6 +40,14 @@ locals {
       ]
       requirer_endpoint = "ui-endpoint-info"
     },
+    {
+      provider          = var.internal_ingress.name
+      provider_endpoint = var.internal_ingress.endpoint
+      requirers = [
+        juju_application.kratos.name, juju_application.hydra.name
+      ]
+      requirer_endpoint = "admin-ingress"
+    },
   ]
   integrations = flatten([
     for mapping in local.integration_mappings : [
@@ -67,13 +71,6 @@ locals {
       offer_url         = data.juju_offer.external_ingress.url
       requirers         = [juju_application.login_ui.name]
       requirer_endpoint = "ingress"
-    },
-    {
-      offer_url = data.juju_offer.internal_ingress.url
-      requirers = [
-        juju_application.kratos.name, juju_application.hydra.name
-      ]
-      requirer_endpoint = "admin-ingress"
     },
   ]
   cmi_integrations = flatten([

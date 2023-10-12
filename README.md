@@ -29,6 +29,19 @@ Create a target Juju model:
 $ juju add-model <juju model>
 ```
 
+Make sure two ingresses (e.g. `traefik-k8s`) are deployed in the model, and the external ingress provides a Juju offer:
+
+```shell
+# Deploy external ingress
+$ juju deploy traefik-k8s <external ingress app> --trust --channel <channel>
+
+# Deploy internal ingress
+$ juju deploy traefik-k8s <internal ingress app> --trust --channel <channel>
+
+# Create the juju offer
+$ juju offer <external ingress app>:ingress <offer name>
+```
+
 Because the bundle uses an external Idp provider (e.g. Microsoft Azure),
 it needs to provide additional variables for the module to run. More
 information about the Idp provider configuration can be
@@ -49,6 +62,15 @@ idp_provider_config = {
 
 idp_provider_credentials = {
   client_secret = <client secret>
+}
+
+internal_ingress = {
+  name     = <Juju app name of the internal ingress>
+  endpoint = "ingress"
+}
+
+juju_offers = {
+  external_ingress_offer = <Juju offer url provided by external ingress>
 }
 ```
 
