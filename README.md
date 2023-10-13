@@ -1,6 +1,6 @@
 # Identity Platform Juju Bundle Terraform Module
 
-[![Build](https://img.shields.io/github/actions/workflow/status/wood-push-melon/iam-bundle-test/pull_request.yaml?label=Build)](https://github.com/canonical/iam-bundle-integration/actions/workflows/pull_request.yaml)
+[![Build](https://img.shields.io/github/actions/workflow/status/canonical/iam-bundle-integration/pull_request.yaml?label=Build)](https://github.com/canonical/iam-bundle-integration/actions/workflows/pull_request.yaml)
 [![Latest Release](https://img.shields.io/github/release/canonical/iam-bundle-integration.svg?label=Release)](https://github.com/canonical/iam-bundle-integration/releases/latest)
 [![Juju Provider](https://img.shields.io/badge/Juju%20Provider-0.8.0-%23E95420)](https://registry.terraform.io/providers/juju/juju/0.8.0)
 [![Terraform](https://img.shields.io/badge/Terraform-v1.5.0+-%23713DAD?logo=terraform&logoColor=white)](https://www.terraform.io/)
@@ -29,6 +29,19 @@ Create a target Juju model:
 $ juju add-model <juju model>
 ```
 
+Make sure two ingresses (e.g. `traefik-k8s`) are deployed in the model, and the external ingress provides a Juju offer:
+
+```shell
+# Deploy external ingress
+$ juju deploy traefik-k8s <external ingress app> --trust --channel <channel>
+
+# Deploy internal ingress
+$ juju deploy traefik-k8s <internal ingress app> --trust --channel <channel>
+
+# Create the juju offer
+$ juju offer <external ingress app>:ingress <offer name>
+```
+
 Because the bundle uses an external Idp provider (e.g. Microsoft Azure),
 it needs to provide additional variables for the module to run. More
 information about the Idp provider configuration can be
@@ -49,6 +62,15 @@ idp_provider_config = {
 
 idp_provider_credentials = {
   client_secret = <client secret>
+}
+
+internal_ingress = {
+  name     = <Juju app name of the internal ingress>
+  endpoint = "ingress"
+}
+
+juju_offers = {
+  external_ingress_offer = <Juju offer url provided by external ingress>
 }
 ```
 

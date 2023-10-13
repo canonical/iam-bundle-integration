@@ -5,20 +5,6 @@ module "postgresql" {
   name  = "postgresql"
 }
 
-module "public_ingress" {
-  source = "./modules/ingress"
-
-  model = var.model
-  name  = "public-ingress"
-}
-
-module "admin_ingress" {
-  source = "./modules/ingress"
-
-  model = var.model
-  name  = "admin-ingress"
-}
-
 module "kratos_external_idp_integrator" {
   source = "./modules/external_idp_integrator"
 

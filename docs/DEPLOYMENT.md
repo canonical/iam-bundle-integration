@@ -90,10 +90,13 @@ idp_provider_config = {
 idp_provider_credentials = {
   client_secret = <client secret>
 }
+
+external_ingress_offer = <Juju offer url provided by external ingress>
 ```
 
 > :rotating_light: **Note:**
 >
+> - The `external` ingress is created in different Juju model by the IS team.
 > - A variable file had been created in the home directory,
     e.g. `/home/stg-iam-bundle/vars.tfvars`. Make changes if necessary.
 > - There is no secret management solution yet to allow users to manage their
