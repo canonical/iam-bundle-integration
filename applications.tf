@@ -22,7 +22,7 @@ resource "juju_application" "kratos" {
   charm {
     name    = "kratos"
     channel = var.kratos.channel
-    series  = var.kratos.series
+    base    = var.kratos.base
   }
 }
 
@@ -35,7 +35,7 @@ resource "juju_application" "hydra" {
   charm {
     name    = "hydra"
     channel = var.hydra.channel
-    series  = var.hydra.series
+    base    = var.hydra.base
   }
 }
 
@@ -48,6 +48,6 @@ resource "juju_application" "login_ui" {
   charm {
     name    = "identity-platform-login-ui-operator"
     channel = var.login_ui.channel
-    series  = var.login_ui.series
+    base    = var.login_ui.base
   }
 }

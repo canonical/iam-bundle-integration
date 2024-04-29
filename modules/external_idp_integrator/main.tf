@@ -18,7 +18,7 @@ resource "juju_application" "external_idp_integrator" {
   charm {
     name    = var.charm.name
     channel = var.charm.channel
-    series  = var.charm.series
+    base    = var.charm.base
   }
 
   config = {

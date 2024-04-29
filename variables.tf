@@ -9,7 +9,7 @@ variable "hydra" {
   type = object({
     units   = optional(number, 1)
     channel = optional(string, "edge")
-    series  = optional(string, "jammy")
+    base    = optional(string, "ubuntu@22.04")
     trust   = optional(string, true)
     config  = optional(map(string), {})
   })
@@ -21,7 +21,7 @@ variable "kratos" {
   type = object({
     units   = optional(number, 1)
     channel = optional(string, "edge")
-    series  = optional(string, "jammy")
+    base    = optional(string, "ubuntu@22.04")
     trust   = optional(string, true)
     config  = optional(map(string), {})
   })
@@ -35,7 +35,7 @@ variable "login_ui" {
     trust   = optional(bool, true)
     config  = optional(map(string), {})
     channel = optional(string, "edge")
-    series  = optional(string, "jammy")
+    base    = optional(string, "ubuntu@22.04")
   })
   default = {}
 }

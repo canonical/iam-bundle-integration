@@ -18,6 +18,6 @@ resource "juju_application" "postgresql" {
   charm {
     name    = var.charm.name
     channel = var.charm.channel
-    series  = var.charm.series
+    base    = var.charm.base
   }
 }
