@@ -36,7 +36,7 @@ variable "charm" {
   })
   default = {
     name    = "kratos-external-idp-integrator"
-    channel = "edge"
+    channel = "latest/edge"
     base    = "ubuntu@22.04"
   }
 }
