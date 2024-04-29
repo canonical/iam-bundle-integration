@@ -24,6 +24,8 @@ resource "juju_application" "kratos" {
     channel = var.kratos.channel
     base    = var.kratos.base
   }
+
+  depends_on = [module.postgresql, module.kratos_external_idp_integrator]
 }
 
 resource "juju_application" "hydra" {
@@ -37,6 +39,8 @@ resource "juju_application" "hydra" {
     channel = var.hydra.channel
     base    = var.hydra.base
   }
+
+  depends_on = [module.postgresql]
 }
 
 resource "juju_application" "login_ui" {
@@ -50,4 +54,6 @@ resource "juju_application" "login_ui" {
     channel = var.login_ui.channel
     base    = var.login_ui.base
   }
+
+  depends_on = [juju_application.hydra, juju_application.kratos]
 }
