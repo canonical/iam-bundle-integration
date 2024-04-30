@@ -86,7 +86,12 @@ locals {
 
 resource "juju_integration" "integration" {
   for_each = {
-    for idx, integration in local.integrations : idx => integration
+    for idx, integration in local.integrations :
+    join(",", [
+      join(":", [integration.provider, integration.provider_endpoint]),
+      join(":", [integration.requirer, integration.requirer_endpoint])
+    ]) => integration
+
   }
 
   model = var.model
@@ -104,7 +109,11 @@ resource "juju_integration" "integration" {
 
 resource "juju_integration" "cmi_integration" {
   for_each = {
-    for idx, integration in local.cmi_integrations : idx => integration
+    for idx, integration in local.cmi_integrations :
+    join(",", [
+      integration.offer_url,
+      join(":", [integration.requirer, integration.requirer_endpoint])
+    ]) => integration
   }
 
   model = var.model

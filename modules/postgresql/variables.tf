@@ -32,11 +32,11 @@ variable "charm" {
   type = object({
     name : string
     channel : string
-    series : string
+    base : string
   })
   default = {
     name    = "postgresql-k8s"
     channel = "14/stable"
-    series  = "jammy"
+    base    = "ubuntu@22.04"
   }
 }

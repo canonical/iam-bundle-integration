@@ -22,8 +22,10 @@ resource "juju_application" "kratos" {
   charm {
     name    = "kratos"
     channel = var.kratos.channel
-    series  = var.kratos.series
+    base    = var.kratos.base
   }
+
+  depends_on = [module.postgresql, module.kratos_external_idp_integrator]
 }
 
 resource "juju_application" "hydra" {
@@ -35,8 +37,10 @@ resource "juju_application" "hydra" {
   charm {
     name    = "hydra"
     channel = var.hydra.channel
-    series  = var.hydra.series
+    base    = var.hydra.base
   }
+
+  depends_on = [module.postgresql]
 }
 
 resource "juju_application" "login_ui" {
@@ -48,6 +52,8 @@ resource "juju_application" "login_ui" {
   charm {
     name    = "identity-platform-login-ui-operator"
     channel = var.login_ui.channel
-    series  = var.login_ui.series
+    base    = var.login_ui.base
   }
+
+  depends_on = [juju_application.hydra, juju_application.kratos]
 }

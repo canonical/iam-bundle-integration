@@ -8,8 +8,8 @@ variable "hydra" {
   description = "The configurations of the Hydra application."
   type = object({
     units   = optional(number, 1)
-    channel = optional(string, "edge")
-    series  = optional(string, "jammy")
+    channel = optional(string, "latest/edge")
+    base    = optional(string, "ubuntu@22.04")
     trust   = optional(string, true)
     config  = optional(map(string), {})
   })
@@ -20,8 +20,8 @@ variable "kratos" {
   description = "The configurations of the Kratos application."
   type = object({
     units   = optional(number, 1)
-    channel = optional(string, "edge")
-    series  = optional(string, "jammy")
+    channel = optional(string, "latest/edge")
+    base    = optional(string, "ubuntu@22.04")
     trust   = optional(string, true)
     config  = optional(map(string), {})
   })
@@ -34,8 +34,8 @@ variable "login_ui" {
     units   = optional(number, 1)
     trust   = optional(bool, true)
     config  = optional(map(string), {})
-    channel = optional(string, "edge")
-    series  = optional(string, "jammy")
+    channel = optional(string, "latest/edge")
+    base    = optional(string, "ubuntu@22.04")
   })
   default = {}
 }

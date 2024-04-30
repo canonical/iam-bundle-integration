@@ -2,7 +2,7 @@ terraform {
   required_providers {
     juju = {
       source  = "juju/juju"
-      version = "~> 0.8.0"
+      version = "~> 0.11.0"
     }
   }
 
@@ -18,7 +18,7 @@ resource "juju_application" "external_idp_integrator" {
   charm {
     name    = var.charm.name
     channel = var.charm.channel
-    series  = var.charm.series
+    base    = var.charm.base
   }
 
   config = {

@@ -32,12 +32,12 @@ variable "charm" {
   type = object({
     name : string
     channel : string
-    series : string
+    base : string
   })
   default = {
     name    = "kratos-external-idp-integrator"
-    channel = "edge"
-    series  = "jammy"
+    channel = "latest/edge"
+    base    = "ubuntu@22.04"
   }
 }
 
