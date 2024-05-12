@@ -33,13 +33,13 @@ Terraform CLI provides various ways to do formatting and validation.
 
 ```shell
 # Formats to a canonical format and style
-$ terraform fmt
+terraform fmt
 
 # Checks syntactical validation
-$ terraform validate
+terraform validate
 
 # Preview the changes
-$ terraform plan
+terraform plan
 ```
 
 An external linter (e.g. [tflint](https://github.com/terraform-linters/tflint))
@@ -51,10 +51,10 @@ is submitted.
 
 ```shell
 # Install pre-commit hooks
-$ pre-commit install
+pre-commit install -t commit-msg
 
 # Run individual hook manually
-$ pre-commit run <hook>
+pre-commit run <hook>
 ```
 
 ## Commits Convention

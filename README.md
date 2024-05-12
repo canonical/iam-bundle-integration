@@ -1,14 +1,17 @@
 # Identity Platform Juju Bundle Terraform Module
 
-[![Build](https://img.shields.io/github/actions/workflow/status/canonical/iam-bundle-integration/pull_request.yaml?label=Build)](https://github.com/canonical/iam-bundle-integration/actions/workflows/pull_request.yaml)
 [![Latest Release](https://img.shields.io/github/release/canonical/iam-bundle-integration.svg?label=Release)](https://github.com/canonical/iam-bundle-integration/releases/latest)
 [![Juju Provider](https://img.shields.io/badge/Juju%20Provider-0.11.0-%23E95420)](https://registry.terraform.io/providers/juju/juju/0.11.0)
 [![Terraform](https://img.shields.io/badge/Terraform-v1.5.0+-%23713DAD?logo=terraform&logoColor=white)](https://www.terraform.io/)
-[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-%23FE5196.svg)](https://conventionalcommits.org)
 [![License](https://img.shields.io/github/license/canonical/iam-bundle-integration?label=License)](https://github.com/canonical/iam-bundle-integration/blob/main/LICENSE)
 
+[![Build](https://img.shields.io/github/actions/workflow/status/canonical/iam-bundle-integration/pull_request.yaml?label=Build)](https://github.com/canonical/iam-bundle-integration/actions/workflows/pull_request.yaml)
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-%23FE5196.svg)](https://conventionalcommits.org)
+
 This Identity Platform Juju bundle Terraform module aims to deploy
-the [Identity Platform Juju Bundle](https://github.com/canonical/iam-bundle) via Terraform.
+the [Identity Platform Juju Bundle](https://github.com/canonical/iam-bundle) via
+Terraform.
 
 ## Getting started
 
@@ -26,20 +29,21 @@ in the local environment.
 Create a target Juju model:
 
 ```shell
-$ juju add-model <juju model>
+juju add-model <juju model>
 ```
 
-Make sure two ingresses (e.g. `traefik-k8s`) are deployed in the model, and the external ingress provides a Juju offer:
+Make sure two ingresses (e.g. `traefik-k8s`) are deployed in the model, and the
+external ingress provides a Juju offer:
 
 ```shell
 # Deploy external ingress
-$ juju deploy traefik-k8s <external ingress app> --trust --channel <channel>
+juju deploy traefik-k8s <external ingress app> --trust --channel <channel>
 
 # Deploy internal ingress
-$ juju deploy traefik-k8s <internal ingress app> --trust --channel <channel>
+juju deploy traefik-k8s <internal ingress app> --trust --channel <channel>
 
 # Create the juju offer
-$ juju offer <external ingress app>:ingress <offer name>
+juju offer <external ingress app>:ingress <offer name>
 ```
 
 Because the bundle uses an external Idp provider (e.g. Microsoft Azure),
@@ -77,15 +81,15 @@ juju_offers = {
 Run the following commands to deploy the bundle.
 
 ```shell
-$ terraform init
-$ terraform apply -var-file="./vars.tfvars"
+terraform init
+terraform apply -var-file="./vars.tfvars"
 ```
 
 Run `juju switch <juju model>` to switch to the target Juju model.
 
 ```shell
 # Observe the status of the applications and integrations
-$ juju status --relations
+juju status --relations
 ```
 
 ### Deploy to the ProdStack 6 Cloud

@@ -22,7 +22,7 @@ You can use the generated ssh private key to log into the server by running the
 following command:
 
 ```shell
-$ ssh -i <path-to-private-key> <username>@identity-bastion-ps6.internal
+ssh -i <path-to-private-key> <username>@identity-bastion-ps6.internal
 ```
 
 **Note:** the username should be your launchpad id.
@@ -61,17 +61,17 @@ need to run the following command unless this is the first time that the module
 is to be deployed.
 
 ```shell
-$ bootstrap_backend
+bootstrap_backend
 ```
 
 As per the outputs of the `pe` command above, run the following commands:
 
 ```shell
 # Fetch the latest canonical-terraform-plans repository if necessary
-$ cd ~/plan && git pull
+cd ~/plan && git pull
 
 # Load the credentials for the S3 bucket from Vault server
-$ load_creds s3
+load_creds s3
 ```
 
 Prepare a Terraform variable definition (`.tfvars`) file if not exists:
@@ -106,19 +106,19 @@ Then run the following commands to deploy:
 
 ```shell
 # Initialize the working directory
-$ https_proxy=http://squid.internal:3128 NO_PROXY=radosgw.ps6.canonical.com terraform init
+https_proxy=http://squid.internal:3128 NO_PROXY=radosgw.ps6.canonical.com terraform init
 
 # Create and preview an execution plan
-$ terraform plan -var-file=<path-to-var-file>
+terraform plan -var-file=<path-to-var-file>
 
 # Execute the plan
-$ terraform apply -var-file=<path-to-var-file>
+terraform apply -var-file=<path-to-var-file>
 ```
 
 Monitor the status of the deployment:
 
 ```shell
-$ watch -n1 juju status --relations
+watch -n1 juju status --relations
 ```
 
 ### Clean up
@@ -127,7 +127,7 @@ If you no longer need the deployed module, run the following command to clean up
 the provisioned resources:
 
 ```shell
-$ terraform destroy
+terraform destroy
 ```
 
 ## How to deploy a service environment
@@ -139,11 +139,11 @@ Terraform module to create a service environment. Create a merge request and
 invite the IS team to review and deploy it.
 
 ```shell
-$ git clone lp:canonical-terraform-plans
+git clone lp:canonical-terraform-plans
 
-$ cd prodstack/ps6/environments/identity/<stage, e.g. 'staging' or 'production'>
+cd prodstack/ps6/environments/identity/<stage, e.g. 'staging' or 'production'>
 
-$ vim main.tf
+vim main.tf
 ```
 
 ## References
