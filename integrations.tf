@@ -1,6 +1,3 @@
-data "juju_offer" "external_ingress" {
-  url = var.juju_offers.external_ingress_offer
-}
 
 locals {
   integration_mappings = [
@@ -132,7 +129,8 @@ resource "juju_integration" "login_ui_public_ingress" {
   model = var.model
 
   application {
-    offer_url = data.juju_offer.external_ingress.url
+    name     = var.external_ingress.name
+    endpoint = var.external_ingress.endpoint
   }
 
   application {
@@ -145,7 +143,8 @@ resource "juju_integration" "hydra_public_ingress" {
   model = var.model
 
   application {
-    offer_url = data.juju_offer.external_ingress.url
+    name     = var.external_ingress.name
+    endpoint = var.external_ingress.endpoint
   }
 
   application {
@@ -158,7 +157,8 @@ resource "juju_integration" "kratos_public_ingress" {
   model = var.model
 
   application {
-    offer_url = data.juju_offer.external_ingress.url
+    name     = var.external_ingress.name
+    endpoint = var.external_ingress.endpoint
   }
 
   application {

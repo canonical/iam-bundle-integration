@@ -82,10 +82,13 @@ variable "internal_ingress" {
   }
 }
 
-variable "juju_offers" {
-  description = "The Juju offers provided by other charmed operators."
+variable "external_ingress" {
+  description = "The external ingress."
   type = object({
-    external_ingress_offer : optional(string)
+    name : string
+    endpoint : optional(string)
   })
-  default = {}
+  default = {
+    name = "external-ingress"
+  }
 }
