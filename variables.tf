@@ -71,17 +71,6 @@ variable "idp_provider_credentials" {
   sensitive = true
 }
 
-variable "internal_ingress" {
-  description = "The internal ingress."
-  type = object({
-    name : string
-    endpoint : optional(string)
-  })
-  default = {
-    name = "internal-ingress"
-  }
-}
-
 variable "external_ingress" {
   description = "The external ingress."
   type = object({

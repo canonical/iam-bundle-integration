@@ -37,14 +37,6 @@ locals {
       ]
       requirer_endpoint = "ui-endpoint-info"
     },
-    {
-      provider          = var.internal_ingress.name
-      provider_endpoint = var.internal_ingress.endpoint
-      requirers = [
-        juju_application.kratos.name, juju_application.hydra.name
-      ]
-      requirer_endpoint = "admin-ingress"
-    },
   ]
   integrations = flatten([
     for mapping in local.integration_mappings : [
