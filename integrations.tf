@@ -158,3 +158,87 @@ resource "juju_integration" "hydra_login_ui_ui_info" {
     endpoint = "ui-endpoint-info"
   }
 }
+
+resource "juju_integration" "kratos_admin_ui_info" {
+  model = var.model
+
+  application {
+    name     = juju_application.kratos.name
+    endpoint = "kratos-info"
+  }
+
+  application {
+    name     = juju_application.admin_ui.name
+    endpoint = "kratos-info"
+  }
+}
+
+resource "juju_integration" "hydra_admin_ui_info" {
+  model = var.model
+
+  application {
+    name     = juju_application.hydra.name
+    endpoint = "hydra-info"
+  }
+
+  application {
+    name     = juju_application.admin_ui.name
+    endpoint = "hydra-info"
+  }
+}
+
+resource "juju_integration" "hydra_admin_ui_oauth" {
+  model = var.model
+
+  application {
+    name     = juju_application.hydra.name
+    endpoint = "oauth"
+  }
+
+  application {
+    name     = juju_application.admin_ui.name
+    endpoint = "oauth"
+  }
+}
+
+resource "juju_integration" "admin_ui_public_ingress" {
+  model = var.model
+
+  application {
+    name     = var.external_ingress.name
+    endpoint = var.external_ingress.endpoint
+  }
+
+  application {
+    name     = juju_application.admin_ui.name
+    endpoint = "ingress"
+  }
+}
+
+resource "juju_integration" "openfga_admin_ui" {
+  model = var.model
+
+  application {
+    name     = juju_application.openfga.name
+    endpoint = "openfga"
+  }
+
+  application {
+    name     = juju_application.admin_ui.name
+    endpoint = "openfga"
+  }
+}
+
+resource "juju_integration" "openfga_database" {
+  model = var.model
+
+  application {
+    name     = juju_application.openfga.name
+    endpoint = "database"
+  }
+
+  application {
+    name     = module.postgresql.name
+    endpoint = "database"
+  }
+}

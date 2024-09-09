@@ -63,3 +63,37 @@ resource "juju_application" "login_ui" {
 
   depends_on = [juju_application.hydra, juju_application.kratos]
 }
+
+resource "juju_application" "admin_ui" {
+  model = var.model
+  name  = "admin-ui"
+  trust = var.admin_ui.trust
+  units = var.admin_ui.units
+
+  charm {
+    name    = "identity-platform-admin-ui"
+    channel = var.admin_ui.channel
+    base    = var.admin_ui.base
+  }
+
+  config = var.admin_ui.config
+
+  depends_on = [juju_application.hydra, juju_application.kratos, juju_application.openfga]
+}
+
+resource "juju_application" "openfga" {
+  model = var.model
+  name  = "openfga"
+  trust = var.openfga.trust
+  units = var.openfga.units
+
+  charm {
+    name    = "openfga-k8s"
+    channel = var.openfga.channel
+    base    = var.openfga.base
+  }
+
+  config = var.openfga.config
+
+  depends_on = [module.postgresql]
+}

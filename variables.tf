@@ -28,8 +28,32 @@ variable "kratos" {
   default = {}
 }
 
+variable "openfga" {
+  description = "The configurations of the OpenFGA application."
+  type = object({
+    units   = optional(number, 1)
+    channel = optional(string, "2.0/stable")
+    base    = optional(string, "ubuntu@22.04")
+    trust   = optional(string, true)
+    config  = optional(map(string), {})
+  })
+  default = {}
+}
+
 variable "login_ui" {
   description = "The configurations of the Identity Platform Login UI application."
+  type = object({
+    units   = optional(number, 1)
+    trust   = optional(bool, true)
+    config  = optional(map(string), {})
+    channel = optional(string, "latest/edge")
+    base    = optional(string, "ubuntu@22.04")
+  })
+  default = {}
+}
+
+variable "admin_ui" {
+  description = "The configurations of the Identity Platform Admin UI application."
   type = object({
     units   = optional(number, 1)
     trust   = optional(bool, true)
