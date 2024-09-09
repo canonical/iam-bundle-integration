@@ -122,12 +122,12 @@ resource "juju_integration" "kratos_login_ui_info" {
 
   application {
     name     = juju_application.login_ui.name
-    endpoint = "kratos-endpoint-info"
+    endpoint = "kratos-info"
   }
 
   application {
     name     = juju_application.kratos.name
-    endpoint = "kratos-endpoint-info"
+    endpoint = "kratos-info"
   }
 }
 
