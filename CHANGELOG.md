@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.2](https://github.com/canonical/iam-bundle-integration/compare/v0.2.1...v0.2.2) (2024-09-09)
+
+
+### Bug Fixes
+
+* move to use kratos-info relation ([6a39273](https://github.com/canonical/iam-bundle-integration/commit/6a392731a3060bb68ce400b30f50e3734fd8caa5))
+
 ## [0.2.1](https://github.com/canonical/iam-bundle-integration/compare/v0.2.0...v0.2.1) (2024-07-10)
 
 
