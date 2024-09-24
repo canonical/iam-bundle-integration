@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/canonical/iam-bundle-integration/compare/v0.2.2...v0.3.0) (2024-09-24)
+
+
+### Features
+
+* introduce admin ui and related components ([654c444](https://github.com/canonical/iam-bundle-integration/commit/654c44449e1927a05dd49079c6d5d85c74d37e97))
+
 ## [0.2.2](https://github.com/canonical/iam-bundle-integration/compare/v0.2.1...v0.2.2) (2024-09-09)
 
 
