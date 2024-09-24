@@ -46,10 +46,10 @@ juju deploy traefik-k8s <internal ingress app> --trust --channel <channel>
 juju offer <external ingress app>:ingress <offer name>
 ```
 
-Because the bundle uses an external Idp provider (e.g. Microsoft Azure),
+Because the bundle uses an external Idp provider (e.g. Microsoft EntraID),
 it needs to provide additional variables for the module to run. More
 information about the Idp provider configuration can be
-found [here](https://github.com/canonical/kratos-external-idp-integrator/blob/main/config.yaml).
+found [here](https://charmhub.io/kratos-external-idp-integrator/configurations).
 Please create a Terraform variable definition (`.tfvars`) file in the root
 directory as follows.
 
