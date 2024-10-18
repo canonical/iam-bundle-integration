@@ -20,4 +20,9 @@ resource "juju_application" "postgresql" {
     channel = var.charm.channel
     base    = var.charm.base
   }
+
+  config = {
+    plugin_pg_trgm_enable   = true
+    plugin_uuid_ossp_enable = true
+  }
 }
