@@ -24,5 +24,6 @@ resource "juju_application" "postgresql" {
   config = {
     plugin_pg_trgm_enable   = true
     plugin_uuid_ossp_enable = true
+    plugin_btree_gin_enable = true
   }
 }
