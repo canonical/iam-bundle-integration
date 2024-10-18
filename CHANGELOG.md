@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/canonical/iam-bundle-integration/compare/v0.3.0...v0.4.0) (2024-10-18)
+
+
+### Features
+
+* add psql plugins ([aa6e65d](https://github.com/canonical/iam-bundle-integration/commit/aa6e65d358e8378507bc8e1525d9349cfed91dc7))
+
 ## [0.3.0](https://github.com/canonical/iam-bundle-integration/compare/v0.2.2...v0.3.0) (2024-09-24)
 
 
