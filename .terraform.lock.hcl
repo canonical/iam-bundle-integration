@@ -3,7 +3,7 @@
 
 provider "registry.terraform.io/juju/juju" {
   version     = "0.15.1"
-  constraints = ">= 0.15.0, ~> 0.15.0"
+  constraints = ">= 0.15.0"
   hashes = [
     "h1:cwaMxLzfSanCZQrOPPPbIF+1i/4lc35F2pgP9O5Zrzo=",
     "zh:38c74f244d1fd61d45c0a40b1e64feea62435339750049ded026506fa619a937",
