@@ -10,6 +10,10 @@ data "juju_offer" "openfga" {
   url = var.openfga_offer_url
 }
 
+data "juju_offer" "ca_certificate" {
+  url = var.send_ca_certificate_offer_url
+}
+
 // public ingresses
 resource "juju_integration" "login_ui_public_ingress" {
   model = var.model
@@ -231,5 +235,18 @@ resource "juju_integration" "openfga_admin_ui" {
   application {
     name     = juju_application.admin_ui.name
     endpoint = "openfga"
+  }
+}
+
+resource "juju_integration" "oauth_ca_admin_ui" {
+  model = var.model
+
+  application {
+    offer_url = data.juju_offer.ca_certificate.url
+  }
+
+  application {
+    name     = juju_application.admin_ui.name
+    endpoint = "receive-ca-cert"
   }
 }

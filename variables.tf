@@ -84,16 +84,27 @@ variable "idp_provider_credentials" {
 }
 
 variable "ingress_offer_url" {
-  description = "Ingress Offer URL"
+  description = "Ingress Offer mURL"
   type        = string
+  default     = "admin/model.ingress"
 }
 
 variable "postgresql_offer_url" {
   description = "PostgreSQL Offer URL"
   type        = string
+  default     = "admin/model.postgresql"
 }
 
 variable "openfga_offer_url" {
   description = "OpenFGA Offer URL"
   type        = string
+  default     = "admin/model.openfga"
 }
+
+variable "send_ca_certificate_offer_url" {
+  description = "Send CA Certificate Offer URL"
+  type        = string
+  default     = "admin/model.send-ca-cert"
+}
+
+
