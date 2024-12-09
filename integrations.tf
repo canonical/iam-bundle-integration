@@ -185,12 +185,12 @@ resource "juju_integration" "hydra_admin_ui_info" {
 
   application {
     name     = juju_application.hydra.name
-    endpoint = "hydra-info"
+    endpoint = "hydra-endpoint-info"
   }
 
   application {
     name     = juju_application.admin_ui.name
-    endpoint = "hydra-info"
+    endpoint = "hydra-endpoint-info"
   }
 }
 
