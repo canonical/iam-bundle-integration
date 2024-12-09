@@ -1,10 +1,3 @@
-module "postgresql" {
-  source = "./modules/postgresql"
-
-  model = var.model
-  name  = "postgresql"
-}
-
 module "kratos_external_idp_integrator" {
   source = "./modules/external_idp_integrator"
 
@@ -27,7 +20,7 @@ resource "juju_application" "kratos" {
 
   config = var.kratos.config
 
-  depends_on = [module.postgresql, module.kratos_external_idp_integrator]
+  depends_on = [module.kratos_external_idp_integrator]
 }
 
 resource "juju_application" "hydra" {
@@ -43,8 +36,6 @@ resource "juju_application" "hydra" {
   }
 
   config = var.hydra.config
-
-  depends_on = [module.postgresql]
 }
 
 resource "juju_application" "login_ui" {
@@ -78,22 +69,5 @@ resource "juju_application" "admin_ui" {
 
   config = var.admin_ui.config
 
-  depends_on = [juju_application.hydra, juju_application.kratos, juju_application.openfga]
-}
-
-resource "juju_application" "openfga" {
-  model = var.model
-  name  = "openfga"
-  trust = var.openfga.trust
-  units = var.openfga.units
-
-  charm {
-    name    = "openfga-k8s"
-    channel = var.openfga.channel
-    base    = var.openfga.base
-  }
-
-  config = var.openfga.config
-
-  depends_on = [module.postgresql]
+  depends_on = [juju_application.hydra, juju_application.kratos]
 }

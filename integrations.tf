@@ -1,10 +1,21 @@
+data "juju_offer" "database" {
+  url = var.postgresql_offer_url
+}
+
+data "juju_offer" "ingress" {
+  url = var.ingress_offer_url
+}
+
+data "juju_offer" "openfga" {
+  url = var.openfga_offer_url
+}
+
 // public ingresses
 resource "juju_integration" "login_ui_public_ingress" {
   model = var.model
 
   application {
-    name     = var.external_ingress.name
-    endpoint = var.external_ingress.endpoint
+    offer_url = data.juju_offer.ingress.url
   }
 
   application {
@@ -17,8 +28,7 @@ resource "juju_integration" "hydra_public_ingress" {
   model = var.model
 
   application {
-    name     = var.external_ingress.name
-    endpoint = var.external_ingress.endpoint
+    offer_url = data.juju_offer.ingress.url
   }
 
   application {
@@ -31,8 +41,7 @@ resource "juju_integration" "kratos_public_ingress" {
   model = var.model
 
   application {
-    name     = var.external_ingress.name
-    endpoint = var.external_ingress.endpoint
+    offer_url = data.juju_offer.ingress.url
   }
 
   application {
@@ -47,8 +56,7 @@ resource "juju_integration" "hydra_database" {
   model = var.model
 
   application {
-    name     = module.postgresql.name
-    endpoint = "database"
+    offer_url = data.juju_offer.database.url
   }
 
   application {
@@ -61,8 +69,7 @@ resource "juju_integration" "kratos_database" {
   model = var.model
 
   application {
-    name     = module.postgresql.name
-    endpoint = "database"
+    offer_url = data.juju_offer.database.url
   }
 
   application {
@@ -205,8 +212,7 @@ resource "juju_integration" "admin_ui_public_ingress" {
   model = var.model
 
   application {
-    name     = var.external_ingress.name
-    endpoint = var.external_ingress.endpoint
+    offer_url = data.juju_offer.ingress.url
   }
 
   application {
@@ -219,26 +225,11 @@ resource "juju_integration" "openfga_admin_ui" {
   model = var.model
 
   application {
-    name     = juju_application.openfga.name
-    endpoint = "openfga"
+    offer_url = data.juju_offer.openfga.url
   }
 
   application {
     name     = juju_application.admin_ui.name
     endpoint = "openfga"
-  }
-}
-
-resource "juju_integration" "openfga_database" {
-  model = var.model
-
-  application {
-    name     = juju_application.openfga.name
-    endpoint = "database"
-  }
-
-  application {
-    name     = module.postgresql.name
-    endpoint = "database"
   }
 }
