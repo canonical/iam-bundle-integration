@@ -28,18 +28,6 @@ variable "kratos" {
   default = {}
 }
 
-variable "openfga" {
-  description = "The configurations of the OpenFGA application."
-  type = object({
-    units   = optional(number, 1)
-    channel = optional(string, "2.0/stable")
-    base    = optional(string, "ubuntu@22.04")
-    trust   = optional(string, true)
-    config  = optional(map(string), {})
-  })
-  default = {}
-}
-
 variable "login_ui" {
   description = "The configurations of the Identity Platform Login UI application."
   type = object({
@@ -95,13 +83,28 @@ variable "idp_provider_credentials" {
   sensitive = true
 }
 
-variable "external_ingress" {
-  description = "The external ingress."
-  type = object({
-    name : string
-    endpoint : optional(string)
-  })
-  default = {
-    name = "external-ingress"
-  }
+variable "ingress_offer_url" {
+  description = "Ingress Offer mURL"
+  type        = string
+  default     = "admin/model.ingress"
 }
+
+variable "postgresql_offer_url" {
+  description = "PostgreSQL Offer URL"
+  type        = string
+  default     = "admin/model.postgresql"
+}
+
+variable "openfga_offer_url" {
+  description = "OpenFGA Offer URL"
+  type        = string
+  default     = "admin/model.openfga"
+}
+
+variable "send_ca_certificate_offer_url" {
+  description = "Send CA Certificate Offer URL"
+  type        = string
+  default     = "admin/model.send-ca-cert"
+}
+
+

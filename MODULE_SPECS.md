@@ -8,13 +8,13 @@ Juju bundle Terraform module.
 
 | Name | Version |
 |------|---------|
-| <a name="provider_juju"></a> [juju](#provider\_juju) | 0.15.0 |
+| <a name="provider_juju"></a> [juju](#provider\_juju) | 0.15.1 |
 ## Requirements
 
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.0 |
-| <a name="requirement_juju"></a> [juju](#requirement\_juju) | ~> 0.15.0 |
+| <a name="requirement_juju"></a> [juju](#requirement\_juju) | >= 0.15.0 |
 ## Inputs
 
 | Name | Description | Type | Default | Required |
@@ -22,12 +22,14 @@ Juju bundle Terraform module.
 | <a name="input_model"></a> [model](#input\_model) | The name of the Juju model to deploy to. | `string` | `"identity-platform"` | no |
 | <a name="input_hydra"></a> [hydra](#input\_hydra) | The configurations of the Hydra application. | <pre>object({<br>    units   = optional(number, 1)<br>    channel = optional(string, "latest/edge")<br>    base    = optional(string, "ubuntu@22.04")<br>    trust   = optional(string, true)<br>    config  = optional(map(string), {})<br>  })</pre> | `{}` | no |
 | <a name="input_kratos"></a> [kratos](#input\_kratos) | The configurations of the Kratos application. | <pre>object({<br>    units   = optional(number, 1)<br>    channel = optional(string, "latest/edge")<br>    base    = optional(string, "ubuntu@22.04")<br>    trust   = optional(string, true)<br>    config  = optional(map(string), {})<br>  })</pre> | `{}` | no |
-| <a name="input_openfga"></a> [openfga](#input\_openfga) | The configurations of the OpenFGA application. | <pre>object({<br>    units   = optional(number, 1)<br>    channel = optional(string, "2.0/stable")<br>    base    = optional(string, "ubuntu@22.04")<br>    trust   = optional(string, true)<br>    config  = optional(map(string), {})<br>  })</pre> | `{}` | no |
 | <a name="input_login_ui"></a> [login\_ui](#input\_login\_ui) | The configurations of the Identity Platform Login UI application. | <pre>object({<br>    units   = optional(number, 1)<br>    trust   = optional(bool, true)<br>    config  = optional(map(string), {})<br>    channel = optional(string, "latest/edge")<br>    base    = optional(string, "ubuntu@22.04")<br>  })</pre> | `{}` | no |
 | <a name="input_admin_ui"></a> [admin\_ui](#input\_admin\_ui) | The configurations of the Identity Platform Admin UI application. | <pre>object({<br>    units   = optional(number, 1)<br>    trust   = optional(bool, true)<br>    config  = optional(map(string), {})<br>    channel = optional(string, "latest/edge")<br>    base    = optional(string, "ubuntu@22.04")<br>  })</pre> | `{}` | no |
 | <a name="input_idp_provider_config"></a> [idp\_provider\_config](#input\_idp\_provider\_config) | The external Idp provider configurations. | <pre>object({<br>    client_id : string<br>    issuer_url : optional(string)<br>    provider : string<br>    provider_id : string<br>    scope : optional(string, "profile email address phone")<br>    microsoft_tenant_id : optional(string)<br>    apple_team_id : optional(string)<br>    apple_private_key_id : optional(string)<br>  })</pre> | <pre>{<br>  "client_id": "client_id",<br>  "provider": "generic",<br>  "provider_id": "provider_id"<br>}</pre> | no |
 | <a name="input_idp_provider_credentials"></a> [idp\_provider\_credentials](#input\_idp\_provider\_credentials) | The external Idp provider credentials. | <pre>object({<br>    client_secret : string<br>    apple_private_key : optional(string)<br>  })</pre> | <pre>{<br>  "client_secret": "client_secret"<br>}</pre> | no |
-| <a name="input_external_ingress"></a> [external\_ingress](#input\_external\_ingress) | The external ingress. | <pre>object({<br>    name : string<br>    endpoint : optional(string)<br>  })</pre> | <pre>{<br>  "name": "external-ingress"<br>}</pre> | no |
+| <a name="input_ingress_offer_url"></a> [ingress\_offer\_url](#input\_ingress\_offer\_url) | Ingress Offer mURL | `string` | `"admin/model.ingress"` | no |
+| <a name="input_postgresql_offer_url"></a> [postgresql\_offer\_url](#input\_postgresql\_offer\_url) | PostgreSQL Offer URL | `string` | `"admin/model.postgresql"` | no |
+| <a name="input_openfga_offer_url"></a> [openfga\_offer\_url](#input\_openfga\_offer\_url) | OpenFGA Offer URL | `string` | `"admin/model.openfga"` | no |
+| <a name="input_send_ca_certificate_offer_url"></a> [send\_ca\_certificate\_offer\_url](#input\_send\_ca\_certificate\_offer\_url) | Send CA Certificate Offer URL | `string` | `"admin/model.send-ca-cert"` | no |
 ## Outputs
 
 | Name | Description |
