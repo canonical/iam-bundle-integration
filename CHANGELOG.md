@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.5.0](https://github.com/canonical/iam-bundle-integration/compare/v0.4.1...v0.5.0) (2025-01-21)
+
+
+### Features
+
+* drop ingress, postgres and openfga deployments, use offers instead ([47ab5f2](https://github.com/canonical/iam-bundle-integration/commit/47ab5f2573b6c1479d3faa55fbff8c7e0d5bb278))
+
+
+### Bug Fixes
+
+* add send-ca-certificate for oauth tls trust ([7a2981a](https://github.com/canonical/iam-bundle-integration/commit/7a2981ad3eb0efad8b23385fdbf784c6941cfa0b))
+* adjust hydra-endpoint-info integrations ([f269bf4](https://github.com/canonical/iam-bundle-integration/commit/f269bf43e780c10daa783b25979d42fd7cfa2aac))
+* adjust juju version for external idp ([c93cfb7](https://github.com/canonical/iam-bundle-integration/commit/c93cfb75c6d4a80ca066c2bd3c227d6435d535eb))
+* drop postgresql module ([799f101](https://github.com/canonical/iam-bundle-integration/commit/799f101e84d029edd6d251c86199549d4ae73421))
+
 ## [0.4.1](https://github.com/canonical/iam-bundle-integration/compare/v0.4.0...v0.4.1) (2024-10-18)
 
 
