@@ -102,6 +102,11 @@ how to deploy the module to the ProdStack Cloud.
 Please refer to the [module specifications](./MODULE_SPECS.md) to learn the
 module specifications.
 
+## Security
+
+Please see [SECURITY.md](https://github.com/canonical/iam-bundle-integration/blob/main/SECURITY.md)
+for guidelines on reporting security issues.
+
 ## Contributing
 
 Please refer to the [contribution documentation](./CONTRIBUTING.md) to learn how
