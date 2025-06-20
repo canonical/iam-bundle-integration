@@ -26,59 +26,72 @@ in the local environment.
 
 ### Deploy locally with Terraform
 
-Create a target Juju model:
+First, create Juju models for the Identity Platform and its dependencies:
 
 ```shell
-juju add-model <juju model>
+juju add-model identity-platform
+juju add-model core
 ```
 
-Make sure two ingresses (e.g. `traefik-k8s`) are deployed in the model, and the
-external ingress provides a Juju offer:
+#### Dependencies
+
+Deploy the dependencies: [traefik](https://charmhub.io/traefik-k8s), [postgresql](https://charmhub.io/postgresql-k8s), [openfga](https://charmhub.io/openfga-k8s),
+and a certificates charm (e.g. [lego](https://charmhub.io/lego) or [self-signed-certificates](https://charmhub.io/self-signed-certificates)).
+And make sure they provide Juju offers:
 
 ```shell
-# Deploy external ingress
-juju deploy traefik-k8s <external ingress app> --trust --channel <channel>
+# Deploy dependencies
+juju deploy traefik-k8s traefik-public --trust --channel latest/stable
+juju deploy postgresql-k8s --trust --channel 14/stable
+juju deploy openfga-k8s --trust --channel latest/stable
+juju deploy self-signed-certificates --trust --channel latest/stable
 
-# Deploy internal ingress
-juju deploy traefik-k8s <internal ingress app> --trust --channel <channel>
+# Add integrations
+juju integrate openfga-k8s postgresql-k8s
+juju integrate traefik-public self-signed-certificates:send-ca-cert
 
-# Create the juju offer
-juju offer <external ingress app>:ingress <offer name>
+# Create the juju offers
+juju offer traefik-public:ingress ingress
+juju offer traefik-public:traefik-route traefik-route
+juju offer postgresql-k8s:database pg-database
+juju offer openfga-k8s:openfga openfga
+juju offer self-signed-certificates:send-ca-cert send-ca-cert
 ```
 
-Because the bundle uses an external Idp provider (e.g. Microsoft EntraID),
+Because the bundle uses an external identity provider (e.g. Google or Microsoft Entra ID),
 it needs to provide additional variables for the module to run. More
-information about the Idp provider configuration can be
+information about the IdP configuration can be
 found [here](https://charmhub.io/kratos-external-idp-integrator/configurations).
+Refer to [this](https://support.google.com/cloud/answer/15549257) article to find out how to create a private client in Google.
+
 Please create a Terraform variable definition (`.tfvars`) file in the root
-directory as follows.
+directory as follows:
 
 ```shell
 # vars.tfvars
-model = <juju model>
+model = identity-platform
 
 idp_provider_config = {
   client_id           = <client id>
-  provider            = <provider name>
+  provider            = <provider name>  # e.g. "google"
   provider_id         = <provider id>
-  microsoft_tenant_id = <tenant id> # if using Microsoft Azure
 }
 
 idp_provider_credentials = {
   client_secret = <client secret>
 }
 
-internal_ingress = {
-  name     = <Juju app name of the internal ingress>
-  endpoint = "ingress"
-}
-
-juju_offers = {
-  external_ingress_offer = <Juju offer url provided by external ingress>
-}
+postgresql_offer_url = "admin/core.pg-database"
+ingress_offer_url = "admin/core.ingress"
+openfga_offer_url = "admin/core.openfga"
+send_ca_certificate_offer_url = "admin/core.send-ca-cert"
 ```
 
-Run the following commands to deploy the bundle.
+Run `juju find-offers` to fetch the offer URLs.
+
+#### Identity Platform
+
+Run the following commands to deploy the bundle:
 
 ```shell
 terraform init
