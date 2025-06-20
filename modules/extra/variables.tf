@@ -1,40 +1,16 @@
 variable "model" {
   description = "The name of the Juju model to deploy to."
   type        = string
-  default     = "identity-platform"
+  default     = "iam"
 }
 
-variable "hydra" {
-  description = "The configurations of the Hydra application."
-  type = object({
-    units   = optional(number, 1)
-    channel = optional(string, "latest/edge")
-    base    = optional(string, "ubuntu@22.04")
-    trust   = optional(string, true)
-    config  = optional(map(string), {})
-  })
-  default = {}
-}
-
-variable "kratos" {
-  description = "The configurations of the Kratos application."
-  type = object({
-    units   = optional(number, 1)
-    channel = optional(string, "latest/edge")
-    base    = optional(string, "ubuntu@22.04")
-    trust   = optional(string, true)
-    config  = optional(map(string), {})
-  })
-  default = {}
-}
-
-variable "login_ui" {
-  description = "The configurations of the Identity Platform Login UI application."
+variable "openfga" {
+  description = "The configurations of the OpenFGA application."
   type = object({
     units   = optional(number, 1)
     trust   = optional(bool, true)
     config  = optional(map(string), {})
-    channel = optional(string, "latest/edge")
+    channel = optional(string, "latest/stable")
     base    = optional(string, "ubuntu@22.04")
   })
   default = {}
@@ -46,14 +22,14 @@ variable "admin_ui" {
     units   = optional(number, 1)
     trust   = optional(bool, true)
     config  = optional(map(string), {})
-    channel = optional(string, "latest/edge")
+    channel = optional(string, "latest/stable")
     base    = optional(string, "ubuntu@22.04")
   })
   default = {}
 }
 
 variable "idp_provider_config" {
-  description = "The external Idp provider configurations."
+  description = "The external IdP provider configurations."
   type = object({
     client_id : string
     issuer_url : optional(string)
@@ -72,7 +48,7 @@ variable "idp_provider_config" {
 }
 
 variable "idp_provider_credentials" {
-  description = "The external Idp provider credentials."
+  description = "The external IdP provider credentials."
   type = object({
     client_secret : string
     apple_private_key : optional(string)
@@ -95,14 +71,20 @@ variable "postgresql_offer_url" {
   default     = "admin/core.postgresql"
 }
 
-variable "openfga_offer_url" {
-  description = "OpenFGA Offer URL"
-  type        = string
-  default     = "admin/core.openfga"
-}
-
 variable "send_ca_certificate_offer_url" {
   description = "Send CA Certificate Offer URL"
   type        = string
   default     = "admin/core.send-ca-cert"
+}
+
+variable "kratos_name" {
+  description = "Kratos charm name. The default value assumes extra module is deployed in the same Juju model."
+  type        = string
+  default     = "kratos"
+}
+
+variable "hydra_name" {
+  description = "Hydra charm name. The default value assumes extra module is deployed in the same Juju model."
+  type        = string
+  default     = "hydra"
 }
