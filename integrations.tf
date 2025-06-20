@@ -1,17 +1,17 @@
 data "juju_offer" "database" {
-  url = var.postgresql_offer_url
+  url = local.postgresql_offer_url
 }
 
 data "juju_offer" "ingress" {
-  url = var.ingress_offer_url
+  url = local.ingress_offer_url
 }
 
 data "juju_offer" "openfga" {
-  url = var.openfga_offer_url
+  url = local.openfga_offer_url
 }
 
 data "juju_offer" "ca_certificate" {
-  url = var.send_ca_certificate_offer_url
+  url = local.send_ca_certificate_offer_url
 }
 
 // public ingresses
@@ -26,6 +26,8 @@ resource "juju_integration" "login_ui_public_ingress" {
     name     = juju_application.login_ui.name
     endpoint = "ingress"
   }
+
+  depends_on = [module.core]
 }
 
 resource "juju_integration" "hydra_public_ingress" {
@@ -39,6 +41,8 @@ resource "juju_integration" "hydra_public_ingress" {
     name     = juju_application.hydra.name
     endpoint = "public-ingress"
   }
+
+  depends_on = [module.core]
 }
 
 resource "juju_integration" "kratos_public_ingress" {
@@ -52,6 +56,8 @@ resource "juju_integration" "kratos_public_ingress" {
     name     = juju_application.kratos.name
     endpoint = "public-ingress"
   }
+
+  depends_on = [module.core]
 }
 
 // databases
@@ -67,6 +73,8 @@ resource "juju_integration" "hydra_database" {
     name     = juju_application.hydra.name
     endpoint = "pg-database"
   }
+
+  depends_on = [module.core]
 }
 
 resource "juju_integration" "kratos_database" {
@@ -80,6 +88,8 @@ resource "juju_integration" "kratos_database" {
     name     = juju_application.kratos.name
     endpoint = "pg-database"
   }
+
+  depends_on = [module.core]
 }
 
 // idp
@@ -223,6 +233,8 @@ resource "juju_integration" "admin_ui_public_ingress" {
     name     = juju_application.admin_ui.name
     endpoint = "ingress"
   }
+
+  depends_on = [module.core]
 }
 
 resource "juju_integration" "openfga_admin_ui" {
@@ -236,6 +248,8 @@ resource "juju_integration" "openfga_admin_ui" {
     name     = juju_application.admin_ui.name
     endpoint = "openfga"
   }
+
+  depends_on = [module.core]
 }
 
 resource "juju_integration" "oauth_ca_admin_ui" {
@@ -249,4 +263,6 @@ resource "juju_integration" "oauth_ca_admin_ui" {
     name     = juju_application.admin_ui.name
     endpoint = "receive-ca-cert"
   }
+
+  depends_on = [module.core]
 }

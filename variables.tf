@@ -4,6 +4,60 @@ variable "model" {
   default     = "identity-platform"
 }
 
+variable "core_model" {
+  description = "The name of the Juju model to deploy dependencies to."
+  type        = string
+  default     = "core"
+}
+
+variable "certificates" {
+  description = "The configurations of the self-signed-certificates application."
+  type = object({
+    units   = optional(number, 1)
+    trust   = optional(bool, true)
+    config  = optional(map(string), {})
+    channel = optional(string, "latest/stable")
+    base    = optional(string, "ubuntu@22.04")
+  })
+  default = {}
+}
+
+variable "traefik" {
+  description = "The configurations of the Traefik application."
+  type = object({
+    units   = optional(number, 1)
+    trust   = optional(bool, true)
+    config  = optional(map(string), {})
+    channel = optional(string, "latest/stable")
+    base    = optional(string, "ubuntu@20.04")
+  })
+  default = {}
+}
+
+variable "postgresql" {
+  description = "The configurations of the PostgreSQL application."
+  type = object({
+    units   = optional(number, 1)
+    trust   = optional(bool, true)
+    config  = optional(map(string), {})
+    channel = optional(string, "14/stable")
+    base    = optional(string, "ubuntu@22.04")
+  })
+  default = {}
+}
+
+variable "openfga" {
+  description = "The configurations of the OpenFGA application."
+  type = object({
+    units   = optional(number, 1)
+    trust   = optional(bool, true)
+    config  = optional(map(string), {})
+    channel = optional(string, "latest/stable")
+    base    = optional(string, "ubuntu@22.04")
+  })
+  default = {}
+}
+
 variable "hydra" {
   description = "The configurations of the Hydra application."
   type = object({
@@ -84,27 +138,25 @@ variable "idp_provider_credentials" {
 }
 
 variable "ingress_offer_url" {
-  description = "Ingress Offer mURL"
+  description = "Ingress Offer URL"
   type        = string
-  default     = "admin/model.ingress"
+  default     = "admin/core.ingress"
 }
 
 variable "postgresql_offer_url" {
   description = "PostgreSQL Offer URL"
   type        = string
-  default     = "admin/model.postgresql"
+  default     = "admin/core.postgresql"
 }
 
 variable "openfga_offer_url" {
   description = "OpenFGA Offer URL"
   type        = string
-  default     = "admin/model.openfga"
+  default     = "admin/core.openfga"
 }
 
 variable "send_ca_certificate_offer_url" {
   description = "Send CA Certificate Offer URL"
   type        = string
-  default     = "admin/model.send-ca-cert"
+  default     = "admin/core.send-ca-cert"
 }
-
-

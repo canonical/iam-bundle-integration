@@ -6,6 +6,23 @@ module "kratos_external_idp_integrator" {
   config = merge(var.idp_provider_config, var.idp_provider_credentials)
 }
 
+module "core" {
+  source = "./modules/core"
+
+  core_model   = var.core_model
+  certificates = var.certificates
+  traefik      = var.traefik
+  postgresql   = var.postgresql
+  openfga      = var.openfga
+}
+
+locals {
+  postgresql_offer_url          = module.core.postgresql_offer_url
+  ingress_offer_url             = module.core.ingress_offer_url
+  openfga_offer_url             = module.core.openfga_offer_url
+  send_ca_certificate_offer_url = module.core.send_ca_certificate_offer_url
+}
+
 resource "juju_application" "kratos" {
   model = var.model
   name  = "kratos"
@@ -20,7 +37,7 @@ resource "juju_application" "kratos" {
 
   config = var.kratos.config
 
-  depends_on = [module.kratos_external_idp_integrator]
+  depends_on = [module.core, module.kratos_external_idp_integrator]
 }
 
 resource "juju_application" "hydra" {
@@ -36,6 +53,8 @@ resource "juju_application" "hydra" {
   }
 
   config = var.hydra.config
+
+  depends_on = [module.core]
 }
 
 resource "juju_application" "login_ui" {
@@ -52,7 +71,7 @@ resource "juju_application" "login_ui" {
 
   config = var.login_ui.config
 
-  depends_on = [juju_application.hydra, juju_application.kratos]
+  depends_on = [module.core, juju_application.hydra, juju_application.kratos]
 }
 
 resource "juju_application" "admin_ui" {
@@ -69,5 +88,5 @@ resource "juju_application" "admin_ui" {
 
   config = var.admin_ui.config
 
-  depends_on = [juju_application.hydra, juju_application.kratos]
+  depends_on = [module.core, juju_application.hydra, juju_application.kratos]
 }
