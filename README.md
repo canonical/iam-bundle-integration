@@ -58,6 +58,13 @@ juju offer openfga-k8s:openfga openfga
 juju offer self-signed-certificates:send-ca-cert send-ca-cert
 ```
 
+Alternatively, you can deploy the core dependencies with:
+
+```shell
+terraform -chdir=modules/core init
+terraform -chdir=modules/core apply
+```
+
 Because the bundle uses an external identity provider (e.g. Google or Microsoft Entra ID),
 it needs to provide additional variables for the module to run. More
 information about the IdP configuration can be
@@ -69,8 +76,6 @@ directory as follows:
 
 ```shell
 # vars.tfvars
-model = identity-platform
-
 idp_provider_config = {
   client_id           = <client id>
   provider            = <provider name>  # e.g. "google"
@@ -81,7 +86,7 @@ idp_provider_credentials = {
   client_secret = <client secret>
 }
 
-postgresql_offer_url = "admin/core.pg-database"
+postgresql_offer_url = "admin/core.postgresql"
 ingress_offer_url = "admin/core.ingress"
 openfga_offer_url = "admin/core.openfga"
 send_ca_certificate_offer_url = "admin/core.send-ca-cert"
