@@ -69,8 +69,6 @@ directory as follows:
 
 ```shell
 # vars.tfvars
-model = identity-platform
-
 idp_provider_config = {
   client_id           = <client id>
   provider            = <provider name>  # e.g. "google"
@@ -81,7 +79,7 @@ idp_provider_credentials = {
   client_secret = <client secret>
 }
 
-postgresql_offer_url = "admin/core.pg-database"
+postgresql_offer_url = "admin/core.postgresql"
 ingress_offer_url = "admin/core.ingress"
 openfga_offer_url = "admin/core.openfga"
 send_ca_certificate_offer_url = "admin/core.send-ca-cert"
