@@ -10,6 +10,10 @@ data "juju_offer" "ca_certificate" {
   url = var.send_ca_certificate_offer_url
 }
 
+data "juju_offer" "openfga" {
+  url = var.openfga_offer_url
+}
+
 // public ingresses
 resource "juju_integration" "login_ui_public_ingress" {
   model = var.model
@@ -228,11 +232,10 @@ resource "juju_integration" "admin_ui_public_ingress" {
 
 resource "juju_integration" "openfga_admin_ui" {
   model = var.model
-  count = (var.deploy_openfga && var.deploy_admin_ui) ? 1 : 0
+  count = var.deploy_admin_ui ? 1 : 0
 
   application {
-    name     = juju_application.openfga[0].name
-    endpoint = "openfga"
+    offer_url = data.juju_offer.openfga.url
   }
 
   application {
@@ -255,26 +258,3 @@ resource "juju_integration" "oauth_ca_admin_ui" {
   }
 }
 
-// openfga
-
-resource "juju_offer" "openfga_offer" {
-  model            = var.model
-  name             = "openfga"
-  count            = var.deploy_openfga ? 1 : 0
-  application_name = juju_application.openfga[0].name
-  endpoints        = ["openfga"]
-}
-
-resource "juju_integration" "openfga_db" {
-  model = var.model
-  count = var.deploy_openfga ? 1 : 0
-
-  application {
-    offer_url = data.juju_offer.database.url
-  }
-
-  application {
-    name     = juju_application.openfga[0].name
-    endpoint = "database"
-  }
-}

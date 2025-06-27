@@ -4,12 +4,6 @@ variable "deploy_admin_ui" {
   description = "Whether to deploy Admin UI"
 }
 
-variable "deploy_openfga" {
-  type        = bool
-  default     = false
-  description = "Whether to deploy OpenFGA"
-}
-
 variable "deploy_kratos_external_idp_integrator" {
   type        = bool
   default     = false
@@ -105,4 +99,20 @@ variable "idp_provider_credentials" {
     client_secret = "client_secret"
   }
   sensitive = true
+}
+
+
+# Juju specifics
+variable "client_id" {
+  type      = string
+  sensitive = true
+}
+
+variable "client_secret" {
+  type      = string
+  sensitive = true
+}
+
+variable "jimm_url" {
+  type = string
 }

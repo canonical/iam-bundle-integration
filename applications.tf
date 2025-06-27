@@ -73,19 +73,3 @@ resource "juju_application" "admin_ui" {
 
   depends_on = [juju_application.hydra, juju_application.kratos]
 }
-
-resource "juju_application" "openfga" {
-  model = var.model
-  name  = "openfga-k8s"
-  trust = var.openfga.trust
-  units = var.openfga.units
-  count = var.deploy_openfga ? 1 : 0
-
-  charm {
-    name    = "openfga-k8s"
-    channel = var.openfga.channel
-    base    = var.openfga.base
-  }
-
-  config = var.openfga.config
-}

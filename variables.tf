@@ -10,12 +10,6 @@ variable "deploy_admin_ui" {
   description = "Whether to deploy Admin UI"
 }
 
-variable "deploy_openfga" {
-  type        = bool
-  default     = false
-  description = "Whether to deploy OpenFGA"
-}
-
 variable "deploy_kratos_external_idp_integrator" {
   type        = bool
   default     = false
@@ -70,18 +64,6 @@ variable "admin_ui" {
   default = {}
 }
 
-variable "openfga" {
-  description = "The configurations of the OpenFGA application."
-  type = object({
-    units   = optional(number, 1)
-    trust   = optional(bool, true)
-    config  = optional(map(string), {})
-    channel = optional(string, "latest/edge")
-    base    = optional(string, "ubuntu@22.04")
-  })
-  default = {}
-}
-
 variable "idp_provider_config" {
   description = "The external Idp provider configurations."
   type = object({
@@ -111,6 +93,12 @@ variable "idp_provider_credentials" {
     client_secret = "client_secret"
   }
   sensitive = true
+}
+
+variable "openfga_offer_url" {
+  description = "OpenFGA Offer URL"
+  type        = string
+  default     = "admin/core.openfga"
 }
 
 variable "ingress_offer_url" {
