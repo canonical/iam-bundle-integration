@@ -4,6 +4,18 @@ variable "model" {
   default     = "identity-platform"
 }
 
+variable "enable_admin_ui" {
+  type        = bool
+  default     = false
+  description = "Whether to deploy Admin UI"
+}
+
+variable "enable_kratos_external_idp_integrator" {
+  type        = bool
+  default     = false
+  description = "Whether to deploy Kratos External IdP Integrator"
+}
+
 variable "hydra" {
   description = "The configurations of the Hydra application."
   type = object({

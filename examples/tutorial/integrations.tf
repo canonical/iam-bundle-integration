@@ -1,154 +1,63 @@
-resource "juju_offer" "oauth_offer" {
-  name             = "oauth-offer"
-  model            = juju_model.iam.name
-  application_name = juju_application.hydra.name
-  endpoints        = ["oauth"]
+resource "juju_offer" "ingress_offer" {
+  model            = juju_model.core.name
+  name             = "ingress"
+  application_name = module.traefik.app_name
+  endpoints        = ["ingress"]
 }
 
-resource "juju_offer" "kratos_info_offer" {
-  name             = "kratos-info-offer"
-  model            = juju_model.iam.name
-  application_name = juju_application.kratos.name
-  endpoints        = ["kratos-info"]
+resource "juju_offer" "traefik_route_offer" {
+  model            = juju_model.core.name
+  name             = "traefik-route"
+  application_name = module.traefik.app_name
+  endpoints        = ["traefik-route"]
 }
 
-// public ingresses
-
-resource "juju_integration" "login_ui_public_ingress" {
-  model = juju_model.iam.name
-
-  application {
-    offer_url = module.core.ingress_offer_url
-  }
-
-  application {
-    name     = juju_application.login_ui.name
-    endpoint = "ingress"
-  }
+resource "juju_offer" "postgresql_offer" {
+  model            = juju_model.core.name
+  name             = "postgresql"
+  application_name = module.postgresql.application_name
+  endpoints        = ["database"]
 }
 
-resource "juju_integration" "hydra_public_ingress" {
-  model = juju_model.iam.name
-
-  application {
-    offer_url = module.core.ingress_offer_url
-  }
-
-  application {
-    name     = juju_application.hydra.name
-    endpoint = "public-ingress"
-  }
+resource "juju_offer" "send_ca_certificate_offer" {
+  model            = juju_model.core.name
+  name             = "send-ca-cert"
+  application_name = module.certificates.app_name
+  endpoints        = ["send-ca-cert"]
 }
 
-resource "juju_integration" "kratos_public_ingress" {
-  model = juju_model.iam.name
+resource "juju_offer" "openfga_offer" {
+  model            = juju_model.core.name
+  name             = "openfga"
+  application_name = juju_application.openfga.name
+  endpoints        = ["openfga"]
+}
 
+resource "juju_integration" "traefik_certs" {
+  model = juju_model.core.name
   application {
-    offer_url = module.core.ingress_offer_url
+    name     = module.traefik.app_name
+    endpoint = "certificates"
   }
 
   application {
-    name     = juju_application.kratos.name
-    endpoint = "public-ingress"
+    name     = module.certificates.app_name
+    endpoint = "certificates"
   }
 }
 
-// databases
+// openfga
 
-resource "juju_integration" "hydra_database" {
-  model = juju_model.iam.name
+resource "juju_integration" "openfga_db" {
+  model = juju_model.core.name
 
   application {
-    offer_url = module.core.postgresql_offer_url
+    name     = module.postgresql.application_name
+    endpoint = "database"
   }
 
   application {
-    name     = juju_application.hydra.name
-    endpoint = "pg-database"
-  }
-}
-
-resource "juju_integration" "kratos_database" {
-  model = juju_model.iam.name
-
-  application {
-    offer_url = module.core.postgresql_offer_url
-  }
-
-  application {
-    name     = juju_application.kratos.name
-    endpoint = "pg-database"
-  }
-}
-
-// internal networking
-
-resource "juju_integration" "kratos_hydra_info" {
-  model = juju_model.iam.name
-
-  application {
-    name     = juju_application.hydra.name
-    endpoint = "hydra-endpoint-info"
-  }
-
-  application {
-    name     = juju_application.kratos.name
-    endpoint = "hydra-endpoint-info"
-  }
-}
-
-resource "juju_integration" "login_ui_hydra_info" {
-  model = juju_model.iam.name
-
-  application {
-    name     = juju_application.hydra.name
-    endpoint = "hydra-endpoint-info"
-  }
-
-  application {
-    name     = juju_application.login_ui.name
-    endpoint = "hydra-endpoint-info"
-  }
-}
-
-resource "juju_integration" "kratos_login_ui_info" {
-  model = juju_model.iam.name
-
-  application {
-    name     = juju_application.login_ui.name
-    endpoint = "kratos-info"
-  }
-
-  application {
-    name     = juju_application.kratos.name
-    endpoint = "kratos-info"
-  }
-}
-
-resource "juju_integration" "kratos_login_ui_ui_info" {
-  model = juju_model.iam.name
-
-  application {
-    name     = juju_application.kratos.name
-    endpoint = "ui-endpoint-info"
-  }
-
-  application {
-    name     = juju_application.login_ui.name
-    endpoint = "ui-endpoint-info"
-  }
-}
-
-resource "juju_integration" "hydra_login_ui_ui_info" {
-  model = juju_model.iam.name
-
-  application {
-    name     = juju_application.hydra.name
-    endpoint = "ui-endpoint-info"
-  }
-
-  application {
-    name     = juju_application.login_ui.name
-    endpoint = "ui-endpoint-info"
+    name     = juju_application.openfga.name
+    endpoint = "database"
   }
 }
