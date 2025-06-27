@@ -1,5 +1,6 @@
 module "kratos_external_idp_integrator" {
   source = "./modules/external_idp_integrator"
+  count  = var.deploy_kratos_external_idp_integrator ? 1 : 0
 
   model  = var.model
   name   = "kratos-external-idp-integrator"
@@ -60,6 +61,7 @@ resource "juju_application" "admin_ui" {
   name  = "admin-ui"
   trust = var.admin_ui.trust
   units = var.admin_ui.units
+  count = var.deploy_admin_ui ? 1 : 0
 
   charm {
     name    = "identity-platform-admin-ui"
@@ -70,4 +72,20 @@ resource "juju_application" "admin_ui" {
   config = var.admin_ui.config
 
   depends_on = [juju_application.hydra, juju_application.kratos]
+}
+
+resource "juju_application" "openfga" {
+  model = var.model
+  name  = "openfga-k8s"
+  trust = var.openfga.trust
+  units = var.openfga.units
+  count = var.deploy_openfga ? 1 : 0
+
+  charm {
+    name    = "openfga-k8s"
+    channel = var.openfga.channel
+    base    = var.openfga.base
+  }
+
+  config = var.openfga.config
 }

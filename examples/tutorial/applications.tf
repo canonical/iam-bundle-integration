@@ -1,50 +1,16 @@
-resource "juju_application" "kratos" {
-  model = juju_model.iam.name
-  name  = "kratos"
-  trust = var.kratos.trust
-  units = var.kratos.units
+module "iam" {
+  source = "../../"
+  model  = juju_model.iam.name
 
-  charm {
-    name    = "kratos"
-    channel = var.kratos.channel
-    base    = var.kratos.base
-  }
+  postgresql_offer_url          = module.core.postgresql_offer_url
+  ingress_offer_url             = module.core.ingress_offer_url
+  send_ca_certificate_offer_url = module.core.send_ca_certificate_offer_url
 
-  config = var.kratos.config
-
-  depends_on = [juju_model.iam]
-}
-
-resource "juju_application" "hydra" {
-  model = juju_model.iam.name
-  name  = "hydra"
-  trust = var.hydra.trust
-  units = var.hydra.units
-
-  charm {
-    name    = "hydra"
-    channel = var.hydra.channel
-    base    = var.hydra.base
-  }
-
-  config = var.hydra.config
-
-  depends_on = [juju_model.iam]
-}
-
-resource "juju_application" "login_ui" {
-  model = juju_model.iam.name
-  name  = "login-ui"
-  trust = var.login_ui.trust
-  units = var.login_ui.units
-
-  charm {
-    name    = "identity-platform-login-ui-operator"
-    channel = var.login_ui.channel
-    base    = var.login_ui.base
-  }
-
-  config = var.login_ui.config
-
-  depends_on = [juju_model.iam, juju_application.hydra, juju_application.kratos]
+  hydra                    = var.hydra
+  kratos                   = var.kratos
+  login_ui                 = var.login_ui
+  admin_ui                 = var.admin_ui
+  openfga                  = var.openfga
+  idp_provider_config      = var.idp_provider_config
+  idp_provider_credentials = var.idp_provider_credentials
 }

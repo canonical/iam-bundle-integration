@@ -4,6 +4,24 @@ variable "model" {
   default     = "identity-platform"
 }
 
+variable "deploy_admin_ui" {
+  type        = bool
+  default     = false
+  description = "Whether to deploy Admin UI"
+}
+
+variable "deploy_openfga" {
+  type        = bool
+  default     = false
+  description = "Whether to deploy OpenFGA"
+}
+
+variable "deploy_kratos_external_idp_integrator" {
+  type        = bool
+  default     = false
+  description = "Whether to deploy Kratos External IdP Integrator"
+}
+
 variable "hydra" {
   description = "The configurations of the Hydra application."
   type = object({
@@ -42,6 +60,18 @@ variable "login_ui" {
 
 variable "admin_ui" {
   description = "The configurations of the Identity Platform Admin UI application."
+  type = object({
+    units   = optional(number, 1)
+    trust   = optional(bool, true)
+    config  = optional(map(string), {})
+    channel = optional(string, "latest/edge")
+    base    = optional(string, "ubuntu@22.04")
+  })
+  default = {}
+}
+
+variable "openfga" {
+  description = "The configurations of the OpenFGA application."
   type = object({
     units   = optional(number, 1)
     trust   = optional(bool, true)
@@ -93,12 +123,6 @@ variable "postgresql_offer_url" {
   description = "PostgreSQL Offer URL"
   type        = string
   default     = "admin/core.postgresql"
-}
-
-variable "openfga_offer_url" {
-  description = "OpenFGA Offer URL"
-  type        = string
-  default     = "admin/core.openfga"
 }
 
 variable "send_ca_certificate_offer_url" {
