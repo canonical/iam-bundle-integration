@@ -7,7 +7,8 @@ data "juju_offer" "ingress" {
 }
 
 data "juju_offer" "openfga" {
-  url = var.openfga_offer_url
+  url   = var.openfga_offer_url
+  count = var.enable_admin_ui ? 1 : 0
 }
 
 data "juju_offer" "ca_certificate" {
@@ -235,7 +236,7 @@ resource "juju_integration" "openfga_admin_ui" {
   count = var.enable_admin_ui ? 1 : 0
 
   application {
-    offer_url = data.juju_offer.openfga.url
+    offer_url = data.juju_offer.openfga[0].url
   }
 
   application {

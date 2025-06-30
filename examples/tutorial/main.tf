@@ -45,6 +45,7 @@ module "postgresql" {
 
 resource "juju_application" "openfga" {
   model = juju_model.core.name
+  count = var.enable_admin_ui ? 1 : 0
   name  = "openfga-k8s"
   trust = var.openfga.trust
   units = var.openfga.units
@@ -71,7 +72,7 @@ module "iam" {
   postgresql_offer_url          = juju_offer.postgresql_offer.url
   ingress_offer_url             = juju_offer.ingress_offer.url
   send_ca_certificate_offer_url = juju_offer.send_ca_certificate_offer.url
-  openfga_offer_url             = juju_offer.openfga_offer.url
+  openfga_offer_url = var.enable_admin_ui ? juju_offer.openfga_offer[0].url : null
 
   hydra                                 = var.hydra
   kratos                                = var.kratos
