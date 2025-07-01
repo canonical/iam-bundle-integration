@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.0](https://github.com/canonical/iam-bundle-integration/compare/v0.5.0...v0.6.0) (2025-07-01)
+
+
+### Features
+
+* add tutorial example and core dependencies module ([bba923d](https://github.com/canonical/iam-bundle-integration/commit/bba923ddec07c68488fe24ebfa0c2b6aeb124638))
+
 ## [0.5.0](https://github.com/canonical/iam-bundle-integration/compare/v0.4.1...v0.5.0) (2025-01-21)
 
 
