@@ -1,5 +1,6 @@
 module "kratos_external_idp_integrator" {
   source = "./modules/external_idp_integrator"
+  count  = var.enable_kratos_external_idp_integrator ? 1 : 0
 
   model  = var.model
   name   = "kratos-external-idp-integrator"
@@ -60,6 +61,7 @@ resource "juju_application" "admin_ui" {
   name  = "admin-ui"
   trust = var.admin_ui.trust
   units = var.admin_ui.units
+  count = var.enable_admin_ui ? 1 : 0
 
   charm {
     name    = "identity-platform-admin-ui"

@@ -1,9 +1,3 @@
-variable "model" {
-  description = "The name of the Juju model to deploy to."
-  type        = string
-  default     = "identity-platform"
-}
-
 variable "enable_admin_ui" {
   type        = bool
   default     = false
@@ -20,7 +14,7 @@ variable "hydra" {
   description = "The configurations of the Hydra application."
   type = object({
     units   = optional(number, 1)
-    channel = optional(string, "latest/edge")
+    channel = optional(string, "latest/stable")
     base    = optional(string, "ubuntu@22.04")
     trust   = optional(string, true)
     config  = optional(map(string), {})
@@ -32,7 +26,7 @@ variable "kratos" {
   description = "The configurations of the Kratos application."
   type = object({
     units   = optional(number, 1)
-    channel = optional(string, "latest/edge")
+    channel = optional(string, "latest/stable")
     base    = optional(string, "ubuntu@22.04")
     trust   = optional(string, true)
     config  = optional(map(string), {})
@@ -46,7 +40,7 @@ variable "login_ui" {
     units   = optional(number, 1)
     trust   = optional(bool, true)
     config  = optional(map(string), {})
-    channel = optional(string, "latest/edge")
+    channel = optional(string, "latest/stable")
     base    = optional(string, "ubuntu@22.04")
   })
   default = {}
@@ -65,7 +59,7 @@ variable "admin_ui" {
 }
 
 variable "idp_provider_config" {
-  description = "The external Idp provider configurations."
+  description = "The external IdP configurations."
   type = object({
     client_id : string
     issuer_url : optional(string)
@@ -84,7 +78,7 @@ variable "idp_provider_config" {
 }
 
 variable "idp_provider_credentials" {
-  description = "The external Idp provider credentials."
+  description = "The external IdP credentials."
   type = object({
     client_secret : string
     apple_private_key : optional(string)
@@ -95,26 +89,51 @@ variable "idp_provider_credentials" {
   sensitive = true
 }
 
-variable "ingress_offer_url" {
-  description = "Ingress Offer URL"
-  type        = string
-  default     = "admin/core.ingress"
+
+variable "certificates" {
+  description = "The configurations of the self-signed-certificates application."
+  type = object({
+    units   = optional(number, 1)
+    trust   = optional(bool, true)
+    config  = optional(map(string), {})
+    channel = optional(string, "latest/stable")
+    base    = optional(string, "ubuntu@22.04")
+  })
+  default = {}
 }
 
-variable "postgresql_offer_url" {
-  description = "PostgreSQL Offer URL"
-  type        = string
-  default     = "admin/core.postgresql"
+variable "traefik" {
+  description = "The configurations of the Traefik application."
+  type = object({
+    units   = optional(number, 1)
+    trust   = optional(bool, true)
+    config  = optional(map(string), {})
+    channel = optional(string, "latest/stable")
+    base    = optional(string, "ubuntu@20.04")
+  })
+  default = {}
 }
 
-variable "openfga_offer_url" {
-  description = "OpenFGA Offer URL"
-  type        = string
-  default     = "admin/core.openfga"
+variable "postgresql" {
+  description = "The configurations of the PostgreSQL application."
+  type = object({
+    units   = optional(number, 1)
+    trust   = optional(bool, true)
+    config  = optional(map(string), {})
+    channel = optional(string, "14/stable")
+    base    = optional(string, "ubuntu@22.04")
+  })
+  default = {}
 }
 
-variable "send_ca_certificate_offer_url" {
-  description = "Send CA Certificate Offer URL"
-  type        = string
-  default     = "admin/core.send-ca-cert"
+variable "openfga" {
+  description = "The configurations of the OpenFGA application."
+  type = object({
+    units   = optional(number, 1)
+    trust   = optional(bool, true)
+    config  = optional(map(string), {})
+    channel = optional(string, "latest/edge")
+    base    = optional(string, "ubuntu@22.04")
+  })
+  default = {}
 }

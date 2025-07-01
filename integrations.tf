@@ -7,7 +7,8 @@ data "juju_offer" "ingress" {
 }
 
 data "juju_offer" "openfga" {
-  url = var.openfga_offer_url
+  url   = var.openfga_offer_url
+  count = var.enable_admin_ui ? 1 : 0
 }
 
 data "juju_offer" "ca_certificate" {
@@ -86,9 +87,10 @@ resource "juju_integration" "kratos_database" {
 
 resource "juju_integration" "kratos_external_idp" {
   model = var.model
+  count = var.enable_kratos_external_idp_integrator ? 1 : 0
 
   application {
-    name     = module.kratos_external_idp_integrator.name
+    name     = module.kratos_external_idp_integrator[0].name
     endpoint = "kratos-external-idp"
   }
 
@@ -172,6 +174,7 @@ resource "juju_integration" "hydra_login_ui_ui_info" {
 
 resource "juju_integration" "kratos_admin_ui_info" {
   model = var.model
+  count = var.enable_admin_ui ? 1 : 0
 
   application {
     name     = juju_application.kratos.name
@@ -179,13 +182,14 @@ resource "juju_integration" "kratos_admin_ui_info" {
   }
 
   application {
-    name     = juju_application.admin_ui.name
+    name     = juju_application.admin_ui[0].name
     endpoint = "kratos-info"
   }
 }
 
 resource "juju_integration" "hydra_admin_ui_info" {
   model = var.model
+  count = var.enable_admin_ui ? 1 : 0
 
   application {
     name     = juju_application.hydra.name
@@ -193,13 +197,14 @@ resource "juju_integration" "hydra_admin_ui_info" {
   }
 
   application {
-    name     = juju_application.admin_ui.name
+    name     = juju_application.admin_ui[0].name
     endpoint = "hydra-endpoint-info"
   }
 }
 
 resource "juju_integration" "hydra_admin_ui_oauth" {
   model = var.model
+  count = var.enable_admin_ui ? 1 : 0
 
   application {
     name     = juju_application.hydra.name
@@ -207,46 +212,49 @@ resource "juju_integration" "hydra_admin_ui_oauth" {
   }
 
   application {
-    name     = juju_application.admin_ui.name
+    name     = juju_application.admin_ui[0].name
     endpoint = "oauth"
   }
 }
 
 resource "juju_integration" "admin_ui_public_ingress" {
   model = var.model
+  count = var.enable_admin_ui ? 1 : 0
 
   application {
     offer_url = data.juju_offer.ingress.url
   }
 
   application {
-    name     = juju_application.admin_ui.name
+    name     = juju_application.admin_ui[0].name
     endpoint = "ingress"
   }
 }
 
 resource "juju_integration" "openfga_admin_ui" {
   model = var.model
+  count = var.enable_admin_ui ? 1 : 0
 
   application {
-    offer_url = data.juju_offer.openfga.url
+    offer_url = data.juju_offer.openfga[0].url
   }
 
   application {
-    name     = juju_application.admin_ui.name
+    name     = juju_application.admin_ui[0].name
     endpoint = "openfga"
   }
 }
 
 resource "juju_integration" "oauth_ca_admin_ui" {
   model = var.model
+  count = var.enable_admin_ui ? 1 : 0
 
   application {
     offer_url = data.juju_offer.ca_certificate.url
   }
 
   application {
-    name     = juju_application.admin_ui.name
+    name     = juju_application.admin_ui[0].name
     endpoint = "receive-ca-cert"
   }
 }

@@ -64,13 +64,15 @@ information about the IdP configuration can be
 found [here](https://charmhub.io/kratos-external-idp-integrator/configurations).
 Refer to [this](https://support.google.com/cloud/answer/15549257) article to find out how to create a private client in Google.
 
+If you want to deploy Admin UI and Kratos External IdP Integrator
+on top of the Identity Platform,
+you need to set `enable_kratos_external_idp_integrator` and `enable_admin_ui` to `true`.
+
 Please create a Terraform variable definition (`.tfvars`) file in the root
 directory as follows:
 
 ```shell
 # vars.tfvars
-model = identity-platform
-
 idp_provider_config = {
   client_id           = <client id>
   provider            = <provider name>  # e.g. "google"
@@ -81,10 +83,13 @@ idp_provider_credentials = {
   client_secret = <client secret>
 }
 
-postgresql_offer_url = "admin/core.pg-database"
+postgresql_offer_url = "admin/core.postgresql"
 ingress_offer_url = "admin/core.ingress"
 openfga_offer_url = "admin/core.openfga"
 send_ca_certificate_offer_url = "admin/core.send-ca-cert"
+
+enable_kratos_external_idp_integrator = true
+enable_admin_ui = true
 ```
 
 Run `juju find-offers` to fetch the offer URLs.
