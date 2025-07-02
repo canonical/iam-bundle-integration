@@ -118,3 +118,21 @@ variable "send_ca_certificate_offer_url" {
   type        = string
   default     = "admin/core.send-ca-cert"
 }
+
+variable "metrics_offer_url" {
+  description = "Metrics Offer URL"
+  type        = string
+  default     = null
+}
+
+variable "tracing_offer_url" {
+  description = "Tracing Offer URL"
+  type        = string
+  default     = null
+}
+
+variable "logging_offer_url" {
+  description = "Logging Offer URL"
+  type        = string
+  default     = null
+}

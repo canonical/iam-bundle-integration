@@ -3,7 +3,7 @@ module "kratos_external_idp_integrator" {
 
   source = "github.com/canonical/kratos-external-idp-integrator//terraform?ref=v1.1.1"
 
-  model_name = var.model
+  model_name = data.juju_model.this.name
   app_name   = "kratos-external-idp-integrator"
   config     = merge(var.idp_provider_config, var.idp_provider_credentials)
 }
@@ -12,7 +12,7 @@ module "kratos_external_idp_integrator" {
 module "kratos" {
   source = "github.com/canonical/kratos-operator//terraform?ref=v1.1.8"
 
-  model_name = var.model
+  model_name = data.juju_model.this.name
   app_name   = "kratos"
   units      = var.kratos.units
   base       = var.kratos.base
@@ -26,7 +26,7 @@ module "kratos" {
 module "hydra" {
   source = "github.com/canonical/hydra-operator//terraform?ref=v1.1.6"
 
-  model_name = var.model
+  model_name = data.juju_model.this.name
   app_name   = "hydra"
   units      = var.hydra.units
   base       = var.hydra.base
@@ -39,7 +39,7 @@ module "hydra" {
 module "login_ui" {
   source = "github.com/canonical/identity-platform-login-ui-operator//terraform?ref=v1.1.4"
 
-  model_name = var.model
+  model_name = data.juju_model.this.name
   app_name   = "login_ui"
   units      = var.login_ui.units
   base       = var.login_ui.base
@@ -55,7 +55,7 @@ module "admin_ui" {
 
   source = "github.com/canonical/identity-platform-admin-ui-operator//terraform?ref=v1.1.3"
 
-  model_name = var.model
+  model_name = data.juju_model.this.name
   app_name   = "admin_ui"
   units      = var.admin_ui.units
   base       = var.admin_ui.base
