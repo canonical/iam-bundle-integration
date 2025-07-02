@@ -17,7 +17,7 @@ data "juju_offer" "ca_certificate" {
 
 // public ingresses
 resource "juju_integration" "login_ui_public_ingress" {
-  model = var.model
+  model = data.juju_model.this.name
 
   application {
     offer_url = data.juju_offer.ingress.url
@@ -30,7 +30,7 @@ resource "juju_integration" "login_ui_public_ingress" {
 }
 
 resource "juju_integration" "hydra_public_ingress" {
-  model = var.model
+  model = data.juju_model.this.name
 
   application {
     offer_url = data.juju_offer.ingress.url
@@ -43,7 +43,7 @@ resource "juju_integration" "hydra_public_ingress" {
 }
 
 resource "juju_integration" "kratos_public_ingress" {
-  model = var.model
+  model = data.juju_model.this.name
 
   application {
     offer_url = data.juju_offer.ingress.url
@@ -58,7 +58,7 @@ resource "juju_integration" "kratos_public_ingress" {
 // databases
 
 resource "juju_integration" "hydra_database" {
-  model = var.model
+  model = data.juju_model.this.name
 
   application {
     offer_url = data.juju_offer.database.url
@@ -71,7 +71,7 @@ resource "juju_integration" "hydra_database" {
 }
 
 resource "juju_integration" "kratos_database" {
-  model = var.model
+  model = data.juju_model.this.name
 
   application {
     offer_url = data.juju_offer.database.url
@@ -86,7 +86,7 @@ resource "juju_integration" "kratos_database" {
 // idp
 
 resource "juju_integration" "kratos_external_idp" {
-  model = var.model
+  model = data.juju_model.this.name
   count = var.enable_kratos_external_idp_integrator ? 1 : 0
 
   application {
@@ -103,7 +103,7 @@ resource "juju_integration" "kratos_external_idp" {
 // internal networking
 
 resource "juju_integration" "kratos_hydra_info" {
-  model = var.model
+  model = data.juju_model.this.name
 
   application {
     name     = module.hydra.app_name
@@ -117,7 +117,7 @@ resource "juju_integration" "kratos_hydra_info" {
 }
 
 resource "juju_integration" "login_ui_hydra_info" {
-  model = var.model
+  model = data.juju_model.this.name
 
   application {
     name     = module.hydra.app_name
@@ -131,7 +131,7 @@ resource "juju_integration" "login_ui_hydra_info" {
 }
 
 resource "juju_integration" "kratos_login_ui_info" {
-  model = var.model
+  model = data.juju_model.this.name
 
   application {
     name     = module.login_ui.app_name
@@ -145,7 +145,7 @@ resource "juju_integration" "kratos_login_ui_info" {
 }
 
 resource "juju_integration" "kratos_login_ui_ui_info" {
-  model = var.model
+  model = data.juju_model.this.name
 
   application {
     name     = module.kratos.app_name
@@ -159,7 +159,7 @@ resource "juju_integration" "kratos_login_ui_ui_info" {
 }
 
 resource "juju_integration" "hydra_login_ui_ui_info" {
-  model = var.model
+  model = data.juju_model.this.name
 
   application {
     name     = module.hydra.app_name
@@ -173,7 +173,7 @@ resource "juju_integration" "hydra_login_ui_ui_info" {
 }
 
 resource "juju_integration" "kratos_admin_ui_info" {
-  model = var.model
+  model = data.juju_model.this.name
   count = var.enable_admin_ui ? 1 : 0
 
   application {
@@ -188,7 +188,7 @@ resource "juju_integration" "kratos_admin_ui_info" {
 }
 
 resource "juju_integration" "hydra_admin_ui_info" {
-  model = var.model
+  model = data.juju_model.this.name
   count = var.enable_admin_ui ? 1 : 0
 
   application {
@@ -203,7 +203,7 @@ resource "juju_integration" "hydra_admin_ui_info" {
 }
 
 resource "juju_integration" "hydra_admin_ui_oauth" {
-  model = var.model
+  model = data.juju_model.this.name
   count = var.enable_admin_ui ? 1 : 0
 
   application {
@@ -218,7 +218,7 @@ resource "juju_integration" "hydra_admin_ui_oauth" {
 }
 
 resource "juju_integration" "admin_ui_public_ingress" {
-  model = var.model
+  model = data.juju_model.this.name
   count = var.enable_admin_ui ? 1 : 0
 
   application {
@@ -232,7 +232,7 @@ resource "juju_integration" "admin_ui_public_ingress" {
 }
 
 resource "juju_integration" "openfga_admin_ui" {
-  model = var.model
+  model = data.juju_model.this.name
   count = var.enable_admin_ui ? 1 : 0
 
   application {
@@ -246,7 +246,7 @@ resource "juju_integration" "openfga_admin_ui" {
 }
 
 resource "juju_integration" "oauth_ca_admin_ui" {
-  model = var.model
+  model = data.juju_model.this.name
   count = var.enable_admin_ui ? 1 : 0
 
   application {
