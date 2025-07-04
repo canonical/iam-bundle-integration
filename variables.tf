@@ -25,6 +25,7 @@ variable "hydra" {
     base    = optional(string, "ubuntu@22.04")
     trust   = optional(string, true)
     config  = optional(map(string), {})
+    constraints = optional(string, "")
   })
   default = {}
 }
@@ -38,6 +39,7 @@ variable "kratos" {
     base    = optional(string, "ubuntu@22.04")
     trust   = optional(string, true)
     config  = optional(map(string), {})
+    constraints = optional(string, "")
   })
   default = {}
 }
@@ -51,6 +53,7 @@ variable "login_ui" {
     config  = optional(map(string), {})
     channel = optional(string, "latest/edge")
     base    = optional(string, "ubuntu@22.04")
+    constraints = optional(string, "")
   })
   default = {}
 }
@@ -64,6 +67,7 @@ variable "admin_ui" {
     config  = optional(map(string), {})
     channel = optional(string, "latest/edge")
     base    = optional(string, "ubuntu@22.04")
+    constraints = optional(string, "")
   })
   default = {}
 }
