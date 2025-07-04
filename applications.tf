@@ -17,6 +17,7 @@ module "kratos" {
   units      = var.kratos.units
   base       = var.kratos.base
   channel    = var.kratos.channel
+  constraints = var.kratos.constraints
 
   config = var.kratos.config
 
@@ -31,6 +32,7 @@ module "hydra" {
   units      = var.hydra.units
   base       = var.hydra.base
   channel    = var.hydra.channel
+  constraints = var.hydra.constraints
 
   config = var.hydra.config
 }
@@ -44,6 +46,7 @@ module "login_ui" {
   units      = var.login_ui.units
   base       = var.login_ui.base
   channel    = var.login_ui.channel
+  constraints = var.login_ui.constraints
 
   config = var.login_ui.config
 
@@ -60,6 +63,7 @@ module "admin_ui" {
   units      = var.admin_ui.units
   base       = var.admin_ui.base
   channel    = var.admin_ui.channel
+  constraints = var.admin_ui.constraints
 
   config = var.admin_ui.config
 
