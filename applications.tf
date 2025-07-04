@@ -12,11 +12,11 @@ module "kratos_external_idp_integrator" {
 module "kratos" {
   source = "github.com/canonical/kratos-operator//terraform?ref=v1.1.8"
 
-  model_name = data.juju_model.this.name
-  app_name   = var.kratos.name
-  units      = var.kratos.units
-  base       = var.kratos.base
-  channel    = var.kratos.channel
+  model_name  = data.juju_model.this.name
+  app_name    = var.kratos.name
+  units       = var.kratos.units
+  base        = var.kratos.base
+  channel     = var.kratos.channel
   constraints = var.kratos.constraints
 
   config = var.kratos.config
@@ -25,13 +25,13 @@ module "kratos" {
 }
 
 module "hydra" {
-  source = "github.com/canonical/hydra-operator//terraform?ref=v1.1.6"
+  source = "github.com/canonical/hydra-operator//terraform?ref=v1.1.7"
 
-  model_name = data.juju_model.this.name
-  app_name   = var.hydra.name
-  units      = var.hydra.units
-  base       = var.hydra.base
-  channel    = var.hydra.channel
+  model_name  = data.juju_model.this.name
+  app_name    = var.hydra.name
+  units       = var.hydra.units
+  base        = var.hydra.base
+  channel     = var.hydra.channel
   constraints = var.hydra.constraints
 
   config = var.hydra.config
@@ -41,11 +41,11 @@ module "hydra" {
 module "login_ui" {
   source = "github.com/canonical/identity-platform-login-ui-operator//terraform?ref=v1.1.4"
 
-  model_name = data.juju_model.this.name
-  app_name   = var.login_ui.name
-  units      = var.login_ui.units
-  base       = var.login_ui.base
-  channel    = var.login_ui.channel
+  model_name  = data.juju_model.this.name
+  app_name    = var.login_ui.name
+  units       = var.login_ui.units
+  base        = var.login_ui.base
+  channel     = var.login_ui.channel
   constraints = var.login_ui.constraints
 
   config = var.login_ui.config
@@ -58,11 +58,11 @@ module "admin_ui" {
 
   source = "github.com/canonical/identity-platform-admin-ui-operator//terraform?ref=v1.1.3"
 
-  model_name = data.juju_model.this.name
-  app_name   = var.admin_ui.name
-  units      = var.admin_ui.units
-  base       = var.admin_ui.base
-  channel    = var.admin_ui.channel
+  model_name  = data.juju_model.this.name
+  app_name    = var.admin_ui.name
+  units       = var.admin_ui.units
+  base        = var.admin_ui.base
+  channel     = var.admin_ui.channel
   constraints = var.admin_ui.constraints
 
   config = var.admin_ui.config
