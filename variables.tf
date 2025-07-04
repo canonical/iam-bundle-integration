@@ -19,6 +19,7 @@ variable "enable_kratos_external_idp_integrator" {
 variable "hydra" {
   description = "The configurations of the Hydra application."
   type = object({
+    name    = optional(string, "hydra")
     units   = optional(number, 1)
     channel = optional(string, "latest/edge")
     base    = optional(string, "ubuntu@22.04")
@@ -31,6 +32,7 @@ variable "hydra" {
 variable "kratos" {
   description = "The configurations of the Kratos application."
   type = object({
+    name    = optional(string, "kratos")
     units   = optional(number, 1)
     channel = optional(string, "latest/edge")
     base    = optional(string, "ubuntu@22.04")
@@ -43,6 +45,7 @@ variable "kratos" {
 variable "login_ui" {
   description = "The configurations of the Identity Platform Login UI application."
   type = object({
+    name    = optional(string, "login-ui")
     units   = optional(number, 1)
     trust   = optional(bool, true)
     config  = optional(map(string), {})
@@ -55,6 +58,7 @@ variable "login_ui" {
 variable "admin_ui" {
   description = "The configurations of the Identity Platform Admin UI application."
   type = object({
+    name    = optional(string, "admin-ui")
     units   = optional(number, 1)
     trust   = optional(bool, true)
     config  = optional(map(string), {})
