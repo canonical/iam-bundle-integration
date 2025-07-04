@@ -13,7 +13,7 @@ module "kratos" {
   source = "github.com/canonical/kratos-operator//terraform?ref=v1.1.8"
 
   model_name = data.juju_model.this.name
-  app_name   = "kratos"
+  app_name   = var.kratos.name
   units      = var.kratos.units
   base       = var.kratos.base
   channel    = var.kratos.channel
@@ -27,7 +27,7 @@ module "hydra" {
   source = "github.com/canonical/hydra-operator//terraform?ref=v1.1.6"
 
   model_name = data.juju_model.this.name
-  app_name   = "hydra"
+  app_name   = var.hydra.name
   units      = var.hydra.units
   base       = var.hydra.base
   channel    = var.hydra.channel
@@ -40,7 +40,7 @@ module "login_ui" {
   source = "github.com/canonical/identity-platform-login-ui-operator//terraform?ref=v1.1.4"
 
   model_name = data.juju_model.this.name
-  app_name   = "login_ui"
+  app_name   = var.login_ui.name
   units      = var.login_ui.units
   base       = var.login_ui.base
   channel    = var.login_ui.channel
@@ -56,7 +56,7 @@ module "admin_ui" {
   source = "github.com/canonical/identity-platform-admin-ui-operator//terraform?ref=v1.1.3"
 
   model_name = data.juju_model.this.name
-  app_name   = "admin_ui"
+  app_name   = var.admin_ui.name
   units      = var.admin_ui.units
   base       = var.admin_ui.base
   channel    = var.admin_ui.channel
