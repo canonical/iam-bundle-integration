@@ -44,6 +44,21 @@ variable "kratos" {
   default = {}
 }
 
+variable "kratos_external_idp_integrator" {
+  description = "The configurations of the Kratos application."
+  type = object({
+    name        = optional(string, "kratos-external-idp-integrator")
+    units       = optional(number, 1)
+    channel     = optional(string, "latest/edge")
+    base        = optional(string, "ubuntu@22.04")
+    trust       = optional(string, true)
+    config      = optional(map(string), {})
+    constraints = optional(string, "")
+  })
+  default = {}
+}
+
+
 variable "login_ui" {
   description = "The configurations of the Identity Platform Login UI application."
   type = object({
