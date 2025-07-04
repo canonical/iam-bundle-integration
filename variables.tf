@@ -44,6 +44,34 @@ variable "kratos" {
   default = {}
 }
 
+variable "kratos_external_idp_integrator" {
+  description = "The configurations of the Kratos application."
+  type = object({
+    name    = optional(string, "kratos-external-idp-integrator")
+    units   = optional(number, 1)
+    channel = optional(string, "latest/edge")
+    base    = optional(string, "ubuntu@22.04")
+    trust   = optional(string, true)
+    config = optional(object({
+      client_id : string
+      client_secret : string
+      issuer_url : optional(string, "")
+      provider : string
+      provider_id : string
+      scope : optional(string, "profile email address phone")
+      microsoft_tenant_id : optional(string, "")
+      apple_team_id : optional(string, "")
+      apple_private_key_id : optional(string, "")
+      apple_private_key : optional(string, "")
+      })
+    )
+
+    constraints = optional(string, "")
+  })
+  default = {}
+}
+
+
 variable "login_ui" {
   description = "The configurations of the Identity Platform Login UI application."
   type = object({
@@ -70,37 +98,6 @@ variable "admin_ui" {
     constraints = optional(string, "")
   })
   default = {}
-}
-
-variable "idp_provider_config" {
-  description = "The external Idp provider configurations."
-  type = object({
-    client_id : string
-    issuer_url : optional(string)
-    provider : string
-    provider_id : string
-    scope : optional(string, "profile email address phone")
-    microsoft_tenant_id : optional(string)
-    apple_team_id : optional(string)
-    apple_private_key_id : optional(string)
-  })
-  default = {
-    client_id   = "client_id"
-    provider    = "generic"
-    provider_id = "provider_id"
-  }
-}
-
-variable "idp_provider_credentials" {
-  description = "The external Idp provider credentials."
-  type = object({
-    client_secret : string
-    apple_private_key : optional(string)
-  })
-  default = {
-    client_secret = "client_secret"
-  }
-  sensitive = true
 }
 
 variable "ingress_offer_url" {

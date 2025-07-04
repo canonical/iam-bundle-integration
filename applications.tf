@@ -3,9 +3,14 @@ module "kratos_external_idp_integrator" {
 
   source = "github.com/canonical/kratos-external-idp-integrator//terraform?ref=v1.1.1"
 
-  model_name = data.juju_model.this.name
-  app_name   = "kratos-external-idp-integrator"
-  config     = merge(var.idp_provider_config, var.idp_provider_credentials)
+  model_name  = data.juju_model.this.name
+  app_name    = var.kratos_external_idp_integrator.name
+  units       = var.kratos_external_idp_integrator.units
+  base        = var.kratos_external_idp_integrator.base
+  channel     = var.kratos_external_idp_integrator.channel
+  constraints = var.kratos_external_idp_integrator.constraints
+
+  config = var.kratos_external_idp_integrator.config
 }
 
 
