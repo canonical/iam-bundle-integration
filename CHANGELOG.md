@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.0](https://github.com/canonical/iam-bundle-integration/compare/v0.6.0...v0.7.0) (2025-07-07)
+
+
+### Features
+
+* reuse charm repository modules ([8fabde3](https://github.com/canonical/iam-bundle-integration/commit/8fabde3278ebfc7d71d1229f6867100877362689))
+
 ## [0.6.0](https://github.com/canonical/iam-bundle-integration/compare/v0.5.0...v0.6.0) (2025-07-01)
 
 
