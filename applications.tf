@@ -1,75 +1,67 @@
 module "kratos_external_idp_integrator" {
-  source = "./modules/external_idp_integrator"
-  count  = var.enable_kratos_external_idp_integrator ? 1 : 0
+  count = var.enable_kratos_external_idp_integrator ? 1 : 0
 
-  model  = var.model
-  name   = "kratos-external-idp-integrator"
-  config = merge(var.idp_provider_config, var.idp_provider_credentials)
+  source = "github.com/canonical/kratos-external-idp-integrator//terraform?ref=v1.1.1"
+
+  model_name = var.model
+  app_name   = "kratos-external-idp-integrator"
+  config     = merge(var.idp_provider_config, var.idp_provider_credentials)
 }
 
-resource "juju_application" "kratos" {
-  model = var.model
-  name  = "kratos"
-  trust = var.kratos.trust
-  units = var.kratos.units
 
-  charm {
-    name    = "kratos"
-    channel = var.kratos.channel
-    base    = var.kratos.base
-  }
+module "kratos" {
+  source = "github.com/canonical/kratos-operator//terraform?ref=v1.1.8"
+
+  model_name = var.model
+  app_name   = "kratos"
+  units      = var.kratos.units
+  base       = var.kratos.base
+  channel    = var.kratos.channel
 
   config = var.kratos.config
 
   depends_on = [module.kratos_external_idp_integrator]
 }
 
-resource "juju_application" "hydra" {
-  model = var.model
-  name  = "hydra"
-  trust = var.hydra.trust
-  units = var.hydra.units
+module "hydra" {
+  source = "github.com/canonical/hydra-operator//terraform?ref=v1.1.6"
 
-  charm {
-    name    = "hydra"
-    channel = var.hydra.channel
-    base    = var.hydra.base
-  }
+  model_name = var.model
+  app_name   = "hydra"
+  units      = var.hydra.units
+  base       = var.hydra.base
+  channel    = var.hydra.channel
 
   config = var.hydra.config
 }
 
-resource "juju_application" "login_ui" {
-  model = var.model
-  name  = "login-ui"
-  trust = var.login_ui.trust
-  units = var.login_ui.units
 
-  charm {
-    name    = "identity-platform-login-ui-operator"
-    channel = var.login_ui.channel
-    base    = var.login_ui.base
-  }
+module "login_ui" {
+  source = "github.com/canonical/identity-platform-login-ui-operator//terraform?ref=v1.1.4"
+
+  model_name = var.model
+  app_name   = "login_ui"
+  units      = var.login_ui.units
+  base       = var.login_ui.base
+  channel    = var.login_ui.channel
 
   config = var.login_ui.config
 
-  depends_on = [juju_application.hydra, juju_application.kratos]
+  depends_on = [module.hydra, module.kratos]
 }
 
-resource "juju_application" "admin_ui" {
-  model = var.model
-  name  = "admin-ui"
-  trust = var.admin_ui.trust
-  units = var.admin_ui.units
+module "admin_ui" {
   count = var.enable_admin_ui ? 1 : 0
 
-  charm {
-    name    = "identity-platform-admin-ui"
-    channel = var.admin_ui.channel
-    base    = var.admin_ui.base
-  }
+  source = "github.com/canonical/identity-platform-admin-ui-operator//terraform?ref=v1.1.3"
+
+  model_name = var.model
+  app_name   = "admin_ui"
+  units      = var.admin_ui.units
+  base       = var.admin_ui.base
+  channel    = var.admin_ui.channel
 
   config = var.admin_ui.config
 
-  depends_on = [juju_application.hydra, juju_application.kratos]
+  depends_on = [module.hydra, module.kratos]
 }
