@@ -10,6 +10,43 @@ variable "enable_kratos_external_idp_integrator" {
   description = "Whether to deploy Kratos External IdP Integrator"
 }
 
+variable "kratos_external_idp_integrator" {
+  description = "The configurations of the Kratos External IdP Integrator application."
+  type = object({
+    units   = optional(number, 1)
+    channel = optional(string, "latest/stable")
+    base    = optional(string, "ubuntu@22.04")
+    trust   = optional(string, true)
+    config = optional(object({
+      client_id : string
+      client_secret : string
+      issuer_url : optional(string, "")
+      provider : string
+      provider_id : string
+      scope : optional(string, "profile email address phone")
+      microsoft_tenant_id : optional(string, "")
+      apple_team_id : optional(string, "")
+      apple_private_key_id : optional(string, "")
+      apple_private_key : optional(string, "")
+      })
+    )
+    constraints = optional(string, "arch=amd64")
+  })
+  default = {
+    config = {
+      client_id            = "client_id"
+      client_secret        = "client_secret"
+      provider             = "generic"
+      provider_id          = "provider_id"
+      issuer               = "https://example.issuer.com"
+      microsoft_tenant_id  = ""
+      apple_team_id        = ""
+      apple_private_key_id = ""
+      apple_private_key    = ""
+    }
+  }
+  
+}
 variable "hydra" {
   description = "The configurations of the Hydra application."
   type = object({
@@ -18,6 +55,7 @@ variable "hydra" {
     base    = optional(string, "ubuntu@22.04")
     trust   = optional(string, true)
     config  = optional(map(string), {})
+    constraints = optional(string, "arch=amd64")
   })
   default = {}
 }
@@ -30,6 +68,7 @@ variable "kratos" {
     base    = optional(string, "ubuntu@22.04")
     trust   = optional(string, true)
     config  = optional(map(string), {})
+    constraints = optional(string, "arch=amd64")
   })
   default = {}
 }
@@ -42,6 +81,7 @@ variable "login_ui" {
     config  = optional(map(string), {})
     channel = optional(string, "latest/stable")
     base    = optional(string, "ubuntu@22.04")
+    constraints = optional(string, "arch=amd64")
   })
   default = {}
 }
@@ -54,41 +94,10 @@ variable "admin_ui" {
     config  = optional(map(string), {})
     channel = optional(string, "latest/edge")
     base    = optional(string, "ubuntu@22.04")
+    constraints = optional(string, "arch=amd64")
   })
   default = {}
 }
-
-variable "idp_provider_config" {
-  description = "The external IdP configurations."
-  type = object({
-    client_id : string
-    issuer_url : optional(string)
-    provider : string
-    provider_id : string
-    scope : optional(string, "profile email address phone")
-    microsoft_tenant_id : optional(string)
-    apple_team_id : optional(string)
-    apple_private_key_id : optional(string)
-  })
-  default = {
-    client_id   = "client_id"
-    provider    = "generic"
-    provider_id = "provider_id"
-  }
-}
-
-variable "idp_provider_credentials" {
-  description = "The external IdP credentials."
-  type = object({
-    client_secret : string
-    apple_private_key : optional(string)
-  })
-  default = {
-    client_secret = "client_secret"
-  }
-  sensitive = true
-}
-
 
 variable "certificates" {
   description = "The configurations of the self-signed-certificates application."
