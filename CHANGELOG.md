@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.8.0](https://github.com/canonical/iam-bundle-integration/compare/v0.7.0...v0.8.0) (2025-07-07)
+
+
+### Features
+
+* add cos integration ([d7a0d9f](https://github.com/canonical/iam-bundle-integration/commit/d7a0d9fce3b8edea14a8cecccd8e641257f2dd56))
+
+
+### Bug Fixes
+
+* adjust tutorial ([2dfe1e5](https://github.com/canonical/iam-bundle-integration/commit/2dfe1e5f965ddb2ef3aee65f51a940a980504ec1))
+* allow constraints to be passed ([87c3ac9](https://github.com/canonical/iam-bundle-integration/commit/87c3ac9113761816de856bf9f416ce0435e112ba))
+* allow kratos-ext-idp to be passed vars ([9896c36](https://github.com/canonical/iam-bundle-integration/commit/9896c3636a3e6a4cf1928d7af0162ade1fb5d97c))
+* allow name to be specified for juju apps ([6602855](https://github.com/canonical/iam-bundle-integration/commit/6602855bd8d146b92b497e988fbe25f405f8a22c))
+* update to hydra module v1.1.7 ([1484c51](https://github.com/canonical/iam-bundle-integration/commit/1484c51281d0448a906106861daf3f4fc39a9726))
+* update to use juju 0.20 ([58ce4fb](https://github.com/canonical/iam-bundle-integration/commit/58ce4fb6398d497d8a0bb14b93fed9c91d146284))
+
 ## [0.7.0](https://github.com/canonical/iam-bundle-integration/compare/v0.6.0...v0.7.0) (2025-07-07)
 
 
