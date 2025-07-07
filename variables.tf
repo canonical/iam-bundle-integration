@@ -19,11 +19,13 @@ variable "enable_kratos_external_idp_integrator" {
 variable "hydra" {
   description = "The configurations of the Hydra application."
   type = object({
-    units   = optional(number, 1)
-    channel = optional(string, "latest/edge")
-    base    = optional(string, "ubuntu@22.04")
-    trust   = optional(string, true)
-    config  = optional(map(string), {})
+    name        = optional(string, "hydra")
+    units       = optional(number, 1)
+    channel     = optional(string, "latest/edge")
+    base        = optional(string, "ubuntu@22.04")
+    trust       = optional(string, true)
+    config      = optional(map(string), {})
+    constraints = optional(string, "")
   })
   default = {}
 }
@@ -31,23 +33,55 @@ variable "hydra" {
 variable "kratos" {
   description = "The configurations of the Kratos application."
   type = object({
-    units   = optional(number, 1)
-    channel = optional(string, "latest/edge")
-    base    = optional(string, "ubuntu@22.04")
-    trust   = optional(string, true)
-    config  = optional(map(string), {})
+    name        = optional(string, "kratos")
+    units       = optional(number, 1)
+    channel     = optional(string, "latest/edge")
+    base        = optional(string, "ubuntu@22.04")
+    trust       = optional(string, true)
+    config      = optional(map(string), {})
+    constraints = optional(string, "")
   })
   default = {}
 }
 
+variable "kratos_external_idp_integrator" {
+  description = "The configurations of the Kratos application."
+  type = object({
+    name    = optional(string, "kratos-external-idp-integrator")
+    units   = optional(number, 1)
+    channel = optional(string, "latest/edge")
+    base    = optional(string, "ubuntu@22.04")
+    trust   = optional(string, true)
+    config = optional(object({
+      client_id : string
+      client_secret : string
+      issuer_url : optional(string, "")
+      provider : string
+      provider_id : string
+      scope : optional(string, "profile email address phone")
+      microsoft_tenant_id : optional(string, "")
+      apple_team_id : optional(string, "")
+      apple_private_key_id : optional(string, "")
+      apple_private_key : optional(string, "")
+      })
+    )
+
+    constraints = optional(string, "")
+  })
+  default = {}
+}
+
+
 variable "login_ui" {
   description = "The configurations of the Identity Platform Login UI application."
   type = object({
-    units   = optional(number, 1)
-    trust   = optional(bool, true)
-    config  = optional(map(string), {})
-    channel = optional(string, "latest/edge")
-    base    = optional(string, "ubuntu@22.04")
+    name        = optional(string, "login-ui")
+    units       = optional(number, 1)
+    trust       = optional(bool, true)
+    config      = optional(map(string), {})
+    channel     = optional(string, "latest/edge")
+    base        = optional(string, "ubuntu@22.04")
+    constraints = optional(string, "")
   })
   default = {}
 }
@@ -55,44 +89,15 @@ variable "login_ui" {
 variable "admin_ui" {
   description = "The configurations of the Identity Platform Admin UI application."
   type = object({
-    units   = optional(number, 1)
-    trust   = optional(bool, true)
-    config  = optional(map(string), {})
-    channel = optional(string, "latest/edge")
-    base    = optional(string, "ubuntu@22.04")
+    name        = optional(string, "admin-ui")
+    units       = optional(number, 1)
+    trust       = optional(bool, true)
+    config      = optional(map(string), {})
+    channel     = optional(string, "latest/edge")
+    base        = optional(string, "ubuntu@22.04")
+    constraints = optional(string, "")
   })
   default = {}
-}
-
-variable "idp_provider_config" {
-  description = "The external Idp provider configurations."
-  type = object({
-    client_id : string
-    issuer_url : optional(string)
-    provider : string
-    provider_id : string
-    scope : optional(string, "profile email address phone")
-    microsoft_tenant_id : optional(string)
-    apple_team_id : optional(string)
-    apple_private_key_id : optional(string)
-  })
-  default = {
-    client_id   = "client_id"
-    provider    = "generic"
-    provider_id = "provider_id"
-  }
-}
-
-variable "idp_provider_credentials" {
-  description = "The external Idp provider credentials."
-  type = object({
-    client_secret : string
-    apple_private_key : optional(string)
-  })
-  default = {
-    client_secret = "client_secret"
-  }
-  sensitive = true
 }
 
 variable "ingress_offer_url" {
@@ -117,4 +122,22 @@ variable "send_ca_certificate_offer_url" {
   description = "Send CA Certificate Offer URL"
   type        = string
   default     = "admin/core.send-ca-cert"
+}
+
+variable "metrics_offer_url" {
+  description = "Metrics Offer URL"
+  type        = string
+  default     = null
+}
+
+variable "tracing_offer_url" {
+  description = "Tracing Offer URL"
+  type        = string
+  default     = null
+}
+
+variable "logging_offer_url" {
+  description = "Logging Offer URL"
+  type        = string
+  default     = null
 }

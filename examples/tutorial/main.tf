@@ -72,14 +72,15 @@ module "iam" {
   postgresql_offer_url          = juju_offer.postgresql_offer.url
   ingress_offer_url             = juju_offer.ingress_offer.url
   send_ca_certificate_offer_url = juju_offer.send_ca_certificate_offer.url
-  openfga_offer_url = var.enable_admin_ui ? juju_offer.openfga_offer[0].url : null
+  openfga_offer_url             = var.enable_admin_ui ? juju_offer.openfga_offer[0].url : null
 
   hydra                                 = var.hydra
   kratos                                = var.kratos
   login_ui                              = var.login_ui
   admin_ui                              = var.admin_ui
-  idp_provider_config                   = var.idp_provider_config
-  idp_provider_credentials              = var.idp_provider_credentials
+  kratos_external_idp_integrator        = var.kratos_external_idp_integrator
   enable_admin_ui                       = var.enable_admin_ui
   enable_kratos_external_idp_integrator = var.enable_kratos_external_idp_integrator
+
+  depends_on = [ juju_model.iam ]
 }
