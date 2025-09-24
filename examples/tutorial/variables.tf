@@ -105,8 +105,8 @@ variable "certificates" {
     units   = optional(number, 1)
     trust   = optional(bool, true)
     config  = optional(map(string), {})
-    channel = optional(string, "latest/stable")
-    base    = optional(string, "ubuntu@22.04")
+    channel = optional(string, "1/stable")
+    base    = optional(string, "ubuntu@24.04")
   })
   default = {}
 }
@@ -117,7 +117,7 @@ variable "traefik" {
     units   = optional(number, 1)
     trust   = optional(bool, true)
     config  = optional(map(string), {})
-    channel = optional(string, "latest/stable")
+    channel = optional(string, "latest/edge")
     base    = optional(string, "ubuntu@20.04")
   })
   default = {}
@@ -129,7 +129,7 @@ variable "postgresql" {
     units   = optional(number, 1)
     trust   = optional(bool, true)
     config  = optional(map(string), {})
-    channel = optional(string, "14/stable")
+    channel = optional(string, "14/edge")
     base    = optional(string, "ubuntu@22.04")
   })
   default = {}
