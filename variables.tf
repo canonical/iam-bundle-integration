@@ -1,5 +1,5 @@
 variable "model" {
-  description = "The name of the Juju model to deploy to."
+  description = "The uuid of the Juju model to deploy to."
   type        = string
   default     = "identity-platform"
 }
