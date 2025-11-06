@@ -34,7 +34,7 @@ module "iam" {
   model  = juju_model.iam.name
 
   postgresql_offer_url          = juju_offer.postgresql_offer.url
-  ingress_offer_url             = juju_offer.ingress_offer.url
+  ingress_offer_url             = data.juju_offer.ingress_offer.url
   send_ca_certificate_offer_url = data.juju_offer.send_ca_certificate_offer.url
   openfga_offer_url             = null
 
