@@ -1,7 +1,7 @@
 module "kratos_external_idp_integrator" {
   count = var.enable_kratos_external_idp_integrator ? 1 : 0
 
-  source = "github.com/canonical/kratos-external-idp-integrator//terraform?ref=v1.1.1"
+  source = "github.com/canonical/kratos-external-idp-integrator//terraform?ref=v1.1.2"
 
   model_name  = data.juju_model.this.name
   app_name    = var.kratos_external_idp_integrator.name
