@@ -30,7 +30,7 @@ module "kratos" {
 }
 
 module "hydra" {
-  source = "github.com/canonical/hydra-operator//terraform?ref=v1.1.7"
+  source = "github.com/canonical/hydra-operator//terraform?ref=v1.2.0"
 
   model_name  = data.juju_model.this.name
   app_name    = var.hydra.name
