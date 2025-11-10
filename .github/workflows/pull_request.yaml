@@ -11,7 +11,7 @@
       runs-on: ubuntu-latest
       steps:
         - name: Checkout
-          uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+          uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4
 
         - name: HashiCorp - Setup Terraform
           uses: hashicorp/setup-terraform@b9cd54a3c349d3f38e8881555d616ced269862dd # v3.1.2
@@ -43,7 +43,7 @@
             terraform -chdir=examples/tutorial plan -no-color
           continue-on-error: true
 
-        - uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7
+        - uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
           if: github.event_name == 'pull_request'
           env:
             PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
