@@ -15,7 +15,7 @@ module "kratos_external_idp_integrator" {
 
 
 module "kratos" {
-  source = "github.com/canonical/kratos-operator//terraform?ref=v1.1.8"
+  source = "github.com/canonical/kratos-operator//terraform?ref=v1.1.11"
 
   model_name  = data.juju_model.this.name
   app_name    = var.kratos.name
