@@ -39,7 +39,7 @@
         - name: Terraform Plan from the example folder
           id: plan
           run: |
-            terraform -chdir=examples/tutorial init -no-color
+            terraform -chdir=examples/tutorial init -no-color -upgrade
             terraform -chdir=examples/tutorial plan -no-color
           continue-on-error: true
 
