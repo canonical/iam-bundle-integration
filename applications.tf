@@ -49,7 +49,7 @@ module "hydra" {
 
 
 module "login_ui" {
-  source = "github.com/canonical/identity-platform-login-ui-operator//terraform?ref=b5ddba4"
+  source = "github.com/canonical/identity-platform-login-ui-operator//terraform?ref=v2.0.0"
 
   model       = data.juju_model.this.uuid
   app_name    = var.login_ui.name
