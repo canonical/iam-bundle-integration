@@ -26,6 +26,7 @@ variable "hydra" {
     trust       = optional(string, true)
     config      = optional(map(string), {})
     constraints = optional(string, "")
+    revision    = optional(string, null)
   })
   default = {}
 }
@@ -40,6 +41,7 @@ variable "kratos" {
     trust       = optional(string, true)
     config      = optional(map(string), {})
     constraints = optional(string, "")
+    revision    = optional(string, null)
   })
   default = {}
 }
@@ -67,6 +69,7 @@ variable "kratos_external_idp_integrator" {
     )
 
     constraints = optional(string, "")
+    revision    = optional(string, null)
   })
   default = {}
 }
@@ -82,6 +85,7 @@ variable "login_ui" {
     channel     = optional(string, "latest/edge")
     base        = optional(string, "ubuntu@22.04")
     constraints = optional(string, "")
+    revision    = optional(string, null)
   })
   default = {}
 }
@@ -96,6 +100,7 @@ variable "admin_ui" {
     channel     = optional(string, "latest/edge")
     base        = optional(string, "ubuntu@22.04")
     constraints = optional(string, "")
+    revision    = optional(string, null)
   })
   default = {}
 }
