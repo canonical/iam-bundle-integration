@@ -8,18 +8,18 @@ Juju bundle Terraform module.
 
 | Name | Version |
 |------|---------|
-| <a name="provider_juju"></a> [juju](#provider\_juju) | 0.20.0 |
+| <a name="provider_juju"></a> [juju](#provider\_juju) | >= 1.0.0 |
 ## Requirements
 
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.0 |
-| <a name="requirement_juju"></a> [juju](#requirement\_juju) | >= 0.20.0 |
+| <a name="requirement_juju"></a> [juju](#requirement\_juju) | >= 1.0.0 |
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_model"></a> [model](#input\_model) | The name of the Juju model to deploy to. | `string` | `"identity-platform"` | no |
+| <a name="input_model"></a> [model](#input\_model) | The uuid of the Juju model to deploy to. | `string` | `"identity-platform"` | no |
 | <a name="input_enable_admin_ui"></a> [enable\_admin\_ui](#input\_enable\_admin\_ui) | Whether to deploy Admin UI | `bool` | `false` | no |
 | <a name="input_enable_kratos_external_idp_integrator"></a> [enable\_kratos\_external\_idp\_integrator](#input\_enable\_kratos\_external\_idp\_integrator) | Whether to deploy Kratos External IdP Integrator | `bool` | `false` | no |
 | <a name="input_hydra"></a> [hydra](#input\_hydra) | The configurations of the Hydra application. | <pre>object({<br/>    name        = optional(string, "hydra")<br/>    units       = optional(number, 1)<br/>    channel     = optional(string, "latest/edge")<br/>    base        = optional(string, "ubuntu@22.04")<br/>    trust       = optional(string, true)<br/>    config      = optional(map(string), {})<br/>    constraints = optional(string, "")<br/>  })</pre> | `{}` | no |
