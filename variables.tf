@@ -1,13 +1,7 @@
 variable "model" {
-  description = "The name of the Juju model to deploy to."
+  description = "The uuid of the Juju model to deploy to."
   type        = string
   default     = "identity-platform"
-}
-
-variable "enable_admin_ui" {
-  type        = bool
-  default     = false
-  description = "Whether to deploy Admin UI"
 }
 
 variable "enable_kratos_external_idp_integrator" {
@@ -26,6 +20,7 @@ variable "hydra" {
     trust       = optional(string, true)
     config      = optional(map(string), {})
     constraints = optional(string, "")
+    revision    = optional(string, null)
   })
   default = {}
 }
@@ -40,6 +35,7 @@ variable "kratos" {
     trust       = optional(string, true)
     config      = optional(map(string), {})
     constraints = optional(string, "")
+    revision    = optional(string, null)
   })
   default = {}
 }
@@ -67,6 +63,7 @@ variable "kratos_external_idp_integrator" {
     )
 
     constraints = optional(string, "")
+    revision    = optional(string, null)
   })
   default = {}
 }
@@ -82,20 +79,7 @@ variable "login_ui" {
     channel     = optional(string, "latest/edge")
     base        = optional(string, "ubuntu@22.04")
     constraints = optional(string, "")
-  })
-  default = {}
-}
-
-variable "admin_ui" {
-  description = "The configurations of the Identity Platform Admin UI application."
-  type = object({
-    name        = optional(string, "admin-ui")
-    units       = optional(number, 1)
-    trust       = optional(bool, true)
-    config      = optional(map(string), {})
-    channel     = optional(string, "latest/edge")
-    base        = optional(string, "ubuntu@22.04")
-    constraints = optional(string, "")
+    revision    = optional(string, null)
   })
   default = {}
 }
@@ -110,12 +94,6 @@ variable "postgresql_offer_url" {
   description = "PostgreSQL Offer URL"
   type        = string
   default     = "admin/core.postgresql"
-}
-
-variable "openfga_offer_url" {
-  description = "OpenFGA Offer URL"
-  type        = string
-  default     = "admin/core.openfga"
 }
 
 variable "send_ca_certificate_offer_url" {

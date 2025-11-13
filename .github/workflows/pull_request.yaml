@@ -36,11 +36,14 @@
             provider: microk8s
             channel: 1.25-strict/stable
 
-        - name: Terraform Plan from the example folder
+        - name: Terraform Plan from the example folders
           id: plan
           run: |
             terraform -chdir=examples/tutorial init -no-color -upgrade
             terraform -chdir=examples/tutorial plan -no-color
+            terraform -chdir=examples/admin-ui init -no-color -upgrade
+            terraform -chdir=examples/admin-ui plan -no-color
+
           continue-on-error: true
 
         - uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7
