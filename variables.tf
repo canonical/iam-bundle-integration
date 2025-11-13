@@ -4,12 +4,6 @@ variable "model" {
   default     = "identity-platform"
 }
 
-variable "enable_admin_ui" {
-  type        = bool
-  default     = false
-  description = "Whether to deploy Admin UI"
-}
-
 variable "enable_kratos_external_idp_integrator" {
   type        = bool
   default     = false
@@ -90,21 +84,6 @@ variable "login_ui" {
   default = {}
 }
 
-variable "admin_ui" {
-  description = "The configurations of the Identity Platform Admin UI application."
-  type = object({
-    name        = optional(string, "admin-ui")
-    units       = optional(number, 1)
-    trust       = optional(bool, true)
-    config      = optional(map(string), {})
-    channel     = optional(string, "latest/edge")
-    base        = optional(string, "ubuntu@22.04")
-    constraints = optional(string, "")
-    revision    = optional(string, null)
-  })
-  default = {}
-}
-
 variable "ingress_offer_url" {
   description = "Ingress Offer URL"
   type        = string
@@ -115,12 +94,6 @@ variable "postgresql_offer_url" {
   description = "PostgreSQL Offer URL"
   type        = string
   default     = "admin/core.postgresql"
-}
-
-variable "openfga_offer_url" {
-  description = "OpenFGA Offer URL"
-  type        = string
-  default     = "admin/core.openfga"
 }
 
 variable "send_ca_certificate_offer_url" {

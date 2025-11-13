@@ -6,11 +6,6 @@ data "juju_offer" "ingress" {
   url = var.ingress_offer_url
 }
 
-data "juju_offer" "openfga" {
-  url   = var.openfga_offer_url
-  count = var.enable_admin_ui ? 1 : 0
-}
-
 data "juju_offer" "ca_certificate" {
   url = var.send_ca_certificate_offer_url
 }
@@ -168,93 +163,6 @@ resource "juju_integration" "hydra_login_ui_ui_info" {
   application {
     name     = module.login_ui.app_name
     endpoint = "ui-endpoint-info"
-  }
-  model_uuid = data.juju_model.this.uuid
-}
-
-resource "juju_integration" "kratos_admin_ui_info" {
-  count = var.enable_admin_ui ? 1 : 0
-
-  application {
-    name     = module.kratos.app_name
-    endpoint = "kratos-info"
-  }
-
-  application {
-    name     = module.admin_ui[0].app_name
-    endpoint = "kratos-info"
-  }
-  model_uuid = data.juju_model.this.uuid
-}
-
-resource "juju_integration" "hydra_admin_ui_info" {
-  count = var.enable_admin_ui ? 1 : 0
-
-  application {
-    name     = module.hydra.app_name
-    endpoint = "hydra-endpoint-info"
-  }
-
-  application {
-    name     = module.admin_ui[0].app_name
-    endpoint = "hydra-endpoint-info"
-  }
-  model_uuid = data.juju_model.this.uuid
-}
-
-resource "juju_integration" "hydra_admin_ui_oauth" {
-  count = var.enable_admin_ui ? 1 : 0
-
-  application {
-    name     = module.hydra.app_name
-    endpoint = "oauth"
-  }
-
-  application {
-    name     = module.admin_ui[0].app_name
-    endpoint = "oauth"
-  }
-  model_uuid = data.juju_model.this.uuid
-}
-
-resource "juju_integration" "admin_ui_public_ingress" {
-  count = var.enable_admin_ui ? 1 : 0
-
-  application {
-    offer_url = data.juju_offer.ingress.url
-  }
-
-  application {
-    name     = module.admin_ui[0].app_name
-    endpoint = "ingress"
-  }
-  model_uuid = data.juju_model.this.uuid
-}
-
-resource "juju_integration" "openfga_admin_ui" {
-  count = var.enable_admin_ui ? 1 : 0
-
-  application {
-    offer_url = data.juju_offer.openfga[0].url
-  }
-
-  application {
-    name     = module.admin_ui[0].app_name
-    endpoint = "openfga"
-  }
-  model_uuid = data.juju_model.this.uuid
-}
-
-resource "juju_integration" "oauth_ca_admin_ui" {
-  count = var.enable_admin_ui ? 1 : 0
-
-  application {
-    offer_url = data.juju_offer.ca_certificate.url
-  }
-
-  application {
-    name     = module.admin_ui[0].app_name
-    endpoint = "receive-ca-cert"
   }
   model_uuid = data.juju_model.this.uuid
 }
