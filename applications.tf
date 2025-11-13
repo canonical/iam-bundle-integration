@@ -64,22 +64,3 @@ module "login_ui" {
 
   depends_on = [module.hydra, module.kratos]
 }
-
-module "admin_ui" {
-  count = var.enable_admin_ui ? 1 : 0
-
-  source = "github.com/canonical/identity-platform-admin-ui-operator//terraform?ref=b1b3c2a"
-
-  model       = data.juju_model.this.uuid
-  app_name    = var.admin_ui.name
-  units       = var.admin_ui.units
-  base        = var.admin_ui.base
-  channel     = var.admin_ui.channel
-  constraints = var.admin_ui.constraints
-  revision    = var.admin_ui.revision
-
-
-  config = var.admin_ui.config
-
-  depends_on = [module.hydra, module.kratos]
-}
