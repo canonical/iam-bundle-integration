@@ -90,6 +90,20 @@ variable "login_ui" {
   default = {}
 }
 
+variable "admin_ui" {
+  description = "The configurations of the Identity Platform Admin UI application."
+  type = object({
+    units       = optional(number, 1)
+    trust       = optional(bool, true)
+    config      = optional(map(string), {})
+    channel     = optional(string, "latest/edge")
+    base        = optional(string, "ubuntu@22.04")
+    constraints = optional(string, "arch=amd64")
+    revision    = optional(string, null)
+  })
+  default = {}
+}
+
 variable "certificates" {
   description = "The configurations of the self-signed-certificates application."
   type = object({
@@ -122,6 +136,18 @@ variable "postgresql" {
     config  = optional(map(string), {})
     channel = optional(string, "16/edge")
     base    = optional(string, "ubuntu@24.04")
+  })
+  default = {}
+}
+
+variable "openfga" {
+  description = "The configurations of the OpenFGA application."
+  type = object({
+    units   = optional(number, 1)
+    trust   = optional(bool, true)
+    config  = optional(map(string), {})
+    channel = optional(string, "latest/edge")
+    base    = optional(string, "ubuntu@22.04")
   })
   default = {}
 }
