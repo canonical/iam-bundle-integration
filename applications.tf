@@ -16,7 +16,7 @@ module "kratos_external_idp_integrator" {
 
 
 module "kratos" {
-  source = "github.com/canonical/kratos-operator//terraform?ref=1548cca"
+  source = "github.com/canonical/kratos-operator//terraform?ref=v2.0.0"
 
   model       = data.juju_model.this.uuid
   app_name    = var.kratos.name
@@ -33,7 +33,7 @@ module "kratos" {
 }
 
 module "hydra" {
-  source = "github.com/canonical/hydra-operator//terraform?ref=14d6163"
+  source = "github.com/canonical/hydra-operator//terraform?ref=v2.0.0"
 
   model       = data.juju_model.this.uuid
   app_name    = var.hydra.name
@@ -49,7 +49,7 @@ module "hydra" {
 
 
 module "login_ui" {
-  source = "github.com/canonical/identity-platform-login-ui-operator//terraform?ref=v2.0.0"
+  source = "github.com/canonical/identity-platform-login-ui-operator//terraform?ref=v2.0.1"
 
   model       = data.juju_model.this.uuid
   app_name    = var.login_ui.name
