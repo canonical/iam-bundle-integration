@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.9.1](https://github.com/canonical/iam-bundle-integration/compare/v0.9.0...v0.9.1) (2025-11-17)
+
+
+### Bug Fixes
+
+* add admin-ui example ([5b347da](https://github.com/canonical/iam-bundle-integration/commit/5b347da964534d9ca43c0bd0bca113bc411435bc))
+* allow revisions in charms ([62b12cf](https://github.com/canonical/iam-bundle-integration/commit/62b12cfc838041e5c168ffd15f2787f759ea431b))
+* drop admin-ui from module ([ac743ea](https://github.com/canonical/iam-bundle-integration/commit/ac743ea2141652ae59abac48d3479c750f83f8de))
+* update login-ui to v2.0.0 ([974b7cf](https://github.com/canonical/iam-bundle-integration/commit/974b7cfb68c7ffecd372c974fa86700c26fe176b))
+
 ## [0.9.0](https://github.com/canonical/iam-bundle-integration/compare/v0.8.0...v0.9.0) (2025-11-17)
 
 
