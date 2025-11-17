@@ -128,8 +128,8 @@ variable "postgresql" {
     units   = optional(number, 1)
     trust   = optional(bool, true)
     config  = optional(map(string), {})
-    channel = optional(string, "16/edge")
-    base    = optional(string, "ubuntu@24.04")
+    channel = optional(string, "14/edge")
+    base    = optional(string, "ubuntu@22.04")
   })
   default = {}
 }

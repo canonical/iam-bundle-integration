@@ -1,25 +1,18 @@
-resource "juju_offer" "ingress_offer" {
-  name             = "ingress"
-  application_name = module.traefik.app_name
-  endpoints        = ["ingress"]
-  model_uuid       = juju_model.core.uuid
-}
-
-resource "juju_offer" "traefik_route_offer" {
+resource "juju_offer" "traefik_route" {
   name             = "traefik-route"
   application_name = module.traefik.app_name
   endpoints        = ["traefik-route"]
   model_uuid       = juju_model.core.uuid
 }
 
-resource "juju_offer" "postgresql_offer" {
+resource "juju_offer" "postgresql" {
   name             = "postgresql"
   application_name = module.postgresql.application_name
   endpoints        = ["database"]
   model_uuid       = juju_model.core.uuid
 }
 
-resource "juju_offer" "send_ca_certificate_offer" {
+resource "juju_offer" "send_ca_certificate" {
   name             = "send-ca-cert"
   application_name = module.certificates.app_name
   endpoints        = ["send-ca-cert"]
