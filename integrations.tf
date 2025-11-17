@@ -2,24 +2,24 @@ data "juju_offer" "database" {
   url = var.postgresql_offer_url
 }
 
-data "juju_offer" "ingress" {
-  url = var.ingress_offer_url
+data "juju_offer" "traefik_route" {
+  url = var.traefik_route_offer_url
 }
 
 data "juju_offer" "ca_certificate" {
   url = var.send_ca_certificate_offer_url
 }
 
-// public ingresses
+// public routes
 resource "juju_integration" "login_ui_public_ingress" {
 
   application {
-    offer_url = data.juju_offer.ingress.url
+    offer_url = data.juju_offer.traefik_route.url
   }
 
   application {
     name     = module.login_ui.app_name
-    endpoint = "ingress"
+    endpoint = module.login_ui.requires.public-route
   }
   model_uuid = data.juju_model.this.uuid
 }
@@ -27,12 +27,12 @@ resource "juju_integration" "login_ui_public_ingress" {
 resource "juju_integration" "hydra_public_ingress" {
 
   application {
-    offer_url = data.juju_offer.ingress.url
+    offer_url = data.juju_offer.traefik_route.url
   }
 
   application {
     name     = module.hydra.app_name
-    endpoint = "public-ingress"
+    endpoint = module.hydra.requires.public-route
   }
   model_uuid = data.juju_model.this.uuid
 }
@@ -40,12 +40,12 @@ resource "juju_integration" "hydra_public_ingress" {
 resource "juju_integration" "kratos_public_ingress" {
 
   application {
-    offer_url = data.juju_offer.ingress.url
+    offer_url = data.juju_offer.traefik_route.url
   }
 
   application {
     name     = module.kratos.app_name
-    endpoint = "public-ingress"
+    endpoint = module.kratos.requires.public-route
   }
   model_uuid = data.juju_model.this.uuid
 }

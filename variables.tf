@@ -83,10 +83,10 @@ variable "login_ui" {
   default = {}
 }
 
-variable "ingress_offer_url" {
-  description = "Ingress Offer URL"
+variable "traefik_route_offer_url" {
+  description = "Traefik Route Offer URL"
   type        = string
-  default     = "admin/core.ingress"
+  default     = "admin/core.traefik-route"
 }
 
 variable "postgresql_offer_url" {
