@@ -61,7 +61,7 @@ module "login_ui" {
 module "admin_ui" {
   count = var.enable_admin_ui ? 1 : 0
 
-  source = "github.com/canonical/identity-platform-admin-ui-operator//terraform?ref=b1b3c2a"
+  source = "github.com/canonical/identity-platform-admin-ui-operator//terraform?ref=v1.0.1"
 
   model       = data.juju_model.this.uuid
   app_name    = var.admin_ui.name
