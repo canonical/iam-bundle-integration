@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.9.0](https://github.com/canonical/iam-bundle-integration/compare/v0.8.0...v0.9.0) (2025-11-17)
+
+
+### Features
+
+* upgrade to juju 1.0.0 ([5ed3e40](https://github.com/canonical/iam-bundle-integration/commit/5ed3e407cd784607b7d026f7510913af82de2cbb))
+
+
+### Bug Fixes
+
+* drop external idp module ([7204464](https://github.com/canonical/iam-bundle-integration/commit/72044649c893c7705a9961e661acac66df2cc0df))
+* update example tutorial ([ecb547f](https://github.com/canonical/iam-bundle-integration/commit/ecb547f6f8d730253d0cc8c1b66214b1e42a44a8))
+
 ## [0.8.0](https://github.com/canonical/iam-bundle-integration/compare/v0.7.0...v0.8.0) (2025-07-07)
 
 
