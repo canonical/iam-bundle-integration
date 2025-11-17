@@ -3,10 +3,10 @@ resource "juju_model" "core" {
 }
 
 module "certificates" {
-  source = "github.com/canonical/self-signed-certificates-operator//terraform?ref=rev317"
+  source = "github.com/canonical/self-signed-certificates-operator//terraform?ref=rev443"
 
-  model    = juju_model.core.name
-  app_name = "self-signed-certificates"
+  model_uuid = juju_model.core.uuid
+  app_name   = "self-signed-certificates"
 
   config  = var.certificates.config
   units   = var.certificates.units
@@ -17,10 +17,10 @@ module "certificates" {
 }
 
 module "traefik" {
-  source = "github.com/canonical/traefik-k8s-operator//terraform?ref=main"
+  source = "github.com/canonical/traefik-k8s-operator//terraform?ref=rev259"
 
-  model    = juju_model.core.name
-  app_name = "traefik-public"
+  model_uuid = juju_model.core.uuid
+  app_name   = "traefik-public"
 
   config  = var.traefik.config
   units   = var.traefik.units
@@ -30,10 +30,10 @@ module "traefik" {
 }
 
 module "postgresql" {
-  source = "github.com/canonical/postgresql-k8s-operator//terraform?ref=rev495"
+  source = "github.com/shipperizer/postgresql-k8s-operator//terraform?ref=juju-tf%2F1.0"
 
-  juju_model_name = juju_model.core.name
-  app_name        = "postgresql-k8s"
+  juju_model = juju_model.core.uuid
+  app_name   = "postgresql-k8s"
 
   units   = var.postgresql.units
   config  = var.postgresql.config
@@ -43,23 +43,19 @@ module "postgresql" {
   depends_on = [juju_model.core]
 }
 
-resource "juju_application" "openfga" {
-  model = juju_model.core.name
-  count = var.enable_admin_ui ? 1 : 0
-  name  = "openfga-k8s"
-  trust = var.openfga.trust
-  units = var.openfga.units
+module "openfga" {
+  source = "github.com/canonical/openfga-operator//terraform?ref=v1.6.2"
 
-  charm {
-    name    = "openfga-k8s"
-    channel = var.openfga.channel
-    base    = var.openfga.base
-  }
+  model    = juju_model.core.uuid
+  app_name = "openfga-k8s"
 
-  config = var.openfga.config
+  config  = var.openfga.config
+  units   = var.openfga.units
+  channel = var.openfga.channel
 
   depends_on = [juju_model.core, module.postgresql]
 }
+
 
 resource "juju_model" "iam" {
   name = "iam"
@@ -67,7 +63,7 @@ resource "juju_model" "iam" {
 
 module "iam" {
   source = "../../"
-  model  = juju_model.iam.name
+  model  = juju_model.iam.uuid
 
   postgresql_offer_url          = juju_offer.postgresql_offer.url
   ingress_offer_url             = juju_offer.ingress_offer.url
@@ -82,5 +78,5 @@ module "iam" {
   enable_admin_ui                       = var.enable_admin_ui
   enable_kratos_external_idp_integrator = var.enable_kratos_external_idp_integrator
 
-  depends_on = [ juju_model.iam ]
+  depends_on = [juju_model.iam]
 }
