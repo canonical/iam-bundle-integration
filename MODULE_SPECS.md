@@ -13,7 +13,7 @@ Juju bundle Terraform module.
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.6.6 |
 | <a name="requirement_juju"></a> [juju](#requirement\_juju) | ~> 1.0.0 |
 ## Inputs
 
@@ -25,7 +25,7 @@ Juju bundle Terraform module.
 | <a name="input_kratos"></a> [kratos](#input\_kratos) | The configurations of the Kratos application. | <pre>object({<br/>    name        = optional(string, "kratos")<br/>    units       = optional(number, 1)<br/>    channel     = optional(string, "latest/edge")<br/>    base        = optional(string, "ubuntu@22.04")<br/>    trust       = optional(string, true)<br/>    config      = optional(map(string), {})<br/>    constraints = optional(string, "")<br/>    revision    = optional(number, null)<br/>  })</pre> | `{}` | no |
 | <a name="input_kratos_external_idp_integrator"></a> [kratos\_external\_idp\_integrator](#input\_kratos\_external\_idp\_integrator) | The configurations of the Kratos application. | <pre>object({<br/>    name    = optional(string, "kratos-external-idp-integrator")<br/>    units   = optional(number, 1)<br/>    channel = optional(string, "latest/edge")<br/>    base    = optional(string, "ubuntu@22.04")<br/>    trust   = optional(string, true)<br/>    config = optional(object({<br/>      client_id : string<br/>      client_secret : string<br/>      issuer_url : optional(string, "")<br/>      provider : string<br/>      provider_id : string<br/>      scope : optional(string, "profile email address phone")<br/>      microsoft_tenant_id : optional(string, "")<br/>      apple_team_id : optional(string, "")<br/>      apple_private_key_id : optional(string, "")<br/>      apple_private_key : optional(string, "")<br/>      })<br/>    )<br/><br/>    constraints = optional(string, "")<br/>    revision    = optional(number, null)<br/>  })</pre> | `{}` | no |
 | <a name="input_login_ui"></a> [login\_ui](#input\_login\_ui) | The configurations of the Identity Platform Login UI application. | <pre>object({<br/>    name        = optional(string, "login-ui")<br/>    units       = optional(number, 1)<br/>    trust       = optional(bool, true)<br/>    config      = optional(map(string), {})<br/>    channel     = optional(string, "latest/edge")<br/>    base        = optional(string, "ubuntu@22.04")<br/>    constraints = optional(string, "")<br/>    revision    = optional(number, null)<br/>  })</pre> | `{}` | no |
-| <a name="input_ingress_offer_url"></a> [ingress\_offer\_url](#input\_ingress\_offer\_url) | Ingress Offer URL | `string` | `"admin/core.ingress"` | no |
+| <a name="input_traefik_route_offer_url"></a> [traefik\_route\_offer\_url](#input\_traefik\_route\_offer\_url) | Traefik Route Offer URL | `string` | `"admin/core.traefik-route"` | no |
 | <a name="input_postgresql_offer_url"></a> [postgresql\_offer\_url](#input\_postgresql\_offer\_url) | PostgreSQL Offer URL | `string` | `"admin/core.postgresql"` | no |
 | <a name="input_send_ca_certificate_offer_url"></a> [send\_ca\_certificate\_offer\_url](#input\_send\_ca\_certificate\_offer\_url) | Send CA Certificate Offer URL | `string` | `"admin/core.send-ca-cert"` | no |
 | <a name="input_metrics_offer_url"></a> [metrics\_offer\_url](#input\_metrics\_offer\_url) | Metrics Offer URL | `string` | `null` | no |
