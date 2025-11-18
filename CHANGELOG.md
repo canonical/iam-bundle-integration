@@ -1,5 +1,24 @@
 # Changelog
 
+## [1.0.0](https://github.com/canonical/iam-bundle-integration/compare/v0.9.1...v1.0.0) (2025-11-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* use public-route relation for IAM integrations with ingress cotnroller
+
+### Features
+
+* use public-route relation for IAM integrations with ingress cotnroller ([9a31f13](https://github.com/canonical/iam-bundle-integration/commit/9a31f132c5ee31a59dea1d7fc00bacfe82db46e5))
+
+
+### Bug Fixes
+
+* update examples with traefik route changes ([d9b784d](https://github.com/canonical/iam-bundle-integration/commit/d9b784df1c58d56bad5e901626b7e6e576620cc6))
+* update IAM modules ([1284a0d](https://github.com/canonical/iam-bundle-integration/commit/1284a0d680e7250d7a1c5d780a137a6ba35eae37))
+* update tf version to be at least 1.6.6 ([ee1befd](https://github.com/canonical/iam-bundle-integration/commit/ee1befdf119f18fc1bf9a3f1b3c9e86a9ebb6eab))
+* use outputs for integration requirers and providers ([c8a58cd](https://github.com/canonical/iam-bundle-integration/commit/c8a58cd1917c3d73b6eac07f47a7fb32e2d77d4f))
+
 ## [0.9.1](https://github.com/canonical/iam-bundle-integration/compare/v0.9.0...v0.9.1) (2025-11-17)
 
 
