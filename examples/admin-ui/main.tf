@@ -65,7 +65,7 @@ module "iam" {
   model  = juju_model.iam.uuid
 
   postgresql_offer_url          = juju_offer.postgresql.url
-  ingress_offer_url             = juju_offer.ingress.url
+  traefik_route_offer_url       = juju_offer.traefik_route.url
   send_ca_certificate_offer_url = juju_offer.send_ca_certificate.url
 
   hydra                                 = var.hydra
