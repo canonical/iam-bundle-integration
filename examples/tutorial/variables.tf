@@ -8,7 +8,7 @@ variable "kratos_external_idp_integrator" {
   description = "The configurations of the Kratos External IdP Integrator application."
   type = object({
     units   = optional(number, 1)
-    channel = optional(string, "latest/stable")
+    channel = optional(string, "latest/edge")
     base    = optional(string, "ubuntu@22.04")
     trust   = optional(string, true)
     config = optional(object({
