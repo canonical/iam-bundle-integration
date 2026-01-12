@@ -118,3 +118,9 @@ variable "logging_offer_url" {
   type        = string
   default     = null
 }
+
+variable "grafana_dashboard_offer_url" {
+  description = "Grafana Dashboard Offer URL"
+  type        = string
+  default     = null
+}
