@@ -17,6 +17,12 @@ data "juju_offer" "logging" {
   url = var.logging_offer_url
 }
 
+data "juju_offer" "grafana_dashboard" {
+  count = var.grafana_dashboard_offer_url != null ? 1 : 0
+
+  url = var.grafana_dashboard_offer_url
+}
+
 ###### COS integrations #########
 resource "juju_integration" "tracing_login_ui" {
   count = var.tracing_offer_url != null ? 1 : 0
@@ -56,6 +62,20 @@ resource "juju_integration" "logging_login_ui" {
   application {
     name     = module.login_ui.app_name
     endpoint = "logging"
+  }
+  model_uuid = data.juju_model.this.uuid
+}
+
+resource "juju_integration" "grafana_dashboard_login_ui" {
+  count = var.grafana_dashboard_offer_url != null ? 1 : 0
+
+  application {
+    offer_url = data.juju_offer.grafana_dashboard[0].url
+  }
+
+  application {
+    name     = module.login_ui.app_name
+    endpoint = "grafana-dashboard"
   }
   model_uuid = data.juju_model.this.uuid
 }
@@ -103,6 +123,20 @@ resource "juju_integration" "logging_hydra" {
   model_uuid = data.juju_model.this.uuid
 }
 
+resource "juju_integration" "grafana_dashboard_hydra" {
+  count = var.grafana_dashboard_offer_url != null ? 1 : 0
+
+  application {
+    offer_url = data.juju_offer.grafana_dashboard[0].url
+  }
+
+  application {
+    name     = module.hydra.app_name
+    endpoint = "grafana-dashboard"
+  }
+  model_uuid = data.juju_model.this.uuid
+}
+
 resource "juju_integration" "tracing_kratos" {
   count = var.tracing_offer_url != null ? 1 : 0
 
@@ -142,6 +176,20 @@ resource "juju_integration" "logging_kratos" {
   application {
     name     = module.kratos.app_name
     endpoint = "logging"
+  }
+  model_uuid = data.juju_model.this.uuid
+}
+
+resource "juju_integration" "grafana_dashboard_kratos" {
+  count = var.grafana_dashboard_offer_url != null ? 1 : 0
+
+  application {
+    offer_url = data.juju_offer.grafana_dashboard[0].url
+  }
+
+  application {
+    name     = module.kratos.app_name
+    endpoint = "grafana-dashboard"
   }
   model_uuid = data.juju_model.this.uuid
 }
