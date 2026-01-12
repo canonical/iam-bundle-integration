@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/canonical/iam-bundle-integration/compare/v1.0.0...v1.0.1) (2026-01-12)
+
+
+### Bug Fixes
+
+* add grafana dashboard offer as parameter and related integrations ([a22a28e](https://github.com/canonical/iam-bundle-integration/commit/a22a28eb4ce803fb45930f042b5bd37d2b71fb73)), closes [#73](https://github.com/canonical/iam-bundle-integration/issues/73)
+
 ## [1.0.0](https://github.com/canonical/iam-bundle-integration/compare/v0.9.1...v1.0.0) (2025-11-18)
 
 
