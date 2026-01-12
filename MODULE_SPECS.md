@@ -31,6 +31,7 @@ Juju bundle Terraform module.
 | <a name="input_metrics_offer_url"></a> [metrics\_offer\_url](#input\_metrics\_offer\_url) | Metrics Offer URL | `string` | `null` | no |
 | <a name="input_tracing_offer_url"></a> [tracing\_offer\_url](#input\_tracing\_offer\_url) | Tracing Offer URL | `string` | `null` | no |
 | <a name="input_logging_offer_url"></a> [logging\_offer\_url](#input\_logging\_offer\_url) | Logging Offer URL | `string` | `null` | no |
+| <a name="input_grafana_dashboard_offer_url"></a> [grafana\_dashboard\_offer\_url](#input\_grafana\_dashboard\_offer\_url) | Grafana Dashboard Offer URL | `string` | `null` | no |
 ## Outputs
 
 | Name | Description |
