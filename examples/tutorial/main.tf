@@ -43,7 +43,7 @@ module "postgresql" {
   storage_directives = {
     pgdata = "10G"
   }
-  
+
   depends_on = [juju_model.core]
 }
 
