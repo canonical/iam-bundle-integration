@@ -101,7 +101,7 @@ variable "traefik" {
   type = object({
     units   = optional(number, 1)
     trust   = optional(bool, true)
-    config  = optional(map(string), {})
+    config  = optional(map(string), { enable_experimental_forward_auth = "true" })
     channel = optional(string, "latest/stable")
     base    = optional(string, "ubuntu@20.04")
   })
@@ -116,6 +116,20 @@ variable "postgresql" {
     config  = optional(map(string), {})
     channel = optional(string, "14/edge")
     base    = optional(string, "ubuntu@22.04")
+  })
+  default = {}
+}
+
+variable "oauth2_proxy" {
+  description = "The configurations of the OAuth2 Proxy application."
+  type = object({
+    units       = optional(number, 1)
+    trust       = optional(bool, true)
+    config      = optional(map(string), {})
+    channel     = optional(string, "latest/stable")
+    base        = optional(string, "ubuntu@22.04")
+    constraints = optional(string, "arch=amd64")
+    revision    = optional(number, null)
   })
   default = {}
 }
