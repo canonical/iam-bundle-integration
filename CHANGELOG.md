@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.2](https://github.com/canonical/iam-bundle-integration/compare/v1.0.1...v1.0.2) (2026-02-02)
+
+
+### Bug Fixes
+
+* bump login-ui to 2.1.0 to fix CSRF issues ([6569fe6](https://github.com/canonical/iam-bundle-integration/commit/6569fe6b3467ffbcdf6481715c416426904de0a8))
+* default to latest/stable in examples ([f59cb49](https://github.com/canonical/iam-bundle-integration/commit/f59cb49ffae61c21d58acf21a3e4feb1df618b91))
+
 ## [1.0.1](https://github.com/canonical/iam-bundle-integration/compare/v1.0.0...v1.0.1) (2026-01-12)
 
 
