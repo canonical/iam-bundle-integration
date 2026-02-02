@@ -2,7 +2,7 @@ variable "certificates" {
   description = "The configurations of the self-signed-certificates application."
   type = object({
     units   = optional(number, 1)
-    channel = optional(string, "latest/edge")
+    channel = optional(string, "1/stable")
     base    = optional(string, "ubuntu@22.04")
     config  = optional(map(string), {})
   })
@@ -13,7 +13,7 @@ variable "traefik" {
   description = "The configurations of the Traefik application."
   type = object({
     units   = optional(number, 1)
-    channel = optional(string, "latest/edge")
+    channel = optional(string, "latest/stable")
     config  = optional(map(string), {})
   })
   default = {}
@@ -35,7 +35,7 @@ variable "hydra" {
   type = object({
     name        = optional(string, "hydra")
     units       = optional(number, 1)
-    channel     = optional(string, "latest/edge")
+    channel     = optional(string, "latest/stable")
     base        = optional(string, "ubuntu@22.04")
     trust       = optional(string, true)
     config      = optional(map(string), {})
@@ -50,7 +50,7 @@ variable "kratos" {
   type = object({
     name        = optional(string, "kratos")
     units       = optional(number, 1)
-    channel     = optional(string, "latest/edge")
+    channel     = optional(string, "latest/stable")
     base        = optional(string, "ubuntu@22.04")
     trust       = optional(string, true)
     config      = optional(map(string), {})
@@ -67,7 +67,7 @@ variable "login_ui" {
     units       = optional(number, 1)
     trust       = optional(bool, true)
     config      = optional(map(string), {})
-    channel     = optional(string, "latest/edge")
+    channel     = optional(string, "latest/stable")
     base        = optional(string, "ubuntu@22.04")
     constraints = optional(string, "")
     revision    = optional(number, null)
@@ -80,7 +80,7 @@ variable "kratos_external_idp_integrator" {
   type = object({
     name    = optional(string, "kratos-external-idp-integrator")
     units   = optional(number, 1)
-    channel = optional(string, "latest/edge")
+    channel = optional(string, "latest/stable")
     base    = optional(string, "ubuntu@22.04")
     trust   = optional(string, true)
     config = optional(object({

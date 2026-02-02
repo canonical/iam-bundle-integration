@@ -8,7 +8,7 @@ variable "kratos_external_idp_integrator" {
   description = "The configurations of the Kratos External IdP Integrator application."
   type = object({
     units   = optional(number, 1)
-    channel = optional(string, "latest/edge")
+    channel = optional(string, "latest/stable")
     base    = optional(string, "ubuntu@22.04")
     trust   = optional(string, true)
     config = optional(object({
@@ -46,7 +46,7 @@ variable "hydra" {
   description = "The configurations of the Hydra application."
   type = object({
     units       = optional(number, 1)
-    channel     = optional(string, "latest/edge")
+    channel     = optional(string, "latest/stable")
     base        = optional(string, "ubuntu@22.04")
     trust       = optional(string, true)
     config      = optional(map(string), {})
@@ -60,7 +60,7 @@ variable "kratos" {
   description = "The configurations of the Kratos application."
   type = object({
     units       = optional(number, 1)
-    channel     = optional(string, "latest/edge")
+    channel     = optional(string, "latest/stable")
     base        = optional(string, "ubuntu@22.04")
     trust       = optional(string, true)
     config      = optional(map(string), {})
@@ -76,7 +76,7 @@ variable "login_ui" {
     units       = optional(number, 1)
     trust       = optional(bool, true)
     config      = optional(map(string), {})
-    channel     = optional(string, "latest/edge")
+    channel     = optional(string, "latest/stable")
     base        = optional(string, "ubuntu@22.04")
     constraints = optional(string, "arch=amd64")
     revision    = optional(number, null)
@@ -102,7 +102,7 @@ variable "traefik" {
     units   = optional(number, 1)
     trust   = optional(bool, true)
     config  = optional(map(string), { enable_experimental_forward_auth = "true" })
-    channel = optional(string, "latest/edge")
+    channel = optional(string, "latest/stable")
     base    = optional(string, "ubuntu@20.04")
   })
   default = {}
