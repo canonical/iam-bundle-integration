@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/canonical/iam-bundle-integration/compare/v1.0.2...v1.1.0) (2026-02-06)
+
+
+### Features
+
+* add forward-auth offer ([7b2e698](https://github.com/canonical/iam-bundle-integration/commit/7b2e69806f0fc0e75baae4a80e417f6244a91b2f))
+
 ## [1.0.2](https://github.com/canonical/iam-bundle-integration/compare/v1.0.1...v1.0.2) (2026-02-02)
 
 
