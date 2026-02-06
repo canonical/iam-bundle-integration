@@ -92,7 +92,7 @@ resource "juju_secret" "hook_service_salesforce_credentials" {
 }
 
 resource "juju_access_secret" "hook_service_salesforce_credentials_access" {
-  applications = [var.hook_service.name]
+  applications = [module.hook_service.app_name]
   secret_id    = juju_secret.hook_service_salesforce_credentials.secret_id
   model_uuid   = juju_model.iam.uuid
 }
