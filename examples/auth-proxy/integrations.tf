@@ -12,6 +12,13 @@ resource "juju_offer" "ingress" {
   model_uuid       = juju_model.core.uuid
 }
 
+resource "juju_offer" "forward_auth" {
+  name             = "forward-auth"
+  application_name = module.traefik.app_name
+  endpoints        = ["experimental-forward-auth"]
+  model_uuid       = juju_model.core.uuid
+}
+
 resource "juju_offer" "postgresql" {
   name             = "postgresql"
   application_name = module.postgresql.application_name
@@ -47,6 +54,18 @@ resource "juju_integration" "oauth2_proxy_ingress" {
 
   application {
     offer_url = juju_offer.ingress.url
+  }
+  model_uuid = juju_model.iam.uuid
+}
+
+resource "juju_integration" "oauth2_proxy_forward_auth" {
+  application {
+    name     = module.oauth2_proxy.app_name
+    endpoint = "forward-auth"
+  }
+
+  application {
+    offer_url = juju_offer.forward_auth.url
   }
   model_uuid = juju_model.iam.uuid
 }
