@@ -108,8 +108,6 @@ module "hook_service" {
   revision                         = var.hook_service.revision
   salesforce_credentials_secret_id = juju_secret.hook_service_salesforce_credentials.secret_id
   config                           = var.hook_service.config
-
-  depends_on = [juju_access_secret.hook_service_salesforce_credentials_access]
 }
 
 
