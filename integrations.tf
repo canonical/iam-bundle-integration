@@ -7,6 +7,8 @@ data "juju_offer" "traefik_route" {
 }
 
 data "juju_offer" "ca_certificate" {
+  count = var.send_ca_certificate_offer_url != null ? 1 : 0
+
   url = var.send_ca_certificate_offer_url
 }
 
