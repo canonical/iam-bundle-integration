@@ -12,13 +12,6 @@ resource "juju_offer" "postgresql" {
   model_uuid       = juju_model.core.uuid
 }
 
-resource "juju_offer" "send_ca_certificate" {
-  name             = "send-ca-cert"
-  application_name = module.certificates.app_name
-  endpoints        = ["send-ca-cert"]
-  model_uuid       = juju_model.core.uuid
-}
-
 resource "juju_integration" "traefik_certs" {
   application {
     name     = module.traefik.app_name

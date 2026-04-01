@@ -6,10 +6,6 @@ data "juju_offer" "traefik_route" {
   url = var.traefik_route_offer_url
 }
 
-data "juju_offer" "ca_certificate" {
-  url = var.send_ca_certificate_offer_url
-}
-
 // public routes
 resource "juju_integration" "login_ui_public_route" {
 

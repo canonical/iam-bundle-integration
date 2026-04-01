@@ -86,7 +86,6 @@ idp_provider_credentials = {
 postgresql_offer_url = "admin/core.postgresql"
 ingress_offer_url = "admin/core.ingress"
 openfga_offer_url = "admin/core.openfga"
-send_ca_certificate_offer_url = "admin/core.send-ca-cert"
 
 enable_kratos_external_idp_integrator = true
 ```

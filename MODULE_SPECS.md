@@ -27,7 +27,6 @@ Juju bundle Terraform module.
 | <a name="input_login_ui"></a> [login\_ui](#input\_login\_ui) | The configurations of the Identity Platform Login UI application. | <pre>object({<br/>    name        = optional(string, "login-ui")<br/>    units       = optional(number, 1)<br/>    trust       = optional(bool, true)<br/>    config      = optional(map(string), {})<br/>    channel     = optional(string, "latest/edge")<br/>    base        = optional(string, "ubuntu@22.04")<br/>    constraints = optional(string, "")<br/>    revision    = optional(number, null)<br/>  })</pre> | `{}` | no |
 | <a name="input_traefik_route_offer_url"></a> [traefik\_route\_offer\_url](#input\_traefik\_route\_offer\_url) | Traefik Route Offer URL | `string` | `"admin/core.traefik-route"` | no |
 | <a name="input_postgresql_offer_url"></a> [postgresql\_offer\_url](#input\_postgresql\_offer\_url) | PostgreSQL Offer URL | `string` | `"admin/core.postgresql"` | no |
-| <a name="input_send_ca_certificate_offer_url"></a> [send\_ca\_certificate\_offer\_url](#input\_send\_ca\_certificate\_offer\_url) | Send CA Certificate Offer URL | `string` | `"admin/core.send-ca-cert"` | no |
 | <a name="input_metrics_offer_url"></a> [metrics\_offer\_url](#input\_metrics\_offer\_url) | Metrics Offer URL | `string` | `null` | no |
 | <a name="input_tracing_offer_url"></a> [tracing\_offer\_url](#input\_tracing\_offer\_url) | Tracing Offer URL | `string` | `null` | no |
 | <a name="input_logging_offer_url"></a> [logging\_offer\_url](#input\_logging\_offer\_url) | Logging Offer URL | `string` | `null` | no |

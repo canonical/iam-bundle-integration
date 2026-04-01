@@ -43,7 +43,7 @@ module "postgresql" {
   storage_directives = {
     pgdata = "10G"
   }
-  
+
   depends_on = [juju_model.core]
 }
 
@@ -55,9 +55,8 @@ module "iam" {
   source = "../../"
   model  = juju_model.iam.uuid
 
-  postgresql_offer_url          = juju_offer.postgresql.url
-  traefik_route_offer_url       = juju_offer.traefik_route.url
-  send_ca_certificate_offer_url = juju_offer.send_ca_certificate.url
+  postgresql_offer_url    = juju_offer.postgresql.url
+  traefik_route_offer_url = juju_offer.traefik_route.url
 
   hydra                                 = var.hydra
   kratos                                = var.kratos

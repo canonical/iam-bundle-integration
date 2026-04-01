@@ -32,7 +32,6 @@
 | [juju_offer.ingress_offer](https://registry.terraform.io/providers/juju/juju/latest/docs/resources/offer) | resource |
 | [juju_offer.openfga_offer](https://registry.terraform.io/providers/juju/juju/latest/docs/resources/offer) | resource |
 | [juju_offer.postgresql_offer](https://registry.terraform.io/providers/juju/juju/latest/docs/resources/offer) | resource |
-| [juju_offer.send_ca_certificate_offer](https://registry.terraform.io/providers/juju/juju/latest/docs/resources/offer) | resource |
 | [juju_offer.traefik_route_offer](https://registry.terraform.io/providers/juju/juju/latest/docs/resources/offer) | resource |
 
 ## Inputs
