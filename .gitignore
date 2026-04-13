@@ -65,3 +65,4 @@ fabric.properties
 
 # macos
 .DS_Store
+*.lock.hcl

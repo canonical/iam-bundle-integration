@@ -95,12 +95,6 @@ variable "postgresql_offer_url" {
   default     = "admin/core.postgresql"
 }
 
-variable "send_ca_certificate_offer_url" {
-  description = "Send CA Certificate Offer URL"
-  type        = string
-  default     = "admin/core.send-ca-cert"
-}
-
 variable "metrics_offer_url" {
   description = "Metrics Offer URL"
   type        = string
