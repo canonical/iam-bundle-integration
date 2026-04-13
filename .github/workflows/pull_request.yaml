@@ -34,7 +34,7 @@
           with:
             juju-channel: 3.6/stable
             provider: microk8s
-            channel: 1.32-strict/stable
+            channel: 1.35-strict/edge
             microk8s-addons: "dns hostpath-storage"
 
 
