@@ -30,7 +30,7 @@
           run: terraform validate -no-color
 
         - name: Setup Operator Environment
-          uses: charmed-kubernetes/actions-operator@main
+          uses: charmed-kubernetes/actions-operator@d8217ad61c15f746727a9d41563c13e9b9fe56e3 # main
           with:
             juju-channel: 3/stable
             provider: microk8s
