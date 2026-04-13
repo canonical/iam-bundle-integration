@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/canonical/iam-bundle-integration/compare/v1.1.0...v1.1.1) (2026-04-13)
+
+
+### Bug Fixes
+
+* remove unused `send_ca_certificate_offer_url` variable ([1a52645](https://github.com/canonical/iam-bundle-integration/commit/1a5264567addc5edde8cc94a4697394b3d236f98)), closes [#101](https://github.com/canonical/iam-bundle-integration/issues/101)
+
 ## [1.1.0](https://github.com/canonical/iam-bundle-integration/compare/v1.0.2...v1.1.0) (2026-02-06)
 
 
