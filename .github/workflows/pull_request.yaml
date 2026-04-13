@@ -32,9 +32,11 @@
         - name: Setup Operator Environment
           uses: charmed-kubernetes/actions-operator@d8217ad61c15f746727a9d41563c13e9b9fe56e3 # main
           with:
-            juju-channel: 3/stable
+            juju-channel: 3.6/stable
             provider: microk8s
-            channel: 1.25-strict/stable
+            channel: 1.32-strict/stable
+            microk8s-addons: "dns hostpath-storage"
+
 
         - name: Terraform Plan from the example folders
           id: plan
