@@ -118,6 +118,11 @@ how to deploy the module to the ProdStack Cloud.
 Please refer to the [module specifications](./MODULE_SPECS.md) to learn the
 module specifications.
 
+## Examples
+
+- [Multitenancy](./examples/multitenancy/README.md) — deploy the Identity Platform with multitenancy enabled (Tenant Service + Hook Service)
+
+
 ## Security
 
 Please see [SECURITY.md](https://github.com/canonical/iam-bundle-integration/blob/main/SECURITY.md)
