@@ -9,6 +9,9 @@
     build:
       name: Terraform Checks and Plans
       runs-on: ubuntu-latest
+      permissions:
+        contents: read
+        pull-requests: write
       steps:
         - name: Checkout
           uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
@@ -41,10 +44,10 @@
         - name: Terraform Plan from the example folders
           id: plan
           run: |
-            terraform -chdir=examples/tutorial init -no-color -upgrade
-            terraform -chdir=examples/tutorial plan -no-color
-            terraform -chdir=examples/admin-ui init -no-color -upgrade
-            terraform -chdir=examples/admin-ui plan -no-color
+            ls ./examples/ | while read dir; do
+              echo "Running terraform plan in ./examples/$dir"
+              (cd ./examples/"$dir" && terraform init -input=false -no-color -upgrade && terraform plan -input=false -no-color)
+            done
 
           continue-on-error: true
 
