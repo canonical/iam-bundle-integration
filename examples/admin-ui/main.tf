@@ -30,7 +30,7 @@ module "traefik" {
 }
 
 module "postgresql" {
-  source = "github.com/shipperizer/postgresql-k8s-operator//terraform?ref=juju-tf%2F1.0"
+  source = "github.com/canonical/postgresql-k8s-operator//terraform?ref=v16/1.123.0"
 
   juju_model = juju_model.core.uuid
   app_name   = "postgresql-k8s"
