@@ -93,14 +93,33 @@ module "iam" {
   depends_on = [juju_model.iam]
 }
 
+resource "juju_secret" "hook_service_salesforce_credentials" {
+  name = "hook_service_salesforce_credentials"
+  value = {
+    consumer-key    = var.hook_service_consumer_key
+    consumer-secret = var.hook_service_consumer_secret
+  }
+  info       = "The credentials for calling the Salesforce API"
+  model_uuid = juju_model.iam.uuid
+}
+
+resource "juju_access_secret" "hook_service_credentials_access" {
+  applications = [var.hook_service.name]
+  secret_id    = juju_secret.hook_service_salesforce_credentials.secret_id
+  model_uuid   = juju_model.iam.uuid
+}
+
 module "hook_service" {
   source = "git::https://github.com/canonical/hook-service-operator//terraform?ref=v1.0.6"
 
   model = juju_model.iam.uuid
 
-  app_name = var.hook_service.name
-  channel  = var.hook_service.channel
-  base     = var.hook_service.base
-  revision = var.hook_service.revision
-  config   = var.hook_service.config
+  app_name                         = var.hook_service.name
+  channel                          = var.hook_service.channel
+  base                             = var.hook_service.base
+  revision                         = var.hook_service.revision
+  salesforce_credentials_secret_id = juju_secret.hook_service_salesforce_credentials.secret_id
+  config                           = var.hook_service.config
+
+  depends_on = [juju_access_secret.hook_service_credentials_access, module.iam]
 }
