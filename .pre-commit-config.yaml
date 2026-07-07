@@ -10,11 +10,10 @@ repos:
   rev: v1.99.5
   hooks:
     - id: terraform_fmt
+    - id: terraform_validate
     - id: terraform_tflint
       args:
       - --args=--call-module-type=all
-      - --args=--recursive
-    - id: terraform_validate
 - repo: https://github.com/compilerla/conventional-pre-commit
   rev: v4.2.0
   hooks:

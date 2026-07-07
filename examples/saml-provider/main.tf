@@ -88,7 +88,7 @@ resource "juju_access_secret" "saml_credentials_access" {
 
 // ─── SAML Provider ──────────────────────────────────────────────────────────
 module "saml_provider" {
-  source = "github.com/canonical/identity-saml-provider-operator//terraform?ref=main"
+  source = "github.com/canonical/identity-saml-provider-operator//terraform?ref=v1.0.1"
 
   model    = juju_model.iam.uuid
   app_name = var.identity_saml_provider.name

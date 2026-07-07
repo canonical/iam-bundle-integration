@@ -28,8 +28,10 @@ terraform apply -var-file=multitenancy.tfvars
 
 The plan creates two Juju models:
 
-- **`core`** — shared infrastructure: self-signed-certificates, Traefik, PostgreSQL, OpenFGA
-- **`iam`** — identity services: Hydra, Kratos, Login UI, Tenant Service, Hook Service
+- **`core`** — shared infrastructure: self-signed-certificates, Traefik,
+  PostgreSQL, OpenFGA
+- **`iam`** — identity services: Hydra, Kratos, Login UI, Tenant Service,
+  Hook Service
 
 Cross-model offers are created automatically so the `iam` model can consume
 the database, CA certificate, OpenFGA, and ingress route from `core`.

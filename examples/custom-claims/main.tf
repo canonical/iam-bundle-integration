@@ -81,7 +81,7 @@ module "iam" {
 }
 
 module "hook_service" {
-  source = "git::https://github.com/canonical/hook-service-operator//terraform?ref=v1.0.6"
+  source = "github.com/canonical/hook-service-operator//terraform?ref=v1.1.1"
 
   model = juju_model.iam.uuid
 
@@ -91,5 +91,3 @@ module "hook_service" {
   revision = var.hook_service.revision
   config   = var.hook_service.config
 }
-
-
