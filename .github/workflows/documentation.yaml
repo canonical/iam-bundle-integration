@@ -20,3 +20,4 @@ jobs:
           output-file: MODULE_SPECS.md
           output-method: inject
           git-push: "true"
+          git-commit-message: "docs: update terraform module documentation"
