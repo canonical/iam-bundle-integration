@@ -31,7 +31,7 @@ module "traefik" {
 }
 
 module "postgresql" {
-  source = "github.com/canonical/postgresql-k8s-operator//terraform?ref=v16/1.123.0"
+  source = "github.com/canonical/postgresql-k8s-operator//terraform?ref=v16/1.153.0"
 
   juju_model = juju_model.core.uuid
   app_name   = "postgresql-k8s"
@@ -88,7 +88,7 @@ resource "juju_access_secret" "saml_credentials_access" {
 
 // ─── SAML Provider ──────────────────────────────────────────────────────────
 module "saml_provider" {
-  source = "github.com/canonical/identity-saml-provider-operator//terraform?ref=v1.0.1"
+  source = "github.com/canonical/identity-saml-provider-operator//terraform?ref=v1.0.3"
 
   model    = juju_model.iam.uuid
   app_name = var.identity_saml_provider.name
