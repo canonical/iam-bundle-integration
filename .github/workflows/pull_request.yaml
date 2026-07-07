@@ -112,4 +112,6 @@
     documentation:
       name: Render Terraform Docs
       needs: build
+      permissions:
+        contents: write
       uses: ./.github/workflows/documentation.yaml
