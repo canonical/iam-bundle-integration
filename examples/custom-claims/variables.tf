@@ -132,18 +132,6 @@ variable "hook_service" {
   default = {}
 }
 
-variable "hook_service_consumer_key" {
-  description = "Salesforce Consumer Key for Hook Service"
-  type        = string
-  sensitive   = true
-}
-
-variable "hook_service_consumer_secret" {
-  description = "Salesforce Consumer Secret for Hook Service"
-  type        = string
-  sensitive   = true
-}
-
 variable "openfga" {
   description = "The configurations of the openfga application."
   type = object({

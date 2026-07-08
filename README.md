@@ -1,7 +1,7 @@
 # Identity Platform Juju Bundle Terraform Module
 
 [![Latest Release](https://img.shields.io/github/release/canonical/iam-bundle-integration.svg?label=Release)](https://github.com/canonical/iam-bundle-integration/releases/latest)
-[![Juju Provider](https://img.shields.io/badge/Juju%20Provider-0.11.0-%23E95420)](https://registry.terraform.io/providers/juju/juju/0.11.0)
+[![Juju Provider](https://img.shields.io/badge/Juju%20Provider-v1.0.0+-%23E95420)](https://registry.terraform.io/providers/juju/juju)
 [![Terraform](https://img.shields.io/badge/Terraform-v1.5.0+-%23713DAD?logo=terraform&logoColor=white)](https://www.terraform.io/)
 [![License](https://img.shields.io/github/license/canonical/iam-bundle-integration?label=License)](https://github.com/canonical/iam-bundle-integration/blob/main/LICENSE)
 
@@ -9,16 +9,16 @@
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-%23FE5196.svg)](https://conventionalcommits.org)
 
-This Identity Platform Juju bundle Terraform module aims to deploy
-the [Identity Platform Juju Bundle](https://github.com/canonical/iam-bundle) via
+This Identity Platform Juju bundle Terraform module aims to deploy the
+[Identity Platform Juju Bundle](https://github.com/canonical/iam-bundle) via
 Terraform.
 
 ## Getting started
 
 ### Prerequisites
 
-Make sure the following software and tools are installed and running
-in the local environment.
+Make sure the following software and tools are installed and running in the
+local environment.
 
 - `microk8s (v1.25.0+)`
 - `juju (3.1.0+)`
@@ -35,8 +35,11 @@ juju add-model core
 
 #### Dependencies
 
-Deploy the dependencies: [traefik](https://charmhub.io/traefik-k8s), [postgresql](https://charmhub.io/postgresql-k8s), [openfga](https://charmhub.io/openfga-k8s),
-and a certificates charm (e.g. [lego](https://charmhub.io/lego) or [self-signed-certificates](https://charmhub.io/self-signed-certificates)).
+Deploy the dependencies: [traefik](https://charmhub.io/traefik-k8s),
+[postgresql](https://charmhub.io/postgresql-k8s),
+[openfga](https://charmhub.io/openfga-k8s), and a certificates charm (e.g.
+[lego](https://charmhub.io/lego) or
+[self-signed-certificates](https://charmhub.io/self-signed-certificates)).
 And make sure they provide Juju offers:
 
 ```shell
@@ -58,15 +61,15 @@ juju offer openfga-k8s:openfga openfga
 juju offer self-signed-certificates:send-ca-cert send-ca-cert
 ```
 
-Because the bundle uses an external identity provider (e.g. Google or Microsoft Entra ID),
-it needs to provide additional variables for the module to run. More
-information about the IdP configuration can be
-found [here](https://charmhub.io/kratos-external-idp-integrator/configurations).
-Refer to [this](https://support.google.com/cloud/answer/15549257) article to find out how to create a private client in Google.
+Because the bundle uses an external identity provider (e.g. Google or Microsoft
+Entra ID), it needs to provide additional variables for the module to run. More
+information about the IdP configuration can be found in the
+[Kratos External IdP Integrator Configurations](https://charmhub.io/kratos-external-idp-integrator/configurations).
+Refer to the [Google Cloud guide on OAuth 2.0 credentials](https://support.google.com/cloud/answer/15549257)
+to find out how to create a private client in Google.
 
-If you want to deploy Kratos External IdP Integrator
-on top of the Identity Platform,
-you need to set `enable_kratos_external_idp_integrator` to `true`.
+If you want to deploy Kratos External IdP Integrator on top of the Identity
+Platform, you need to set `enable_kratos_external_idp_integrator` to `true`.
 
 Please create a Terraform variable definition (`.tfvars`) file in the root
 directory as follows:
@@ -110,8 +113,8 @@ juju status --relations
 
 ### Deploy to the ProdStack 6 Cloud
 
-Please refer to the [deployment documentation](docs/DEPLOYMENT.md) to learn
-how to deploy the module to the ProdStack Cloud.
+Please refer to the [deployment documentation](docs/DEPLOYMENT.md) to learn how
+to deploy the module to the ProdStack Cloud.
 
 ## Terraform Module Specifications
 
@@ -120,8 +123,21 @@ module specifications.
 
 ## Examples
 
-- [Multitenancy](./examples/multitenancy/README.md) — deploy the Identity Platform with multitenancy enabled (Tenant Service + Hook Service)
-
+- [Basic Sandbox Tutorial](./examples/tutorial) — deploy a complete Canonical
+  Identity Platform sandbox setup with self-signed certificates and Traefik
+  public routing
+- [Admin UI](./examples/admin-ui) — deploy the Identity Platform with the Admin
+  UI enabled
+- [Auth Proxy](./examples/auth-proxy) — deploy the Identity Platform integrated
+  with the Auth Proxy charm
+- [Custom Claims](./examples/custom-claims) — deploy the Identity Platform with
+  custom token claims configuration
+- [User Verification Service](./examples/user-verification) — deploy the
+  Identity Platform integrated with the User Verification Service
+- [Multitenancy](./examples/multitenancy/README.md) — deploy the Identity
+  Platform with multitenancy enabled (Tenant Service + Hook Service)
+- [Identity SAML Provider](./examples/saml-provider/README.md) — deploy the
+  Identity Platform integrated with the Identity SAML Provider
 
 ## Security
 
@@ -130,5 +146,5 @@ for guidelines on reporting security issues.
 
 ## Contributing
 
-Please refer to the [contribution documentation](./CONTRIBUTING.md) to learn how
-to contribute to the project.
+Please refer to the [contribution documentation](./CONTRIBUTING.md) to learn
+how to contribute to the project.
