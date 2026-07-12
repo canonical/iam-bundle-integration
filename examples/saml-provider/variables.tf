@@ -15,12 +15,14 @@ variable "saml_public_cert" {
   description = "SAML Public Certificate"
   type        = string
   sensitive   = true
+  default     = null
 }
 
 variable "saml_private_key" {
   description = "SAML Private Key"
   type        = string
   sensitive   = true
+  default     = null
 }
 
 variable "enable_kratos_external_idp_integrator" {
