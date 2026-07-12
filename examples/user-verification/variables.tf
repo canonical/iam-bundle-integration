@@ -136,10 +136,12 @@ variable "user_verification_service_consumer_key" {
   description = "Salesforce Consumer Key for User Verification Service"
   type        = string
   sensitive   = true
+  default     = null
 }
 
 variable "user_verification_service_consumer_secret" {
   description = "Salesforce Consumer Secret for User Verification Service"
   type        = string
   sensitive   = true
+  default     = null
 }
