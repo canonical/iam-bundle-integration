@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.1.2](https://github.com/canonical/iam-bundle-integration/compare/v1.1.1...v1.1.2) (2026-07-13)
+
+
+### Bug Fixes
+
+* add multitenancy ([82adfa1](https://github.com/canonical/iam-bundle-integration/commit/82adfa108228b2479ee519a707a63c2bbf95b547)), closes [#116](https://github.com/canonical/iam-bundle-integration/issues/116)
+* add saml provider deployment tutorial ([6456578](https://github.com/canonical/iam-bundle-integration/commit/64565780184f684ec2d6c23b41b52e8d1c67221e))
+* fix terraform provider version mismatch ([1630c7f](https://github.com/canonical/iam-bundle-integration/commit/1630c7f670ed6b4b03610a8aed6adff6138c7379))
+* fix the custom claim example ([067629b](https://github.com/canonical/iam-bundle-integration/commit/067629bcb560d60738f83e49db54a187348af98b))
+* fix the default values for saml provider example ([84379ff](https://github.com/canonical/iam-bundle-integration/commit/84379ff1b72e87279f6f28d732ea616a27175261))
+* fix the pre-commit issues ([cd9df73](https://github.com/canonical/iam-bundle-integration/commit/cd9df73b3d7da3730c0559cffa15ee171ad68731))
+* fix the type mismatch issue ([7d4d499](https://github.com/canonical/iam-bundle-integration/commit/7d4d499426a724df08000ffa80f6d2606bc68fda))
+* fix the user verification secret default value ([905571f](https://github.com/canonical/iam-bundle-integration/commit/905571f8700e8bc7036bec95afe744edb1b7414d))
+* fix the workflow permission issues ([5461399](https://github.com/canonical/iam-bundle-integration/commit/54613999d564f52827e8320bd3849f16fad5b995))
+* remove hook-service salesforce config ([a0072d0](https://github.com/canonical/iam-bundle-integration/commit/a0072d0e9dad404538526e6024c248cf70b145b7)), closes [#117](https://github.com/canonical/iam-bundle-integration/issues/117)
+
 ## [1.1.1](https://github.com/canonical/iam-bundle-integration/compare/v1.1.0...v1.1.1) (2026-04-13)
 
 
