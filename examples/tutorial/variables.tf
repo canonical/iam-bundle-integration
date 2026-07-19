@@ -102,7 +102,9 @@ variable "traefik" {
     units   = optional(number, 1)
     trust   = optional(bool, true)
     config  = optional(map(string), {})
-    channel = optional(string, "latest/stable")
+    # TODO: Pin Traefik to latest/stable after rev>=242 is released to stable.
+    # This fixes an incompatibility between Traefik and some self-signed-certificates releases
+    channel = optional(string, "latest/edge")
     base    = optional(string, "ubuntu@20.04")
   })
   default = {}
