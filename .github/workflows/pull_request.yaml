@@ -14,7 +14,7 @@
         pull-requests: write
       steps:
         - name: Checkout
-          uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+          uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
 
         - name: HashiCorp - Setup Terraform
           uses: hashicorp/setup-terraform@5e8dbf3c6d9deaf4193ca7a8fb23f2ac83bb6c85 # v4.0.0
