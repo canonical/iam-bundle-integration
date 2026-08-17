@@ -2,15 +2,15 @@ data "juju_offer" "database" {
   url = var.postgresql_offer_url
 }
 
-data "juju_offer" "traefik_route" {
-  url = var.traefik_route_offer_url
+data "juju_offer" "istio_route" {
+  url = var.istio_route_offer_url
 }
 
 // public routes
 resource "juju_integration" "login_ui_public_route" {
 
   application {
-    offer_url = data.juju_offer.traefik_route.url
+    offer_url = data.juju_offer.istio_route.url
   }
 
   application {
@@ -23,7 +23,7 @@ resource "juju_integration" "login_ui_public_route" {
 resource "juju_integration" "hydra_public_route" {
 
   application {
-    offer_url = data.juju_offer.traefik_route.url
+    offer_url = data.juju_offer.istio_route.url
   }
 
   application {
@@ -36,7 +36,7 @@ resource "juju_integration" "hydra_public_route" {
 resource "juju_integration" "kratos_public_route" {
 
   application {
-    offer_url = data.juju_offer.traefik_route.url
+    offer_url = data.juju_offer.istio_route.url
   }
 
   application {

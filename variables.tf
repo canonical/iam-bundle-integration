@@ -83,10 +83,10 @@ variable "login_ui" {
   default = {}
 }
 
-variable "traefik_route_offer_url" {
-  description = "Traefik Route Offer URL"
+variable "istio_route_offer_url" {
+  description = "Istio Route Offer URL"
   type        = string
-  default     = "admin/core.traefik-route"
+  default     = "admin/core.istio-ingress-route"
 }
 
 variable "postgresql_offer_url" {
