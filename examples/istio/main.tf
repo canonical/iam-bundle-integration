@@ -81,8 +81,8 @@ module "iam" {
   source = "../../"
   model  = juju_model.iam.uuid
 
-  postgresql_offer_url    = juju_offer.postgresql.url
-  traefik_route_offer_url = juju_offer.istio_ingress_route.url
+  postgresql_offer_url  = juju_offer.postgresql.url
+  istio_route_offer_url = juju_offer.istio_ingress_route.url
 
   hydra                                 = var.hydra
   kratos                                = var.kratos
